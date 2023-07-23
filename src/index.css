@@ -5,7 +5,9 @@
 }
 
 :root {
+  --primary-color: rgb(220, 152, 20);
   --white: #fff;
+  --text-color-black: rgb(104, 104, 104);
   --text-color-gray: #aaa;
   --black: rgb(40, 40, 40);
 }

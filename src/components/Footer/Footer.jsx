@@ -1,11 +1,16 @@
 import React from "react";
-import classes from "./Footer.module.css";
+import "./Footer.scss";
+import {
+  FacebookOutlined,
+  InstagramOutlined,
+  TwitterOutlined,
+} from "@ant-design/icons";
 
 const Footer = () => {
   return (
-    <div className={classes.container}>
-      <div className={classes.containerWrapper}>
-        <ul className={`${classes.footerList} ${classes.links}`}>
+    <div className="footer_container">
+      <div className="footer_container_wrapper">
+        <ul className="footerList links">
           <li>
             <a href="#">About Us</a>
           </li>
@@ -25,15 +30,15 @@ const Footer = () => {
             <a href="#">&#169; by Saurabh</a>
           </li>
         </ul>
-        <ul className={`${classes.footerList} ${classes.icons}`}>
+        <ul className="footerList icons">
           <li>
-            <i className="pi pi-facebook"></i>
+            <FacebookOutlined />
           </li>
           <li>
-            <i className="pi pi-instagram"></i>
+            <InstagramOutlined />
           </li>
           <li>
-            <i className="pi pi-twitter"></i>
+            <TwitterOutlined />
           </li>
         </ul>
       </div>
