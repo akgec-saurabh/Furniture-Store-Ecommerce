@@ -6,11 +6,6 @@
     border-bottom: 1px solid var(--text-color-gray);
     border-top: 1px solid var(--text-color-gray);
     text-align: center;
-    cursor: pointer;
     color: var(--black);
-
-    &:hover {
-      color: var(--text-color-gray);
-    }
   }
 }

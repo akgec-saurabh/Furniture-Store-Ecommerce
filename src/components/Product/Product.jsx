@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import "./Product.scss";
 import { HeartFilled, HeartOutlined } from "@ant-design/icons";
+import { Link } from "react-router-dom";
 
-const color = ["#33A0FF", "#DA33FF", "#FF33E6"];
-const Product = () => {
+const Product = ({ product }) => {
   const [hovered, setHoverd] = useState(false);
   const [heartHovered, setHeartHoverd] = useState(false);
   return (
-    <div
+    <Link
+      to={`/product/${product.id}`}
       onMouseEnter={() => {
         setHoverd(true);
       }}
@@ -16,33 +17,33 @@ const Product = () => {
     >
       <div className="product_container_wrapper">
         <div className="availabe_color_container">
-          {color.map((c) => (
+          {product.colorVariant.map((p) => (
             <div
               className="availabe_color"
-              style={{ backgroundColor: `${c}` }}
+              style={{ backgroundColor: `${p.colorCode}` }}
             ></div>
           ))}
         </div>
         {!hovered && (
           <img
             className="product_image"
-            src="https://savoy.nordicmade.com/wp-content/uploads/2015/08/product-classic-chair-300x372.jpg"
+            src={product.colorVariant[0].images[0]}
             alt="product"
           />
         )}
         {hovered && (
           <img
             className="product_image"
-            src="https://savoy.nordicmade.com/wp-content/uploads/2020/10/product-classic-chair-3.jpg"
+            src={product.colorVariant[1].images[0]}
             alt="product"
           />
         )}
 
         <div className="product_data">
           <div className="data_info">
-            <div className="product_name">Modern Shell Chair</div>
+            <div className="product_name">{product.name}</div>
             <div className="product_price">
-              {hovered ? "Show More" : "$208.00"}
+              {hovered ? "Show More" : `${product.price}`}
             </div>
           </div>
           <div
@@ -55,7 +56,7 @@ const Product = () => {
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

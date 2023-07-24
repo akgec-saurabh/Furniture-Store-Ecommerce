@@ -1,0 +1,11 @@
+.rating {
+  color: var(--primary-color);
+  height: 30px;
+  display: flex;
+  margin: 10px 0px;
+  align-items: center;
+
+  .icon {
+    margin-right: 8px;
+  }
+}

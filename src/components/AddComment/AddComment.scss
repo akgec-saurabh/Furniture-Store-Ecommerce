@@ -1,0 +1,19 @@
+.addcomment_container {
+  .head {
+    display: block;
+    text-align: start;
+    font-size: 25px;
+    margin: 25px 0px;
+  }
+  .imp {
+    font-size: 14px;
+    color: var(--text-color-gray);
+    font-weight: 300;
+  }
+
+  .your_rating {
+    margin-top: 20px;
+    .your_rating_head {
+    }
+  }
+}

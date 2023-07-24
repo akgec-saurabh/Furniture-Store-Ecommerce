@@ -1,0 +1,12 @@
+.button_container {
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+  color: var(--white);
+  background-color: var(--black);
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--black-light);
+  }
+}

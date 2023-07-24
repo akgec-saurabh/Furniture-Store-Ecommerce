@@ -2,6 +2,9 @@
   flex: 1 1 300px;
   max-width: 305px;
 
+  list-style-type: none;
+  text-decoration: none;
+
   .product_container_wrapper {
     cursor: pointer;
     position: relative;
@@ -16,7 +19,7 @@
         height: 10px;
         width: 10px;
         border-radius: 50%;
-        border: 1px solid var(--text-color-black);
+        // border: 1px solid var(--text-color-black);
       }
     }
 
