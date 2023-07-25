@@ -29,7 +29,7 @@
           line-height: 1.4;
           font-size: 20px;
           text-decoration: none;
-          border-bottom: 1px solid var(--text-color-gray);
+          border-bottom: 1px solid $text-color-gray;
         }
       }
     }
@@ -61,7 +61,7 @@
     display: inline-block;
     width: 8px;
     height: 8px;
-    background-color: var(--text-color-gray);
+    background-color: $text-color-gray;
     border-radius: 50%;
   }
 
@@ -69,6 +69,6 @@
     width: 15px;
     height: 15px;
     background-color: transparent;
-    border: 2px solid var(--primary-color);
+    border: 2px solid $primary-color;
   }
 }

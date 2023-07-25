@@ -49,6 +49,26 @@ const cartSlice = createSlice({
         state.cart = state.cart.filter((product) => product.id !== pid);
       }
     },
+    setCart(state, action) {
+      try {
+        localStorage.setItem("cart", JSON.stringify(state.cart));
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
+    getCart(state) {
+      let item;
+      try {
+        item = localStorage.getItem("cart");
+      } catch (error) {
+        console.log(error);
+      }
+
+      if (item) {
+        state.cart = JSON.parse(item);
+      }
+    },
   },
 });
 

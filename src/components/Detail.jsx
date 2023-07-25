@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Comment from "./Comment";
 import AddComment from "./AddComment";
-import LoadMore from "./UI/LoadMore/LoadMore";
 
 function Detail() {
   const [active, setActiveState] = useState(0);
@@ -75,7 +74,7 @@ function Detail() {
           </>
         )}
       </div>
-      <LoadMore>
+      <div>
         <div className="more_details">
           <div className="md_sku">
             <div>SKU :&nbsp;</div>
@@ -90,7 +89,7 @@ function Detail() {
             <div>Contemporary, Essentials, Minimal</div>
           </div>
         </div>
-      </LoadMore>
+      </div>
     </div>
   );
 }

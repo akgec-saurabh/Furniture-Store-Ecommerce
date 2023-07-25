@@ -17,6 +17,7 @@ function ProductDisplay({ product }) {
   const onAddToCartHandler = () => {
     dispatch(cartSliceActions.addToCart({ ...product, qty: count }));
     dispatch(sideCartSliceActions.toggleSideCart());
+    dispatch(cartSliceActions.setCart());
   };
 
   return (

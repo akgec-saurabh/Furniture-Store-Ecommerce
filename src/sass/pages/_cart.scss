@@ -1,11 +1,31 @@
 .cartpage {
   margin-top: 50px;
+  height: calc(100vh - 230px);
+
   .cartpage_container {
-    max-width: 1250px;
-    margin: 0px auto;
+    @include max-width;
     display: flex;
     gap: 50px;
 
+    .se_empty {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-content: center;
+      text-align: center;
+      color: $text-color-black;
+
+      .icon {
+        padding: 20px;
+        font-size: 35px;
+      }
+
+      .cp-btn {
+        margin: 2rem auto;
+        width: 15rem;
+      }
+    }
     .shoppingCart_head {
       font-size: 24px;
       margin-bottom: 30px;
@@ -15,7 +35,12 @@
       color: var(--black);
 
       .sideCartItem_wrapper {
-        border-bottom: 1px solid var(--light-gray);
+        border-bottom: 1px solid $light-gray;
+
+        img {
+          width: 80px;
+          height: 100px;
+        }
       }
 
       .btn_container {
@@ -24,16 +49,16 @@
         margin-top: 25px;
 
         .btnw {
-          @include button($white, $black-light, 15px);
-          border: 1px solid $text-color-gray;
+          @include button($white, $black-light, 10px);
+          border: 1px solid $black-light;
 
           &:hover {
-            border: 1px solid $black-light;
+            // border: 1px solid $black-light;
           }
         }
       }
     }
-    .cartTotal {
+    .cartpage-carttotal-container {
       flex: 2;
     }
   }

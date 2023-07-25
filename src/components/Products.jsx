@@ -1,6 +1,5 @@
 import React from "react";
 import Product from "./Product";
-import LoadMore from "./UI/LoadMore/LoadMore";
 import data from "../data";
 
 const Products = () => {
@@ -12,8 +11,6 @@ const Products = () => {
             <Product product={product} key={product.id} />
           ))}
         </div>
-
-        <LoadMore>Load More</LoadMore>
       </div>
     </div>
   );

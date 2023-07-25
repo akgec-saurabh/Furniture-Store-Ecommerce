@@ -11,12 +11,15 @@ function SideCartItem({ product }) {
   const dispatch = useDispatch();
   const onIncreaseHandler = () => {
     dispatch(cartSliceActions.increaseQty(product));
+    dispatch(cartSliceActions.setCart());
   };
   const onDecreaseHandler = () => {
     dispatch(cartSliceActions.decreaseQty(product));
+    dispatch(cartSliceActions.setCart());
   };
   const onRemoveHandler = () => {
     dispatch(cartSliceActions.removeItemCart(product));
+    dispatch(cartSliceActions.setCart());
   };
 
   return (
