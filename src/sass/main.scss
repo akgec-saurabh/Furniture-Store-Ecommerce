@@ -1,0 +1,25 @@
+@import "variables";
+@import "mixins";
+@import "global";
+
+// COMPONENTS
+@import "./components/addcomment";
+@import "./components/detail";
+@import "./components/dropdown";
+@import "./components/footer";
+@import "./components/form";
+@import "./components/navbar";
+@import "./components/product";
+@import "./components/productDisplay";
+@import "./components/products";
+@import "./components/secondaryNav";
+@import "./components/slider";
+@import "./components/sidecart";
+@import "./components/sidecartitem";
+@import "./components/badge";
+@import "./components/comment";
+@import "./components/ratings";
+
+//PAGES
+
+@import "./pages/cart";

@@ -1,0 +1,140 @@
+.productDisplay_container {
+  background-color: $bg-color;
+  .productDisplay_container_wrapper {
+    @include max-width;
+    display: flex;
+    // .image_list {
+    //   flex: 1;
+    //   display: flex;
+    //   flex-direction: column;
+    //   .image_list_img {
+    //     width: 80px;
+    //     height: 80px;
+    //     object-fit: cover;
+    //     margin: 5px;
+    //     filter: grayscale(1);
+    //     opacity: 0.4;
+    //     cursor: pointer;
+
+    //     &:hover {
+    //       filter: unset;
+    //       opacity: 1;
+    //     }
+    //   }
+    //   .selected {
+    //     filter: unset;
+    //     opacity: 1;
+    //   }
+    // }
+
+    //contain image and data
+    .pd_data_container {
+      flex: 10;
+      display: flex;
+
+      .pd_data_img_wrapper {
+        flex: 1;
+        position: relative;
+
+        .share_icon {
+          position: absolute;
+          right: 0px;
+          margin: 50px;
+          cursor: pointer;
+          font-size: 20px;
+          color: $text-color-gray;
+
+          &:hover {
+            color: $text-color-black;
+          }
+        }
+        .pd_data_img {
+          width: 100%;
+          object-fit: cover;
+        }
+      }
+
+      .pd_data {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        .pd_data_wrapper {
+          padding: 100px;
+          .pd_name {
+            font-size: 27px;
+            line-height: 1.2;
+          }
+          .pd_price {
+            font-size: 20px;
+            font-weight: 500;
+            padding: 24px 0px;
+            color: $primary-color;
+          }
+          .pd_sdesc {
+            color: $text-color-black;
+          }
+          .pd_btns {
+            border: 1px solid $text-color-gray;
+            .pd_btns_color {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              padding: 10px;
+
+              .pd_btns_color_wrapper {
+                display: flex;
+                .pd_btns_color_item {
+                  border-radius: 50%;
+                  overflow: hidden;
+                  margin: 0px 10px;
+                  cursor: pointer;
+                  border: 1px solid #eee;
+
+                  .ccode {
+                    width: 20px;
+                    height: 20px;
+                    border-radius: 50%;
+                    border: 2px solid #eee;
+                  }
+                  img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                  }
+
+                  &:hover {
+                    border: 1px solid $text-color-black;
+                  }
+                }
+                .active {
+                  border: 1px solid $text-color-black;
+                }
+              }
+            }
+            .pd_btns_quantity {
+              padding: 0px 10px;
+
+              border-top: 1px solid $text-color-gray;
+              line-height: 50px;
+              display: flex;
+              justify-content: space-between;
+
+              .pd_btns_quantity_wrapper {
+                display: flex;
+                align-items: center;
+                .count {
+                  width: 20px;
+                  text-align: center;
+                }
+                .icon {
+                  margin: 0px 15px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

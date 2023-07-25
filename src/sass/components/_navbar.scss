@@ -1,0 +1,51 @@
+.nav_container {
+  border-bottom: 1px solid $light-gray;
+  .nav_container_wrapper {
+    @include max-width;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    color: $text-color-black;
+
+    .logo {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 24px;
+      color: $black;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 5px;
+      cursor: pointer;
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav_list li,
+    .nav_icons li {
+      cursor: pointer;
+    }
+
+    .nav_icons li {
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+    .nav_icons,
+    .nav_list {
+      li:hover {
+        color: $black;
+      }
+    }
+
+    .nav_list,
+    .nav_icons {
+      display: flex;
+    }
+
+    .nav_icons li {
+      margin-left: 20px;
+    }
+  }
+}

@@ -1,0 +1,22 @@
+@mixin max-width {
+  max-width: 1250px;
+  margin: 0px auto;
+}
+
+//Buttons
+@mixin button($backgroundColor: $black-light, $color: $white, $padding: 15px) {
+  padding: $padding;
+  width: 100%;
+  text-align: center;
+  color: $color;
+  background-color: $backgroundColor;
+  cursor: pointer;
+  font-size: inherit;
+  font-weight: inherit;
+  outline: none;
+  border: none;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}

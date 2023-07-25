@@ -1,0 +1,40 @@
+.form {
+  .form_btn {
+    width: 150px;
+    margin: 20px 0px;
+  }
+  label,
+  input {
+    display: block;
+  }
+
+  .review_wrapper {
+    textarea {
+      font-size: inherit;
+      resize: none;
+      padding: 15px 5px;
+      width: 100%;
+      outline: none;
+      border: none;
+      border: 1px solid $text-color-gray;
+    }
+  }
+
+  .detail {
+    display: flex;
+    gap: 25px;
+
+    .name_wrapper,
+    .email_wrapper {
+      flex: 1;
+      input {
+        width: 100%;
+        padding: 15px 5px;
+        font-size: inherit;
+        outline: none;
+        border: none;
+        border: 1px solid $text-color-gray;
+      }
+    }
+  }
+}

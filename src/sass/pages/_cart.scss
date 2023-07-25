@@ -1,0 +1,40 @@
+.cartpage {
+  margin-top: 50px;
+  .cartpage_container {
+    max-width: 1250px;
+    margin: 0px auto;
+    display: flex;
+    gap: 50px;
+
+    .shoppingCart_head {
+      font-size: 24px;
+      margin-bottom: 30px;
+    }
+    .shoppingCart {
+      flex: 3;
+      color: var(--black);
+
+      .sideCartItem_wrapper {
+        border-bottom: 1px solid var(--light-gray);
+      }
+
+      .btn_container {
+        display: flex;
+        gap: 20px;
+        margin-top: 25px;
+
+        .btnw {
+          @include button($white, $black-light, 15px);
+          border: 1px solid $text-color-gray;
+
+          &:hover {
+            border: 1px solid $black-light;
+          }
+        }
+      }
+    }
+    .cartTotal {
+      flex: 2;
+    }
+  }
+}
