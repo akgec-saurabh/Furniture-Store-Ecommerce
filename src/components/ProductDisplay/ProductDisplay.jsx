@@ -7,10 +7,19 @@ import {
   ShareAltOutlined,
 } from "@ant-design/icons";
 import Ratings from "../UI/Ratings/Ratings";
+import { useDispatch } from "react-redux";
+import { cartSliceActions } from "../../store/cart-slice";
+import { sideCartSliceActions } from "../../store/sideCart-slice";
 
 function ProductDisplay({ product }) {
   const [count, setCount] = useState(1);
-  const [selected, setSelected] = useState(product.colorVariant[0].images[0]);
+
+  const dispatch = useDispatch();
+
+  const onAddToCartHandler = () => {
+    dispatch(cartSliceActions.addToCart({ ...product, qty: count }));
+    dispatch(sideCartSliceActions.toggleSideCart());
+  };
 
   return (
     <div className="productDisplay_container">
@@ -84,7 +93,7 @@ function ProductDisplay({ product }) {
                     />
                   </div>
                 </div>
-                <Button>Add to cart</Button>
+                <Button onClick={onAddToCartHandler}>Add to cart</Button>
               </div>
             </div>
           </div>

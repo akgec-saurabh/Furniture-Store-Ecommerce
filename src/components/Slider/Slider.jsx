@@ -13,7 +13,6 @@ import sliderBasketImage from "../../assets/slider-basket.jpg";
 
 const Slider = () => {
   const [activeSlide, setActiveSlide] = useState(0);
-  console.log(activeSlide);
   const pagination = {
     clickable: true,
     renderBullet: function (index, className) {

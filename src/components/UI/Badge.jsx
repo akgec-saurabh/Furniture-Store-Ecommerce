@@ -4,7 +4,7 @@ import "./Badge.scss";
 const Badge = ({ children, value }) => {
   return (
     <div className="badge_container">
-      <div className="badge">{value}</div>
+      {value !== 0 && <div className="badge">{value}</div>}
       {children}
     </div>
   );
