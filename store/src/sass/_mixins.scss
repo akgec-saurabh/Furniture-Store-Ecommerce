@@ -15,8 +15,14 @@
   font-weight: inherit;
   outline: none;
   border: none;
+}
 
-  &:hover {
-    opacity: 0.8;
-  }
+@mixin input {
+  width: 100%;
+  padding: 10px 5px;
+  font-size: inherit;
+  font-family: inherit;
+  outline: none;
+  border: none;
+  border: 1px solid $text-color-gray;
 }

@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { sideCartSliceActions } from "../store/sideCart-slice";
 import { Link } from "react-router-dom";
 import DropDown from "./DropDown";
+import { authSliceActions } from "../store/auth-slice";
 
 const NavBar = () => {
   const dispatch = useDispatch();
@@ -15,6 +16,10 @@ const NavBar = () => {
   const onSideCartHandler = () => {
     console.log("opening sidecart");
     dispatch(sideCartSliceActions.toggleSideCart());
+  };
+
+  const onSignInHandler = () => {
+    dispatch(authSliceActions.toggleAuthModal());
   };
   return (
     <div className="nav_container">
@@ -40,7 +45,7 @@ const NavBar = () => {
           <li>
             <HeartOutlined />
           </li>
-          <li>Sign In</li>
+          <li onClick={onSignInHandler}>Sign In</li>
           <li onClick={onSideCartHandler} className="nav_cart">
             <Badge className="nav_badge" value={cart.length}>
               <ShoppingOutlined />

@@ -18,7 +18,6 @@ const initialProductState = {
     size: "",
   },
   colorVariant: [],
-  reviews: [],
 };
 
 const productSlice = createSlice({

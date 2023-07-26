@@ -29,6 +29,18 @@ li {
   top: 0;
 }
 
+.input {
+  @include input;
+}
+
 .btn {
   @include button;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+.btnw {
+  @include button($white, $black);
+  border: 1px solid $black;
 }

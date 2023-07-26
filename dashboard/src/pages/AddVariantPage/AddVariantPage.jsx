@@ -1,5 +1,6 @@
 import React from "react";
 import classes from "./AddVariantPage.module.css";
+import { v4 as uuidv4 } from "uuid";
 import { useSelector } from "react-redux";
 import AddVariant from "../../components/AddVariant/AddVariant";
 import { Button } from "antd";
@@ -7,9 +8,28 @@ import { Button } from "antd";
 function AddVariantPage() {
   const variant = useSelector((state) => state.product.variant);
 
-  const onAddProductHandler = (e) => {
-    console.log(e);
+  const product = useSelector((state) => state.product);
+
+  const onAddProductHandler = async (e) => {
+    console.log(product);
+
     // TODO Fetch and post this to api
+
+    try {
+      const response = await fetch("http://localhost:5000/admin", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({ ...product, id: uuidv4() }),
+      });
+
+      if (response.ok) {
+        console.log("saved", product);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const renderVariant = () => {

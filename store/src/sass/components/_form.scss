@@ -3,8 +3,8 @@
     width: 150px;
     margin: 20px 0px;
   }
-  label,
-  input {
+  > label,
+  > input {
     display: block;
   }
 
@@ -27,13 +27,8 @@
     .name_wrapper,
     .email_wrapper {
       flex: 1;
-      input {
-        width: 100%;
-        padding: 15px 5px;
-        font-size: inherit;
-        outline: none;
-        border: none;
-        border: 1px solid $text-color-gray;
+      > input {
+        @include input;
       }
     }
   }

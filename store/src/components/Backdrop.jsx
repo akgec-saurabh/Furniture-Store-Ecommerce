@@ -11,7 +11,7 @@ function Backdrop() {
   };
   return ReactDOM.createPortal(
     <div onClick={onBackDropClickHandler} className="backdrop"></div>,
-    document.getElementById("overlay")
+    document.getElementById("backdrop")
   );
 }
 
