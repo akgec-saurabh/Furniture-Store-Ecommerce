@@ -1,12 +1,14 @@
 import React, { useEffect } from "react";
 import NavBar from "./NavBar";
 import { Outlet } from "react-router-dom";
-import Backdrop from "./Backdrop";
 import SideCart from "./SideCart";
 import { useDispatch, useSelector } from "react-redux";
 import Footer from "./Footer";
 import { cartSliceActions } from "../store/cart-slice";
-import AuthModal from "./AuthModal";
+import Modal from "./Modal";
+import Auth from "./Auth";
+import { authSliceActions } from "../store/auth-slice";
+import { sideCartSliceActions } from "../store/sideCart-slice";
 
 function RootLayout() {
   const sideCartOpen = useSelector((state) => state.sideCart.open);
@@ -15,6 +17,15 @@ function RootLayout() {
   useEffect(() => {
     dispatch(cartSliceActions.getCart());
   }, []);
+
+  const onConfirmAuthModalHandler = () => {
+    dispatch(authSliceActions.toggleAuthModal());
+  };
+
+  const onConfirmSideCartModalHandler = () => {
+    dispatch(sideCartSliceActions.toggleSideCart());
+  };
+
   return (
     <div className="root_layout">
       <div className="main_wrapper">
@@ -24,12 +35,16 @@ function RootLayout() {
       </div>
 
       {sideCartOpen && (
-        <>
-          <Backdrop />
+        <Modal onConfirm={onConfirmSideCartModalHandler}>
           <SideCart />
-        </>
+        </Modal>
       )}
-      {authModalOpen && <AuthModal />}
+
+      {authModalOpen && (
+        <Modal onConfirm={onConfirmAuthModalHandler}>
+          <Auth />
+        </Modal>
+      )}
     </div>
   );
 }
