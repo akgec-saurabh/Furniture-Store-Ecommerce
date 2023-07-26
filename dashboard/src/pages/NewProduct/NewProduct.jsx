@@ -9,7 +9,9 @@ function NewProduct() {
   const formData = useSelector((state) => state.product);
   const dispatch = useDispatch();
 
-  const onSetDefault = () => {};
+  const onSetDefault = () => {
+    dispatch(productSliceActions.setDefault());
+  };
 
   const onSubmitHandler = () => {
     // dispatch(productSliceActions.addProduct(formData));
@@ -129,7 +131,7 @@ function NewProduct() {
             id="weightInKg"
             type="number"
             name="weightInKg"
-            value={formData.weightInKg}
+            value={formData.additionalInformation.weightInKg}
             onChange={handleInputChange}
           />
         </div>
@@ -140,7 +142,7 @@ function NewProduct() {
             placeholder="100 x 37 x 100 cm"
             type="text"
             name="dimensions"
-            value={formData.dimensions}
+            value={formData.additionalInformation.dimensions}
             onChange={handleInputChange}
           />
         </div>
@@ -151,7 +153,7 @@ function NewProduct() {
             id="materials"
             type="text"
             name="materials"
-            value={formData.materials}
+            value={formData.additionalInformation.materials}
             onChange={handleInputChange}
           />
         </div>
@@ -162,7 +164,7 @@ function NewProduct() {
             id="otherInfo"
             type="text"
             name="otherInfo"
-            value={formData.otherInfo}
+            value={formData.additionalInformation.otherInfo}
             onChange={handleInputChange}
           />
         </div>
@@ -173,7 +175,7 @@ function NewProduct() {
             id="size"
             type="text"
             name="size"
-            value={formData.size}
+            value={formData.additionalInformation.size}
             onChange={handleInputChange}
           />
         </div>
@@ -188,7 +190,9 @@ function NewProduct() {
       <Button className={classes.clearbtn} danger type="primary">
         Clear
       </Button>
-      <Button className={classes.default}>Set Default</Button>
+      <Button onClick={onSetDefault} className={classes.default}>
+        Set Default
+      </Button>
     </div>
   );
 }

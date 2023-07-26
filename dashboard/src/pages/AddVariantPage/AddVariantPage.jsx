@@ -1,11 +1,12 @@
 import React from "react";
 import classes from "./AddVariantPage.module.css";
-import { v4 as uuidv4 } from "uuid";
 import { useSelector } from "react-redux";
 import AddVariant from "../../components/AddVariant/AddVariant";
-import { Button } from "antd";
+import { Button, message } from "antd";
 
 function AddVariantPage() {
+  const [messageApi, contextHolder] = message.useMessage();
+
   const variant = useSelector((state) => state.product.variant);
 
   const product = useSelector((state) => state.product);
@@ -24,11 +25,20 @@ function AddVariantPage() {
         body: JSON.stringify(product),
       });
 
-      if (response.ok) {
-        console.log("saved", product);
+      if (!response.ok) {
+        throw new Error("Not able to save Product");
+      } else {
+        messageApi.open({
+          type: "success",
+          content: "Product Saved",
+        });
       }
     } catch (error) {
       console.log(error);
+      messageApi.open({
+        type: "error",
+        content: "Not able to save Product",
+      });
     }
   };
 
@@ -42,6 +52,7 @@ function AddVariantPage() {
 
   return (
     <div className={classes.container}>
+      {contextHolder}
       {renderVariant()}
       <Button onClick={onAddProductHandler}>Add Product</Button>
     </div>

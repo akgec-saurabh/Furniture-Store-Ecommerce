@@ -11,6 +11,9 @@ const pageSlice = createSlice({
     goToVariantPage(state) {
       state.page = 2;
     },
+    goToAddNewProductPage(state) {
+      state.page = 1;
+    },
   },
 });
 
