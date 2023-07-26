@@ -21,3 +21,26 @@ export const getProducts = () => {
     }
   };
 };
+
+export const getProductById = (productId) => {
+  return async (dispatch) => {
+    const getProductsReq = async () => {
+      const response = await fetch(
+        `http://localhost:5000/product/${productId}`
+      );
+      if (!response.ok) {
+        throw new Error("Unable to Fetch prduct by Id");
+      }
+      const responseData = await response.json();
+
+      return responseData;
+    };
+
+    try {
+      const product = await getProductsReq();
+      dispatch(productsSliceAction.setActiveProduct(product.product));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};

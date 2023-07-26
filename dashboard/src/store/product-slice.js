@@ -30,6 +30,14 @@ const productSlice = createSlice({
     addVariant(state, action) {
       state.colorVariant.push(action.payload);
     },
+
+    productChange(state, action) {
+      state[action.payload.name] = action.payload.value;
+    },
+
+    setDefault(state, action) {
+      return {};
+    },
   },
 });
 

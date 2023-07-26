@@ -10,7 +10,7 @@ const getAllProducts = async (req, res, next) => {
   }
   res.status(200).json({
     message: "Fetched Products Successfully",
-    products,
+    products: products.map((product) => product.toObject({ getters: true })),
   });
 };
 
@@ -19,13 +19,16 @@ const getProductById = async (req, res, next) => {
 
   let product;
   try {
-    product = await Product.find({ id: productId }).exec();
+    product = await Product.findById(productId).exec();
   } catch (error) {
     console.log(error);
     return next(httpError("Error occured while finding product", 404));
   }
-  if (product.length !== 0) {
-    res.status(200).json({ message: "Product Fetched", product });
+  if (product) {
+    res.status(200).json({
+      message: "Product Fetched",
+      product: product.toObject({ getters: true }),
+    });
   } else {
     res.status(404).json({ message: "Unable to find product" });
   }

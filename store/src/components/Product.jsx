@@ -26,14 +26,14 @@ const Product = ({ product }) => {
         {!hovered && (
           <img
             className="product_image"
-            src={product.colorVariant[0].images[0]}
+            src={product.mainImage}
             alt="product"
           />
         )}
         {hovered && (
           <img
             className="product_image"
-            src={product.colorVariant[1].images[0]}
+            src={product.hoverImage}
             alt="product"
           />
         )}

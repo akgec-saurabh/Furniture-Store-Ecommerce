@@ -11,7 +11,6 @@ const Products = () => {
 
   useEffect(() => {
     dispatch(getProducts());
-    console.log(products);
   }, []);
 
   return (

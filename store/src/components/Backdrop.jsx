@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { useDispatch } from "react-redux";
 import { sideCartSliceActions } from "../store/sideCart-slice";
 
-function Backdrop() {
+function Backdrop( {onConfirm}) {
   const dispatch = useDispatch();
   const onBackDropClickHandler = () => {
     //toggling sideCart

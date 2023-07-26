@@ -11,7 +11,6 @@ import Ratings from "./Ratings";
 
 function ProductDisplay({ product }) {
   const [count, setCount] = useState(1);
-
   const dispatch = useDispatch();
 
   const onAddToCartHandler = () => {
@@ -40,11 +39,7 @@ function ProductDisplay({ product }) {
         <div className="pd_data_container">
           <div className="pd_data_img_wrapper">
             <ShareAltOutlined className="share_icon" />
-            <img
-              className="pd_data_img"
-              src={product.colorVariant[0].images[0]}
-              alt=""
-            />
+            <img className="pd_data_img" src={product.mainImage} alt="" />
           </div>
           <div className="pd_data">
             <div className="pd_data_wrapper">
@@ -56,22 +51,24 @@ function ProductDisplay({ product }) {
               <div className="pd_btns">
                 <div className="pd_btns_color">
                   Color
-                  <div className="pd_btns_color_wrapper">
-                    {product.colorVariant.map((c, i) => (
-                      <div
-                        key={i}
-                        className={`pd_btns_color_item ${
-                          i === 0 ? "active" : ""
-                        }`}
-                      >
+                  {product.colorVariant && (
+                    <div className="pd_btns_color_wrapper">
+                      {product.colorVariant.map((c, i) => (
                         <div
-                          className="ccode"
-                          style={{ backgroundColor: `${c.colorCode}` }}
-                        ></div>
-                        {/* <img src={c.images[0]} alt="" /> */}
-                      </div>
-                    ))}
-                  </div>
+                          key={i}
+                          className={`pd_btns_color_item ${
+                            i === 0 ? "active" : ""
+                          }`}
+                        >
+                          <div
+                            className="ccode"
+                            style={{ backgroundColor: `${c.colorCode}` }}
+                          ></div>
+                          {/* <img src={c.images[0]} alt="" /> */}
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
                 <div className="pd_btns_quantity">
                   Quantity

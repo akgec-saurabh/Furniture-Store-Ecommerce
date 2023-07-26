@@ -16,12 +16,12 @@ function AddVariantPage() {
     // TODO Fetch and post this to api
 
     try {
-      const response = await fetch("http://localhost:5000/admin", {
+      const response = await fetch("http://localhost:5000/admin/product", {
         method: "POST",
         headers: {
           "Content-type": "application/json",
         },
-        body: JSON.stringify({ ...product, id: uuidv4() }),
+        body: JSON.stringify(product),
       });
 
       if (response.ok) {

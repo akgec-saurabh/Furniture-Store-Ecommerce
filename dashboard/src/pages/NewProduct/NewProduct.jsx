@@ -5,51 +5,21 @@ import { useDispatch, useSelector } from "react-redux";
 import { productSliceActions } from "../../store/product-slice";
 import { pageSliceActions } from "../../store/page-slice";
 
-const formReducer = (state, action) => {
-  if (action.type === "SET_FIELD") {
-    return {
-      ...state,
-      [action.fieldname]: action.payload,
-    };
-  }
-};
-
 function NewProduct() {
+  const formData = useSelector((state) => state.product);
   const dispatch = useDispatch();
-  const [formData, formDispatch] = useReducer(formReducer, {
-    id: "",
-    name: "",
-    price: "",
-    variant: "",
-    discount: "",
-    mainImage: "",
-    hoverImage: "",
-    shortDescription: "",
-    longDescription: "",
-    additionalInformation: {
-      weightInKg: "",
-      dimenstions: "",
-      materials: "",
-      otherInfo: "",
-      size: "",
-    },
-    colorVariant: [],
-    reviews: [],
-  });
+
+  const onSetDefault = () => {};
 
   const onSubmitHandler = () => {
-    dispatch(productSliceActions.addProduct(formData));
+    // dispatch(productSliceActions.addProduct(formData));
     dispatch(pageSliceActions.goToVariantPage());
   };
 
   const handleInputChange = (e) => {
     console.log(e);
     const { name, value } = e.target;
-    formDispatch({
-      type: "SET_FIELD",
-      fieldname: name,
-      payload: value,
-    });
+    dispatch(productSliceActions.productChange({ name, value }));
   };
 
   return (

@@ -2,7 +2,6 @@ const Product = require("../models/product");
 
 const addProduct = async (req, res, next) => {
   const {
-    id,
     name,
     price,
     variant,
@@ -16,7 +15,6 @@ const addProduct = async (req, res, next) => {
   } = req.body;
 
   const newProduct = new Product({
-    id,
     name,
     price,
     variant,
