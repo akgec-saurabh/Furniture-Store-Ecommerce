@@ -15,12 +15,10 @@ const Products = () => {
 
   return (
     <div className="products_container">
-      <div className="products_container_wrapper">
-        <div className="products_wrapper">
-          {products.map((product) => (
-            <Product product={product} key={product.id} />
-          ))}
-        </div>
+      <div className="products_wrapper">
+        {products.map((product) => (
+          <Product product={product} key={product.id} />
+        ))}
       </div>
     </div>
   );

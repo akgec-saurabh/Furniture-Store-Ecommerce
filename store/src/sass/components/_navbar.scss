@@ -1,8 +1,17 @@
 .nav_container {
   border-bottom: 1px solid $light-gray;
+  background-color: $white;
+  /* Sticky navbar styles */
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
   .nav_container_wrapper {
+    height: 75px;
+
     @include max-width;
     display: flex;
+    align-items: center;
     justify-content: space-between;
     position: relative;
     color: $text-color-black;
@@ -44,8 +53,13 @@
       display: flex;
     }
 
-    .nav_icons li {
-      margin-left: 20px;
+    .nav_icons {
+      > li {
+        margin-left: 20px;
+      }
+      .nav_cart {
+        padding-right: 10px;
+      }
     }
   }
 }

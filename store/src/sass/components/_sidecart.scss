@@ -51,6 +51,29 @@
     flex-direction: column;
     justify-content: space-between;
     color: $text-color-gray;
+
+    .sidecart_full_container {
+      overflow-y: scroll;
+      overflow-x: hidden;
+      position: relative;
+
+      &::-webkit-scrollbar {
+        width: 5px;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
+      &::-webkit-scrollbar-track {
+        background-color: black;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: #4e4e4e;
+        border-radius: 25px;
+      }
+    }
+
     .slidefull_btn {
       margin-bottom: 50px;
 

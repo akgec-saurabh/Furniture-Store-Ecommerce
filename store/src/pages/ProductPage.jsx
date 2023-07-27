@@ -20,7 +20,7 @@ function ProductPage() {
       {product && (
         <div className="productpage_container_wrapper">
           <ProductDisplay product={product} />
-          <Detail />
+          <Detail product={product} />
         </div>
       )}
     </div>

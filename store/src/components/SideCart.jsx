@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import ReactDOM from "react-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { sideCartSliceActions } from "../store/sideCart-slice";
 import { CloseCircleOutlined } from "@ant-design/icons";

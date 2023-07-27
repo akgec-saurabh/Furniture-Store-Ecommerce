@@ -1,7 +1,15 @@
 import React from "react";
 import Ratings from "./Ratings";
 
-function Comment() {
+function Comment({
+  review = {
+    name: "",
+    date: "",
+    review: "",
+    star: "",
+  },
+}) {
+  console.log(review);
   return (
     <div className="comment_container">
       <div className="userPic_wrapper">
@@ -13,17 +21,21 @@ function Comment() {
       </div>
       <div className="comment_data">
         <div className="comment_detail">
-          <div>
-            <div className="name">Saurabh</div>
-            <div className="time">September 26, 2020</div>
+          <div className="cd-info">
+            <div className="name">{review.name && review.name}</div>
+            <div className="time">
+              {new Date(review.date).toLocaleDateString(undefined, {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
+            </div>
           </div>
-          <Ratings rating={5} />
+          <div className="cd-rating">
+            <Ratings rating={review.star} />
+          </div>
         </div>
-        <div className="comment_container_comment">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facilis quod
-          autem voluptates aspernatur. Sint nam a odit minima quasi
-          consequuntur?
-        </div>
+        <div className="comment_container_comment">{review.review}</div>
       </div>
     </div>
   );

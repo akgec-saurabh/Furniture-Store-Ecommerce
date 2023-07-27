@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import Comment from "./Comment";
 import AddComment from "./AddComment";
 
-function Detail() {
+function Detail({ product }) {
+  console.log(product.reviews);
   const [active, setActiveState] = useState(0);
   return (
     <div className="details">
@@ -35,41 +36,41 @@ function Detail() {
 
       <div className="detail_data">
         {active === 0 && (
-          <div className="description">
-            "Authentic keffiyeh master cleanse. Fingerstache semiotics PBR
-            quinoa. Pop-up Godard kale chips, trust fund Neutra fingerstache
-            paleo Wes Anderson. Deep v single-origin coffee cred Thundercats
-            beard. Mumblecore before they sold out roof party biodiesel. Banksy
-            swag Portland readymade synth messenger bag cliche."
-          </div>
+          <div className="description">{product.longDescription}</div>
         )}
         {active === 1 && (
           <div className="additional_detail">
             <div>
               <div>Weight</div>
-              <div>1.73</div>
+              <div>{product.additionalInformation.weightInKg}</div>
             </div>
             <div>
               <div>Dimensions</div>
-              <div>100 x 37 x 100 cm</div>
+              <div>{product.additionalInformation.dimensions}</div>
             </div>
             <div>
               <div>Materials</div>
-              <div>80% cotton, 20% linen</div>
+              <div>{product.additionalInformation.materials}</div>
             </div>
             <div>
               <div>Other Info</div>
-              <div>American heirloom jean shorts pug seitan letterpress.</div>
+              <div>{product.additionalInformation.otherInfo}</div>
             </div>
             <div>
               <div>Size</div>
-              <div>One Size, XL, L, M, S</div>
+              <div>{product.additionalInformation.size}</div>
             </div>
           </div>
         )}
         {active === 2 && (
           <>
-            <Comment />
+            {product.reviews && product.reviews.length > 0 ? (
+              product.reviews.map((review, k) => (
+                <Comment key={k} review={review} />
+              ))
+            ) : (
+              <p>No reviews available.</p>
+            )}
             <AddComment />
           </>
         )}
@@ -78,15 +79,15 @@ function Detail() {
         <div className="more_details">
           <div className="md_sku">
             <div>SKU :&nbsp;</div>
-            <div> 73253-5</div>
+            <div> {product.sku}</div>
           </div>
           <div className="md_category">
             <div>Category :&nbsp;</div>
-            <div> Essentials</div>
+            <div> {product.category}</div>
           </div>
           <div className="md_tags">
             <div>Tags :&nbsp;</div>
-            <div>Contemporary, Essentials, Minimal</div>
+            <div>{product.tag}</div>
           </div>
         </div>
       </div>

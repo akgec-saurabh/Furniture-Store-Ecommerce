@@ -24,7 +24,7 @@ function SideCartItem({ product }) {
 
   return (
     <div className="sideCartItem">
-      <img src={product.image} alt="product" />
+      <img src={product.mainImage} alt="product" />
       <div className="item_data">
         <div className="name">{product.name}</div>
         <div className="quantity">
