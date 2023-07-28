@@ -1,11 +1,17 @@
 .cartpage {
-  margin-top: 50px;
-  height: calc(100vh - 230px);
+  margin: 50px 0px;
+  @include lg {
+    margin: 0px;
+  }
 
   .cartpage_container {
     @include max-width;
     display: flex;
     gap: 50px;
+    @include lg {
+      flex-direction: column;
+      padding: 30px;
+    }
 
     .se_empty {
       flex: 1;

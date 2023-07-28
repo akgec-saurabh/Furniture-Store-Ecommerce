@@ -31,6 +31,9 @@
     .pd_data_container {
       flex: 10;
       display: flex;
+      @include lg {
+        flex-direction: column;
+      }
 
       .pd_data_img_wrapper {
         flex: 1;
@@ -61,6 +64,9 @@
         justify-content: center;
         .pd_data_wrapper {
           padding: 100px;
+          @include lg {
+            padding: 30px;
+          }
           .pd_name {
             font-size: 27px;
             line-height: 1.2;

@@ -6,6 +6,9 @@
   .swiper-slide {
     display: flex;
     position: relative;
+    @include lg {
+      flex-direction: column;
+    }
 
     .slider_text {
       position: absolute;
@@ -16,20 +19,38 @@
       max-width: 31%;
       opacity: 0;
       transition: opacity 2.5s ease;
+      @include lg {
+        position: unset;
+        padding: unset;
+        transform: unset;
+        max-width: 100%;
+        z-index: 99;
+        padding: $s;
+      }
       .text_head {
         font-size: 28px;
         line-height: 1.5;
+
+        @include lg {
+          font-size: 18px;
+        }
       }
 
       .text_desc {
         margin-top: 10px;
-
+        @include lg {
+          margin-top: 0px;
+        }
         a {
-          color: var(--text-color-gray);
+          color: $text-color-gray;
           line-height: 1.4;
           font-size: 20px;
           text-decoration: none;
           border-bottom: 1px solid $text-color-gray;
+
+          @include lg {
+            font-size: 16px;
+          }
         }
       }
     }
@@ -56,6 +77,9 @@
     align-items: center;
     gap: 10px;
     margin: 20px;
+    @include lg {
+      display: none;
+    }
   }
   .swiper-pagination-bullet {
     display: inline-block;

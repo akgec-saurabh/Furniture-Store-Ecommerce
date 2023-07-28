@@ -1,5 +1,4 @@
 import React from "react";
-// import "./DropDown.scss";
 
 const DropDown = ({ name, item }) => {
   return (

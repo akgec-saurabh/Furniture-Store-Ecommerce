@@ -1,6 +1,12 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+
+//for https
+const https = require("https");
+const fs = require("fs");
+require("dotenv").config(); // Load environment variables from .env file
+
 const cors = require("cors");
 
 const httpError = require("./models/http-error");
@@ -51,3 +57,19 @@ mongoose
   .catch((error) => {
     console.log(error);
   });
+
+// Read the SSL certificate and key files
+// const options = {
+//   key: fs.readFileSync(process.env.PRIVATE_KEY_PATH),
+//   cert: fs.readFileSync(process.env.PRIVATE_CERTIFICATE_PATH),
+// };
+//Connecting to DataBase
+// mongoose
+//   .connect(process.env.TASK_MONGO_URI)
+//   .then(() => {
+//     https.createServer(options, app).listen(5000);
+//     console.log("Express server with HTTPS is running on port 5000");
+//   })
+//   .catch((error) => {
+//     console.log(error);
+//   });

@@ -5,10 +5,14 @@
   position: sticky;
   top: 0;
   z-index: 100;
+  padding: $s 0px;
+
+  @include lg {
+    padding: $s;
+    height: 50px;
+  }
 
   .nav_container_wrapper {
-    height: 75px;
-
     @include max-width;
     display: flex;
     align-items: center;
@@ -31,7 +35,26 @@
       align-items: center;
     }
 
-    .nav_list li,
+    .mobile-menu {
+      font-size: 20px;
+    }
+
+    .nav_list-mobile {
+      position: absolute;
+      top: 35px;
+      left: -$s;
+      z-index: 9;
+      // padding: 15px 0px;
+      width: calc(100vw - $s);
+      height: calc(100vh - 100% - 30px);
+      overflow-x: hidden;
+      overflow-y: scroll;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+
+    .nav_list-desktop li,
     .nav_icons li {
       cursor: pointer;
     }
@@ -42,13 +65,13 @@
       align-items: center;
     }
     .nav_icons,
-    .nav_list {
+    .nav_list-desktop {
       li:hover {
         color: $black;
       }
     }
 
-    .nav_list,
+    .nav_list-desktop,
     .nav_icons {
       display: flex;
     }

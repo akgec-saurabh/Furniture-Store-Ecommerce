@@ -3,12 +3,13 @@
 @import "global";
 
 // COMPONENTS
+@import "./components/navbar";
+@import "./components/dropdown";
+@import "./components/dropdownMobile";
 @import "./components/addcomment";
 @import "./components/detail";
-@import "./components/dropdown";
 @import "./components/footer";
 @import "./components/form";
-@import "./components/navbar";
 @import "./components/product";
 @import "./components/productDisplay";
 @import "./components/products";
@@ -23,5 +24,4 @@
 @import "./components/auth";
 
 //PAGES
-
 @import "./pages/cart";

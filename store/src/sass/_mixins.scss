@@ -26,3 +26,27 @@
   border: none;
   border: 1px solid $text-color-gray;
 }
+
+//Scrollbar
+@mixin scrollbar {
+  &::-webkit-scrollbar {
+    width: 15px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #4e4e4e;
+    border-radius: 25px;
+  }
+}
+
+// MEDIA QUERIES
+
+@mixin lg {
+  @media (max-width: map-get($breakpoints,"lg")) {
+    @content;
+  }
+}

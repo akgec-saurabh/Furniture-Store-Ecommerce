@@ -1,0 +1,29 @@
+.dropdownMobile {
+  //   padding: 20px;
+  background-color: $white;
+
+  .dm_head {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid $light-gray;
+    cursor: pointer;
+    font-weight: 500;
+  }
+  .dm_drop {
+    .dm_drop_head {
+      //   color: aqua;
+      padding: 15px 15px 5px 30px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 400;
+    }
+    .dm_drop_item {
+      padding: 5px 15px 5px 45px;
+    }
+  }
+}

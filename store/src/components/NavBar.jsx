@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
+  CloseOutlined,
   HeartOutlined,
   MenuOutlined,
   ShoppingOutlined,
@@ -11,11 +12,13 @@ import { sideCartSliceActions } from "../store/sideCart-slice";
 import { Link } from "react-router-dom";
 import DropDown from "./DropDown";
 import { authSliceActions } from "../store/auth-slice";
+import DropDownMobile from "./DropDownMobile";
 
 const NavBar = () => {
-  const isMobile = window.matchMedia("(max-width: 900px)").matches;
+  const isMobile = window.matchMedia("(max-width: 960px)").matches;
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart.cart);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const onSideCartHandler = () => {
     console.log("opening sidecart");
@@ -25,12 +28,16 @@ const NavBar = () => {
   const onSignInHandler = () => {
     dispatch(authSliceActions.toggleAuthModal());
   };
+
+  const onMobileMenuClickHandler = () => {
+    setIsMobileMenuOpen((prv) => !prv);
+  };
   return (
     <>
       <div className="nav_container">
         <div className="nav_container_wrapper">
           {!isMobile && (
-            <ul className="nav_list">
+            <ul className="nav_list-desktop">
               <li>
                 <DropDown name={"Shop"} item={menu.shop} />
               </li>
@@ -45,7 +52,35 @@ const NavBar = () => {
               </li>
             </ul>
           )}
-          {isMobile && <MenuOutlined className="mobile-menu" />}
+
+          {isMobile && !isMobileMenuOpen && (
+            <MenuOutlined
+              onClick={onMobileMenuClickHandler}
+              className="mobile-menu"
+            />
+          )}
+          {isMobile && isMobileMenuOpen && (
+            <CloseOutlined
+              onClick={onMobileMenuClickHandler}
+              className="mobile-menu"
+            />
+          )}
+          {isMobile && isMobileMenuOpen && (
+            <ul className="nav_list-mobile">
+              <li>
+                <DropDownMobile name={"Shop"} item={menu.shop} />
+              </li>
+              <li>
+                <DropDownMobile name={"Category"} item={menu.categories} />{" "}
+              </li>
+              <li>
+                <DropDownMobile name={"Pages"} item={menu.pages} />
+              </li>
+              <li>
+                <DropDownMobile name={"Elements"} item={menu.elements} />
+              </li>
+            </ul>
+          )}
           <div className="logo">
             <Link to="/">FurniZen</Link>
           </div>

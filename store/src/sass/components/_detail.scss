@@ -1,17 +1,27 @@
 .details {
   @include max-width;
   background-color: $white;
+  @include lg {
+    padding: 15px 30px;
+  }
   .head {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: start;
     margin: 15px 0px;
+    @include lg {
+      flex-direction: column;
+      margin: 5px 0px;
+    }
 
     .head_text {
       cursor: pointer;
       color: $text-color-gray;
       padding: 15px;
       margin-right: 10px;
+      @include lg {
+        padding: 5px;
+      }
     }
 
     .active {
@@ -48,6 +58,11 @@
     justify-content: center;
     align-content: center;
     font-size: 14px;
+    margin: 20px 0px;
+    @include lg {
+      flex-direction: column;
+      margin: 10px 0px;
+    }
 
     .md_category,
     .md_tags,

@@ -9,3 +9,14 @@ $bg-color: rgb(238, 238, 238);
 $bg-color-light: #fafafa;
 
 //
+
+$breakpoints: (
+  "xs": 0,
+  "sm": "400px",
+  "md": "720px",
+  "lg": "960px",
+  "xl": "1250px",
+);
+
+//padding
+$s: 15px;
