@@ -6,7 +6,7 @@
   .swiper-slide {
     display: flex;
     position: relative;
-    @include lg {
+    @include md {
       flex-direction: column;
     }
 
@@ -19,7 +19,7 @@
       max-width: 31%;
       opacity: 0;
       transition: opacity 2.5s ease;
-      @include lg {
+      @include md {
         position: unset;
         padding: unset;
         transform: unset;
@@ -28,17 +28,17 @@
         padding: $s;
       }
       .text_head {
-        font-size: 28px;
+        font-size: 24px;
         line-height: 1.5;
 
-        @include lg {
+        @include md {
           font-size: 18px;
         }
       }
 
       .text_desc {
         margin-top: 10px;
-        @include lg {
+        @include md {
           margin-top: 0px;
         }
         a {
@@ -48,10 +48,17 @@
           text-decoration: none;
           border-bottom: 1px solid $text-color-gray;
 
-          @include lg {
+          @include md {
             font-size: 16px;
           }
         }
+      }
+    }
+    > .first {
+      color: $white;
+
+      @include md {
+        color: $black;
       }
     }
   }
@@ -70,14 +77,14 @@
     position: absolute;
     z-index: 99;
     bottom: 0px;
-    right: 50%;
+    left: 50%;
     transform: translateX(-50%);
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 10px;
     margin: 20px;
-    @include lg {
+    @include md {
       display: none;
     }
   }

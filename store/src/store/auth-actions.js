@@ -3,13 +3,16 @@ import { authSliceActions } from "./auth-slice";
 export const register = (user) => {
   return async (dispatch) => {
     const sendRequest = async () => {
-      const response = await fetch("http://localhost:5000/auth/register", {
-        headers: {
-          "Content-type": "application/json",
-        },
-        method: "POST",
-        body: JSON.stringify(user),
-      });
+      const response = await fetch(
+        `${process.env.REACT_APP_API}/auth/register`,
+        {
+          headers: {
+            "Content-type": "application/json",
+          },
+          method: "POST",
+          body: JSON.stringify(user),
+        }
+      );
       if (!response.ok) throw new Error("Could not fetch Cart data");
 
       const responseData = await response.json();
@@ -30,7 +33,7 @@ export const register = (user) => {
 export const startLogin = (user) => {
   return async (dispatch) => {
     const sendRequest = async () => {
-      const response = await fetch("http://localhost:5000/auth/login", {
+      const response = await fetch(`${process.env.REACT_APP_API}/auth/login`, {
         headers: {
           "Content-type": "application/json",
         },

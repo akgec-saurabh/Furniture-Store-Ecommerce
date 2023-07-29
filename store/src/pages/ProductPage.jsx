@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { ScrollRestoration, useParams } from "react-router-dom";
 import ProductDisplay from "../components/ProductDisplay";
 
 import Detail from "../components/Detail";
@@ -13,7 +13,7 @@ function ProductPage() {
   useEffect(() => {
     const pid = params.productId;
     dispatch(getProductById(pid));
-  }, []);
+  }, [dispatch, params.productId]);
 
   return (
     <div className="productpage_container">
@@ -21,6 +21,7 @@ function ProductPage() {
         <div className="productpage_container_wrapper">
           <ProductDisplay product={product} />
           <Detail product={product} />
+          <ScrollRestoration />
         </div>
       )}
     </div>

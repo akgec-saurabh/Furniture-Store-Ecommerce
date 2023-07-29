@@ -29,24 +29,29 @@
 
 //Scrollbar
 @mixin scrollbar {
-  &::-webkit-scrollbar {
-    width: 15px;
-  }
+  // &::-webkit-scrollbar {
+  //   width: 15px;
+  // }
 
-  &::-webkit-scrollbar-track {
-    background-color: transparent;
-  }
+  // &::-webkit-scrollbar-track {
+  //   background-color: transparent;
+  // }
 
-  &::-webkit-scrollbar-thumb {
-    background: #4e4e4e;
-    border-radius: 25px;
-  }
+  // &::-webkit-scrollbar-thumb {
+  //   background: #4e4e4e;
+  //   border-radius: 25px;
+  // }
 }
 
 // MEDIA QUERIES
 
 @mixin lg {
   @media (max-width: map-get($breakpoints,"lg")) {
+    @content;
+  }
+}
+@mixin md {
+  @media (max-width: map-get($breakpoints,"md")) {
     @content;
   }
 }

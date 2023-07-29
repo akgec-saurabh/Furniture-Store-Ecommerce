@@ -1,11 +1,12 @@
 .products_container {
   .products_wrapper {
     max-width: 1250px;
-    margin: 0px auto;
+    margin: 30px auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     gap: 15px;
+    padding: 15px;
   }
 }

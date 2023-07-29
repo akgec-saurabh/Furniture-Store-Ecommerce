@@ -1,4 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+// Import Swiper React components
+import { Swiper, SwiperSlide } from "swiper/react";
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+
+import { Pagination, Navigation } from "swiper/modules";
 import {
   CaretLeftOutlined,
   CaretRightOutlined,
@@ -38,8 +45,24 @@ function ProductDisplay({ product }) {
           */}
         <div className="pd_data_container">
           <div className="pd_data_img_wrapper">
+            <Swiper
+              className="swiper"
+              spaceBetween={0}
+              slidesPerView={1}
+              navigation={true}
+              modules={[Navigation]}
+              onSlideChange={() => console.log("slide change")}
+              onSwiper={(swiper) => console.log(swiper)}
+            >
+              <SwiperSlide className="sslide">
+                <img className="swiper_img" src={product.mainImage} alt="" />
+              </SwiperSlide>
+              <SwiperSlide className="sslide">
+                <img className="swiper_img" src={product.hoverImage} alt="" />
+              </SwiperSlide>
+            </Swiper>
             <ShareAltOutlined className="share_icon" />
-            <img className="pd_data_img" src={product.mainImage} alt="" />
+            {/* <img className="pd_data_img" src={product.mainImage} alt="" /> */}
           </div>
           <div className="pd_data">
             <div className="pd_data_wrapper">

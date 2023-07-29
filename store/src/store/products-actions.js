@@ -3,7 +3,8 @@ import { productsSliceAction } from "./products-slice";
 export const getProducts = () => {
   return async (dispatch) => {
     const getProductsReq = async () => {
-      const response = await fetch("http://localhost:5000/products");
+      console.log(process.env.REACT_APP_API);
+      const response = await fetch(`${process.env.REACT_APP_API}/products`);
       if (!response.ok) {
         throw new Error("Unable to Fetch All Products");
       }
@@ -26,7 +27,7 @@ export const getProductById = (productId) => {
   return async (dispatch) => {
     const getProductsReq = async () => {
       const response = await fetch(
-        `http://localhost:5000/product/${productId}`
+        `${process.env.REACT_APP_API}/product/${productId}`
       );
       if (!response.ok) {
         throw new Error("Unable to Fetch prduct by Id");

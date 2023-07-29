@@ -7,7 +7,7 @@ import "swiper/css";
 import { Autoplay, Pagination } from "swiper/modules";
 
 const Slider = () => {
-  const isMobile = window.matchMedia("(max-width:960px)").matches;
+  const isMobile = window.matchMedia("(max-width:720px)").matches;
   const [activeSlide, setActiveSlide] = useState(0);
   const pagination = {
     clickable: true,
@@ -34,7 +34,11 @@ const Slider = () => {
             }
             alt="clock"
           />
-          <div className={`slider_text ${activeSlide === 0 ? "fade-in" : ""}`}>
+          <div
+            className={`slider_text first ${
+              activeSlide === 0 ? "fade-in" : ""
+            }`}
+          >
             <div className="text_head">Contemporary Pendant Lighting</div>
             <div className="text_desc">
               <a href="#">Interior</a>

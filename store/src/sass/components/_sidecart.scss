@@ -53,6 +53,7 @@
     color: $text-color-gray;
 
     .sidecart_full_container {
+      height: 100%;
       overflow-y: scroll;
       overflow-x: hidden;
       position: relative;
@@ -62,6 +63,7 @@
         position: absolute;
         top: 0;
         left: 0;
+        display: none;
       }
 
       &::-webkit-scrollbar-track {
