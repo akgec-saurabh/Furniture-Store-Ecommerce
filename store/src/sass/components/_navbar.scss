@@ -4,12 +4,14 @@
   /* Sticky navbar styles */
   position: sticky;
   top: 0;
-  z-index: 100;
   padding: 0px;
+  z-index: 999;
 
   @include lg {
     padding: $s;
     height: 50px;
+    position: relative;
+    z-index: 100;
   }
 
   .nav_container_wrapper {
@@ -43,10 +45,11 @@
       position: absolute;
       top: 35px;
       left: -$s;
-      z-index: 9;
+      z-index: 1;
       // padding: 15px 0px;
       width: 100vw;
-      height: calc(100vh - 100% - 30px);
+      max-height: calc(100vh - 100% - 30px);
+
       overflow-x: hidden;
       overflow-y: scroll;
       &::-webkit-scrollbar {

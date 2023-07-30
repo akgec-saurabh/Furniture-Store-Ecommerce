@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initalAuthState = {
+  userId: null,
   token: null,
   authModalOpen: false,
 };
@@ -12,6 +13,10 @@ const authSlice = createSlice({
     updateToken(state, action) {
       state.token = action.payload;
     },
+    updateUserId(state, action) {
+      state.userId = action.payload;
+    },
+
     toggleAuthModal(state) {
       state.authModalOpen = !state.authModalOpen;
     },

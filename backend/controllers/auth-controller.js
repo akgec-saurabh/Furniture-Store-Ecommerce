@@ -49,7 +49,9 @@ const register = async (req, res, next) => {
     return next(httpError("Some error occured on server", 500));
   }
 
-  res.status(201).json({ message: "User registerd", token });
+  res
+    .status(201)
+    .json({ message: "User registerd", userId: newUser.id, token });
 };
 const login = async (req, res, next) => {
   const { email, password } = req.body;
@@ -88,7 +90,9 @@ const login = async (req, res, next) => {
     return next(httpError("Some error occured on server", 500));
   }
 
-  res.status(201).json({ message: "User logged in", token });
+  res
+    .status(201)
+    .json({ message: "User logged in", userId: existingUser.id, token });
 };
 
 exports.login = login;

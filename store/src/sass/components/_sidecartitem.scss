@@ -22,7 +22,12 @@
   }
 
   .data_close {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     .closeIcon {
+      text-align: end;
+      margin: $s 0;
     }
   }
 }

@@ -22,6 +22,11 @@
 @import "./components/ratings";
 @import "./components/cartTotal";
 @import "./components/auth";
+@import "./components/errorModal";
 
 //PAGES
 @import "./pages/cart";
+
+//Layout
+
+@import "./layout/rootLayout";

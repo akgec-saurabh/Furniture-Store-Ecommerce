@@ -1,0 +1,26 @@
+.errorModal {
+  background-color: $bg-color;
+  width: 500px;
+  position: absolute;
+  z-index: 9999;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  .errorHead {
+    font-size: 18px;
+    text-align: center;
+    padding: $s;
+    color: $white;
+
+    background-color: $black-light;
+
+    .icon {
+      color: $error;
+    }
+  }
+
+  .errorMessage {
+    text-align: center;
+  }
+}

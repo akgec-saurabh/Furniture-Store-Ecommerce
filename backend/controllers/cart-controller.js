@@ -1,11 +1,18 @@
 const Cart = require("../models/cart");
 const httpError = require("../models/http-error");
+const User = require("../models/user");
 const { findOneAndUpdate, find, findOne } = require("../models/user");
 
 const addToCart = async (req, res, next) => {
-  const { userId, productId, quantity } = req.body;
+  const { userId, products } = req.body;
+  console.log(userId, products);
+
+  //finding the user
 
   //finding if it is first time
+
+  const user = await User.findById(userId);
+  console.log("user", user);
 
   let existingCart;
   try {
@@ -16,21 +23,33 @@ const addToCart = async (req, res, next) => {
 
   if (!existingCart) {
     //create cart
+    let newCart;
     try {
-      await Cart.create({ userId });
+      newCart = await Cart.create({ userId: user._id });
+      console.log("newCartCreated");
     } catch (error) {
+      console.log(error);
       return next(httpError("Some error Occured while creating Cart", 500));
     }
-  } else {
-    const productIndex = existingCart.products.findIndex(
-      (product) => product.productId === productId
-    );
 
-    if (productIndex !== -1) {
-      existingCart.products[productIndex].quantity = quantity;
-    } else {
-      existingCart.products.push({ productId, quantity });
-    }
+    //Saving
+
+    newCart.products = products;
+
+    await newCart.save();
+
+    console.log(newCart);
+  } else {
+    // const productIndex = existingCart.products.findIndex(
+    //   (product) => product.productId === productId
+    // );
+
+    // if (productIndex !== -1) {
+    //   existingCart.products[productIndex].quantity = quantity;
+    // } else {
+    //   existingCart.products.push({ productId, quantity });
+    // }
+    existingCart.products = products;
 
     try {
       await existingCart.save();

@@ -11,14 +11,16 @@ import {
   CaretRightOutlined,
   ShareAltOutlined,
 } from "@ant-design/icons";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { cartSliceActions } from "../store/cart-slice";
 import { sideCartSliceActions } from "../store/sideCart-slice";
 import Ratings from "./Ratings";
+import { saveCart } from "../store/cart-actions";
 
 function ProductDisplay({ product }) {
   const [count, setCount] = useState(1);
   const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart.cart);
 
   const onAddToCartHandler = () => {
     dispatch(cartSliceActions.addToCart({ ...product, qty: count }));

@@ -1,12 +1,24 @@
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import {
+  RouterProvider,
+  createBrowserRouter,
+  createHashRouter,
+} from "react-router-dom";
 
 import Homepage from "./pages/Homepage";
 import ProductPage from "./pages/ProductPage";
-import RootLayout from "./components/RootLayout";
+import RootLayout from "./Layout/RootLayout";
 import CartPage from "./pages/CartPage";
+import { useEffect } from "react";
+import { getToken } from "./store/auth-actions";
+import { useDispatch } from "react-redux";
 
 function App() {
-  const router = createBrowserRouter([
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getToken());
+  }, []);
+
+  const router = createHashRouter([
     {
       path: "/",
       element: <RootLayout />,
@@ -24,6 +36,7 @@ function App() {
           element: <CartPage />,
         },
       ],
+      errorElement: <RootLayout />,
     },
   ]);
   return <RouterProvider router={router} />;

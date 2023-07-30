@@ -42,7 +42,7 @@ const Product = ({ product }) => {
           <div className="data_info">
             <div className="product_name">{product.name}</div>
             <div className="product_price">
-              {hovered ? "Show More" : `${product.price}`}
+              {hovered ? "Show More" : `$${product.price}.00`}
             </div>
           </div>
           <div
