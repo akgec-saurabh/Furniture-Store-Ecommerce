@@ -1,0 +1,50 @@
+.dropDown {
+  position: relative;
+
+  %dropDown_container {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    display: flex;
+    padding: 15px;
+    width: max-content;
+    background-color: $black-light;
+    color: $text-color-gray;
+  }
+
+  .dropDown_head {
+    padding: 25px 15px 25px 0px;
+    cursor: pointer;
+    &:hover {
+      color: $black;
+    }
+  }
+
+  .dropDown_container {
+    @extend %dropDown_container;
+
+    .dropDown_subContainer {
+      margin: 0 15px;
+      .dropDown_subHead {
+        margin: 15px 0px;
+        color: $white;
+      }
+    }
+
+    .dropDown_subItemContainer {
+      display: block;
+    }
+  }
+  .dropDown_subItem {
+    margin: 5px 0px;
+    cursor: pointer;
+    &:hover {
+      color: $white;
+    }
+  }
+
+  .itemContainer {
+    @extend %dropDown_container;
+    flex-direction: column;
+  }
+}

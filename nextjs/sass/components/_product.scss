@@ -1,0 +1,23 @@
+.product {
+  width: 100%;
+  > .imgWrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1280/1588;
+    object-fit: cover;
+    cursor: pointer;
+  }
+
+  > .detail {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0px;
+
+    > .left {
+      > .name,
+      > .price {
+        cursor: pointer;
+      }
+    }
+  }
+}

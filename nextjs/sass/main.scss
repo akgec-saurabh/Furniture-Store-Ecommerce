@@ -1,0 +1,11 @@
+@import "variables";
+@import "mixins";
+@import "globals";
+
+//COMPONENTS
+
+@import "./components/navBar";
+@import "./components/dropDown";
+@import "./components/product";
+@import "./components/products";
+@import "./components/productDisplaySlider";
