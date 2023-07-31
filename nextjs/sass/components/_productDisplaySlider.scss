@@ -1,16 +1,21 @@
 .productDisplaySlider {
-  width: 100%;
-  margin: 0 auto;
+  flex: 3;
   position: relative;
+  overflow: hidden;
 
   .productDisplaySlider_swiper {
-    width: 50vw;
+    width: 70%;
+
+    --swiper-navigation-size: 25px;
+    --swiper-navigation-top-offset: 50%;
+    --swiper-navigation-sides-offset: 10px;
+    --swiper-navigation-color: $black;
 
     .productDisplaySlider_imgWrapper {
       position: relative;
       margin: 0 auto;
       width: 100%;
-      height: 100vh;
+      height: 70vh;
       > img {
         object-fit: cover;
       }

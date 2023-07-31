@@ -2,10 +2,14 @@
 @import "mixins";
 @import "globals";
 
-//COMPONENTS
+//PAGES
+@import "./pages/productPage";
 
+//COMPONENTS
 @import "./components/navBar";
 @import "./components/dropDown";
 @import "./components/product";
 @import "./components/products";
 @import "./components/productDisplaySlider";
+@import "./components/productDisplayDetail";
+@import "./components/rating";

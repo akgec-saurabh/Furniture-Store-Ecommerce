@@ -2,3 +2,18 @@
   max-width: 1280px;
   margin: 0 auto;
 }
+
+@mixin button($padding) {
+  width: 100%;
+  padding: $padding 0px;
+  color: $white;
+  background-color: $black-light;
+  text-align: center;
+  font-size: inherit;
+  font-family: inherit;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}

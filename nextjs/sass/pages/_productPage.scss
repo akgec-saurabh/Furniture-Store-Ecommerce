@@ -1,0 +1,9 @@
+.productPage {
+  background-color: $bg-color;
+  > .main {
+    @include max-width;
+    padding: 120px 0px;
+    display: flex;
+    align-items: center;
+  }
+}

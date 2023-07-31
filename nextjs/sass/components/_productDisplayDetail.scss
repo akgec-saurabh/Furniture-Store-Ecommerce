@@ -1,0 +1,103 @@
+.productDisplayDetail {
+  flex: 1.5;
+
+  .name {
+    font-size: 27px;
+    margin: 15px 0px;
+  }
+  .price {
+    font-size: 20px;
+    margin: 15px 0px;
+    color: $primary;
+  }
+  .shortDescription {
+    font-size: 16px;
+    line-height: 1.5;
+    color: $text-color-black;
+    margin: 15px 0px;
+  }
+  .ratingContainer {
+  }
+  .buttonContainer {
+    .colorContainer {
+      padding: 15px;
+      border: 1px solid $border;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      > span {
+        &:nth-child(2) {
+          display: flex;
+
+          > .colorBorder {
+            display: inline-block;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0px 5px;
+
+            > .color {
+              flex-shrink: 0;
+              border-radius: 50%;
+              display: inline-block;
+              width: 15px;
+              height: 15px;
+              cursor: pointer;
+            }
+
+            > .active {
+            }
+          }
+
+          > .active {
+            border: 1px solid $text-color-gray;
+          }
+        }
+      }
+    }
+    .quantity {
+      padding: 15px;
+      border-right: 1px solid $border;
+      border-left: 1px solid $border;
+      display: flex;
+      justify-content: space-between;
+
+      > span {
+        > .icon {
+          margin: 0px 15px;
+          cursor: pointer;
+        }
+        > span {
+          display: inline-block;
+          width: 15px;
+        }
+      }
+    }
+    .button {
+      @include button(10px);
+    }
+  }
+
+  > .social {
+    margin: 15px 0px;
+    > .icon {
+      padding-right: 10px;
+      color: $text-color-gray;
+      cursor: pointer;
+
+      &:hover {
+        color: $black-light;
+      }
+
+      &:nth-child(1) {
+        border-right: 1px solid $border;
+      }
+      &:nth-child(2) {
+        padding-left: 15px;
+      }
+    }
+  }
+}

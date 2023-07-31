@@ -15,29 +15,43 @@ const img = [
 function ProductDisplaySlider() {
   const swiperRef = useRef();
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isNavEnable, setIsNavEnable] = useState(false);
+
+  //For showing and hiding nav
+  const onMouseEnterHandler = () => {
+    setIsNavEnable(true);
+  };
+  const onMouseLeaveHandler = () => {
+    setIsNavEnable(false);
+  };
 
   return (
     <div className="productDisplaySlider">
-      <Swiper
-        className="productDisplaySlider_swiper"
-        spaceBetween={0}
-        slidesPerView={1}
-        navigation={true}
-        modules={[Navigation]}
-        onSlideChange={() => console.log("slide change")}
-        onSwiper={(swiper) => {
-          swiperRef.current = swiper;
-        }}
+      <div
+        onMouseEnter={onMouseEnterHandler}
+        onMouseLeave={onMouseLeaveHandler}
       >
-        {img.map((imgPath) => (
-          <SwiperSlide>
-            <div className="productDisplaySlider_imgWrapper">
-              <Image src={imgPath} alt="product" fill />
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
-
+        <Swiper
+          className="productDisplaySlider_swiper"
+          spaceBetween={0}
+          slidesPerView={1}
+          navigation={isNavEnable}
+          modules={[Navigation]}
+          loop={true}
+          onSlideChange={() => console.log("slide change")}
+          onSwiper={(swiper) => {
+            swiperRef.current = swiper;
+          }}
+        >
+          {img.map((imgPath) => (
+            <SwiperSlide>
+              <div className="productDisplaySlider_imgWrapper">
+                <Image src={imgPath} alt="product" fill />
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
       <div className="productDisplaySlider_pagination">
         {img.map((imgPath, i) => (
           <Image
@@ -45,8 +59,9 @@ function ProductDisplaySlider() {
             src={imgPath}
             alt="product"
             sizes="10vw"
-            width={100}
-            height={150}
+            width={70}
+            height={100}
+            style={{ objectFit: "cover", cursor: "pointer" }}
             onClick={() => {
               swiperRef.current.slideTo(i);
 
