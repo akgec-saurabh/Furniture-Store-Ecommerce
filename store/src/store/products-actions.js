@@ -1,10 +1,12 @@
 import { productsSliceAction } from "./products-slice";
 
-export const getProducts = () => {
+export const getProducts = (page) => {
   return async (dispatch) => {
     const getProductsReq = async () => {
       console.log(process.env.REACT_APP_API);
-      const response = await fetch(`${process.env.REACT_APP_API}/products`);
+      const response = await fetch(
+        `${process.env.REACT_APP_API}/products?page=${page}`
+      );
       if (!response.ok) {
         throw new Error("Unable to Fetch All Products");
       }

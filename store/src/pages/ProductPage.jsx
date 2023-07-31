@@ -21,7 +21,6 @@ function ProductPage() {
         <div className="productpage_container_wrapper">
           <ProductDisplay product={product} />
           <Detail product={product} />
-          <ScrollRestoration />
         </div>
       )}
     </div>

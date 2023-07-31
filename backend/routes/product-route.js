@@ -2,13 +2,27 @@ const express = require("express");
 const {
   getAllProducts,
   getProductById,
+  getProductByCategoryName,
+  getProductCategory,
+  getProductTag,
+  getProductByTagName,
 } = require("../controllers/product-controller");
 
 const router = express.Router();
 
 router.get("/products", getAllProducts);
 
-//for product by id
+// To get All Category of Product
+router.get("/category", getProductCategory);
+// To get product of specific Category
+router.get("/category/:categoryname", getProductByCategoryName);
+
+// To get All Tag of Product
+router.get("/tag", getProductTag);
+// To get product of specific Tag
+router.get("/tag/:tagname", getProductByTagName);
+
+// for product by id
 router.get("/product/:pid", getProductById);
 
 module.exports = router;

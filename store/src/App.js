@@ -18,25 +18,25 @@ function App() {
     dispatch(getToken());
   }, []);
 
-  const router = createHashRouter([
+  const router = createBrowserRouter([
     {
       path: "/",
       element: <RootLayout />,
       children: [
         {
-          path: "/",
+          path: "",
           element: <Homepage />,
         },
         {
-          path: "/product/:productId",
+          path: "product/:productId",
           element: <ProductPage />,
         },
         {
-          path: "/cart",
+          path: "cart",
           element: <CartPage />,
         },
       ],
-      errorElement: <RootLayout />,
+      errorElement: <p>Error Page</p>,
     },
   ]);
   return <RouterProvider router={router} />;

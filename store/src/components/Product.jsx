@@ -1,20 +1,14 @@
-import React, { useState } from "react";
+import React, { lazy, useState } from "react";
 import { HeartFilled, HeartOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
+import loaderImage from "../assets/loaderImage.svg";
 
-const Product = ({ product }) => {
+const Product = ({ product, isLoading }) => {
   const [hovered, setHoverd] = useState(false);
   const [heartHovered, setHeartHoverd] = useState(false);
   return (
-    <Link
-      to={`/product/${product.id}`}
-      onMouseEnter={() => {
-        setHoverd(true);
-      }}
-      onMouseLeave={() => setHoverd(false)}
-      className="product_container"
-    >
-      <div className="product_container_wrapper">
+    <>
+      <div className="product">
         <div className="availabe_color_container">
           {product.colorVariant.map((p) => (
             <div
@@ -23,39 +17,64 @@ const Product = ({ product }) => {
             ></div>
           ))}
         </div>
-        {!hovered && (
-          <img
-            className="product_image"
-            src={product.mainImage}
-            alt="product"
-          />
-        )}
-        {hovered && (
-          <img
-            className="product_image"
-            src={product.hoverImage}
-            alt="product"
-          />
-        )}
+        <Link
+          to={`/product/${product.id}`}
+          onMouseEnter={() => {
+            setHoverd(true);
+          }}
+          onMouseLeave={() => setHoverd(false)}
+        >
+          {!hovered && (
+            <img
+              className="product_image"
+              src={product.mainImage}
+              alt="product"
+              loading="lazy"
+            />
+          )}
+          {hovered && (
+            <img
+              className="product_image"
+              src={product.hoverImage}
+              alt="product"
+              loading="lazy"
+            />
+          )}
+        </Link>
 
-        <div className="product_data">
-          <div className="data_info">
-            <div className="product_name">{product.name}</div>
-            <div className="product_price">
-              {hovered ? "Show More" : `$${product.price}.00`}
-            </div>
+        <div className="data">
+          <div className="info">
+            <Link className="name" to={`/product/${product.id}`}>
+              <div>{product.name}</div>
+            </Link>
+
+            <Link
+              to={`/product/${product.id}`}
+              className="price"
+              onMouseEnter={() => {
+                setHoverd(true);
+              }}
+              onMouseLeave={() => setHoverd(false)}
+            >
+              {hovered ? (
+                <span className="more">Show More</span>
+              ) : (
+                `$${product.price}.00`
+              )}
+            </Link>
           </div>
           <div
             onMouseEnter={() => setHeartHoverd(true)}
             onMouseLeave={() => setHeartHoverd(false)}
-            className="data_heart"
+            className="heart"
           >
             {!heartHovered && <HeartOutlined />}
             {heartHovered && <HeartFilled />}
           </div>
         </div>
       </div>
-    </Link>
+      {isLoading && <p>Loading...</p>}
+    </>
   );
 };
 

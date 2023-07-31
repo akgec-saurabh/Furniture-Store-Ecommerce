@@ -2,9 +2,13 @@ const httpError = require("../models/http-error");
 const Product = require("../models/product");
 
 const getAllProducts = async (req, res, next) => {
+  const page = parseInt(req.query.page) || 1;
+  const pageSize = 5;
   let products;
   try {
-    products = await Product.find({});
+    products = await Product.find({})
+      .skip((page - 1) * pageSize)
+      .limit(pageSize);
   } catch (error) {
     return next(httpError("Unable to find the Products", 404));
   }
@@ -34,5 +38,99 @@ const getProductById = async (req, res, next) => {
   }
 };
 
+//Get Category of Product
+const getProductCategory = async (req, res, next) => {
+  let category;
+  try {
+    category = (await Product.find({})).map((product) => product.category);
+  } catch (error) {
+    console.log(error);
+    return next(
+      httpError("Some Error Occured while finding the product by Category,500")
+    );
+  }
+
+  res.status(200).json({
+    message: "Fetched All Categories of Product",
+    category: [...new Set(category)],
+  });
+};
+
+//Get Product by CategoryName
+const getProductByCategoryName = async (req, res, next) => {
+  const categoryName = req.params.categoryname;
+  const decodedCategoryName = decodeURIComponent(categoryName);
+
+  const page = parseInt(req.query.page) || 1;
+  const pageSize = 5;
+
+  let products;
+
+  try {
+    products = await Product.find({
+      category: decodedCategoryName,
+    })
+      .skip((page - 1) * pageSize)
+      .limit(pageSize);
+  } catch (error) {
+    console.log(error);
+    return next(
+      httpError("Some Error Occured while finding the product by Category,500")
+    );
+  }
+
+  if (products.length === 0) {
+    return next(httpError("No product found for the specified Category", 404));
+  }
+
+  res
+    .status(200)
+    .json({ message: "Successfully Fetched Product by Category", products });
+};
+
+//Fetch all the tag of Product
+const getProductTag = async (req, res, next) => {
+  let tags = [];
+  try {
+    (await Product.find({})).map((product) => {
+      product.tag;
+      tags.push(...product.tag);
+    });
+  } catch (error) {
+    console.log(error);
+    return next(httpError("Could not fetch tag", 500));
+  }
+
+  res.status(200).json({
+    message: "Fetch Tag Successfully",
+    tags: [...new Set(tags)],
+  });
+};
+
+//Fetch Product by tagName
+const getProductByTagName = async (req, res, next) => {
+  const tagname = req.params.tagname;
+  const page = parseInt(req.query.page) || 1;
+  const pageSize = 5;
+  let products;
+  try {
+    products = await Product.find({ tag: tagname })
+      .skip((page - 1) * pageSize)
+      .limit(pageSize);
+  } catch (error) {
+    console.log(error);
+    return next(httpError("Could not find the product with tagname", 404));
+  }
+  if (products.length === 0) {
+    return next(httpError("No product found for the specified Tag", 404));
+  }
+
+  res.status(200).json({ message: "Fetch Successfully by tag", products });
+};
+
 exports.getAllProducts = getAllProducts;
 exports.getProductById = getProductById;
+exports.getProductCategory = getProductCategory;
+exports.getProductByCategoryName = getProductByCategoryName;
+exports.getProductTag = getProductTag;
+exports.getProductByTagName = getProductByTagName;

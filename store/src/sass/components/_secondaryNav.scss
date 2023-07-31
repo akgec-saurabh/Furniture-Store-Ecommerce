@@ -1,7 +1,28 @@
-.secondary_container {
-  .secondary_container_wrapper {
-    max-width: 1250px;
-    margin: 0px auto;
-    padding: 0px 56px;
+.secondaryNav {
+  @include max-width;
+  padding: 56px 0px;
+  width: 100%;
+  font-size: 18px;
+  font-weight: 400;
+  color: $text-color-black;
+
+  display: flex;
+  justify-content: space-between;
+
+  .category,
+  .filter {
+    display: flex;
+    gap: 16px;
+
+    > span:nth-of-type(odd) {
+      cursor: pointer;
+    }
+    > span:nth-of-type(even) {
+      color: $light-gray;
+    }
+  }
+
+  .active {
+    color: $primary-color;
   }
 }
