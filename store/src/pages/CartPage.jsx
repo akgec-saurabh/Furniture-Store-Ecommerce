@@ -7,11 +7,11 @@ import { useNavigate } from "react-router-dom";
 import { CloseCircleOutlined } from "@ant-design/icons";
 import { saveCart } from "../store/cart-actions";
 function CartPage() {
-  const cart = useSelector((state) => state.cart.cart);
+  const { cart, total: localTotal } = useSelector((state) => state.cart);
   const userId = useSelector((state) => state.auth.userId);
   const token = useSelector((state) => state.auth.token);
 
-  const [total, setTotal] = useState();
+  const [total, setTotal] = useState(localTotal);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -45,13 +45,18 @@ function CartPage() {
   }, [cart.length]);
 
   useEffect(() => {
-    getTotal();
+    // getTotal();
+
     console.log("redered Cart");
   }, [cart.length]);
 
   const onUpdateHandler = () => {
     // setTotal(tempTotal);
-    getTotal();
+
+    // getTotal();
+    //updating total only on update click
+    setTotal(localTotal);
+
     dispatch(
       saveCart({
         userId: "64c5a93cfe443cf3bd99374a",

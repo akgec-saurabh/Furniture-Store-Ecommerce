@@ -1,8 +1,4 @@
-import {
-  RouterProvider,
-  createBrowserRouter,
-  createHashRouter,
-} from "react-router-dom";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 import Homepage from "./pages/Homepage";
 import ProductPage from "./pages/ProductPage";
@@ -11,6 +7,7 @@ import CartPage from "./pages/CartPage";
 import { useEffect } from "react";
 import { getToken } from "./store/auth-actions";
 import { useDispatch } from "react-redux";
+import Checkout from "./pages/Checkout";
 
 function App() {
   const dispatch = useDispatch();
@@ -34,6 +31,10 @@ function App() {
         {
           path: "cart",
           element: <CartPage />,
+        },
+        {
+          path: "checkout",
+          element: <Checkout />,
         },
       ],
       errorElement: <p>Error Page</p>,

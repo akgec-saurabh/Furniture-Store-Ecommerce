@@ -4,9 +4,12 @@ import { useDispatch } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 
 function Pagination({ maxPageRange = 5 }) {
-  const [pageRange, setPageRange] = useState(1);
-  const [pageActive, setPageActive] = useState(1);
   const [searchParams, setSearchParms] = useSearchParams();
+  const [pageRange, setPageRange] = useState(1);
+  //Setting the active page from searchParms if it is avaliable else setting it to 1
+  const page =parseInt(searchParams.get('page')||1)
+  const [pageActive, setPageActive] = useState(page);
+
 
   const onPageClickedHandler = (pageNum) => {
     setPageActive(pageNum);
@@ -36,6 +39,8 @@ function Pagination({ maxPageRange = 5 }) {
   useEffect(() => {
     setSearchParms({ page: pageActive });
   }, [pageActive]);
+
+  console.log(pageActive,'pageActive === i ? "active" : ""')
 
   const renderPage = () => {
     const pages = [];

@@ -5,19 +5,18 @@ import ProductDisplay from "../components/ProductDisplay";
 import Detail from "../components/Detail";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductById } from "../store/products-actions";
+import { useGetProductByIdQuery } from "../store/product-api";
 function ProductPage() {
-  const dispatch = useDispatch();
-  const product = useSelector((state) => state.products.activeProduct);
+  // const dispatch = useDispatch();
+  // const product = useSelector((state) => state.products.activeProduct);
 
   const params = useParams();
-  useEffect(() => {
-    const pid = params.productId;
-    dispatch(getProductById(pid));
-  }, [dispatch, params.productId]);
+  const pid = params.productId;
+  const { data: product } = useGetProductByIdQuery(pid);
 
   return (
     <div className="productpage_container">
-      {product && (
+      {product && product && (
         <div className="productpage_container_wrapper">
           <ProductDisplay product={product} />
           <Detail product={product} />

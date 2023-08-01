@@ -1,9 +1,20 @@
 import { DownOutlined, EnvironmentOutlined } from "@ant-design/icons";
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { cartSliceActions } from "../store/cart-slice";
 
 function CartTotal({ total }) {
-  const [shipping, setShipping] = useState(10);
-  useEffect(() => {}, [shipping]);
+  const dispatch = useDispatch();
+
+  const onShippingChangeHandler = (shippingPrice) => {
+    dispatch(cartSliceActions.updateShipping(shippingPrice));
+  };
+
+  useEffect(() => {
+    dispatch(cartSliceActions.updateShipping(10));
+  }, [total]);
+
   return (
     <>
       <div className="cartTotal">
@@ -21,9 +32,7 @@ function CartTotal({ total }) {
                   name="shipping"
                   defaultChecked
                   id="standard"
-                  onChange={() => {
-                    setShipping(10);
-                  }}
+                  onChange={() => onShippingChangeHandler(10)}
                 />
                 <span>Standard:</span>
               </div>
@@ -32,9 +41,7 @@ function CartTotal({ total }) {
             <div className="express">
               <div className="ct-shipping-label">
                 <input
-                  onChange={() => {
-                    setShipping(19);
-                  }}
+                  onChange={() => onShippingChangeHandler(19)}
                   type="radio"
                   name="shipping"
                   id="express"
@@ -44,7 +51,7 @@ function CartTotal({ total }) {
               <div className="ct-shipping-value">$19.00</div>
             </div>
           </div>
-          <div className="address">
+          {/* <div className="address">
             <div className="ct-head">
               Shipping to <span>CA.</span>
             </div>
@@ -53,14 +60,16 @@ function CartTotal({ total }) {
               Change address
               <DownOutlined className="icon" />
             </div>
-          </div>
+          </div> */}
         </div>
         <div className="ct-total">
-          <div className="t-label">Total</div>
-          <div className="t-value">${total + shipping}.00</div>
+          <div className="t-label">Total </div>
+          <div className="t-value">${total}.00</div>
         </div>
       </div>
-      <button className="btn ct-btn">Proceed to checkout</button>
+      <Link to="/checkout">
+        <button className="btn ct-btn">Proceed to checkout</button>
+      </Link>
     </>
   );
 }

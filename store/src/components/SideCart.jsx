@@ -25,7 +25,7 @@ const sideVariants = {
 };
 
 function SideCart() {
-  const cart = useSelector((state) => state.cart.cart);
+  const { cart, total, shipping } = useSelector((state) => state.cart);
   const sideCartOpen = useSelector((state) => state.sideCart.open);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -87,6 +87,11 @@ function SideCart() {
                 {cart.map((product, i) => (
                   <SideCartItem product={product} key={i} />
                 ))}
+              </div>
+
+              <div className="subTotal">
+                <span>SubTotal:</span>
+                <span>${total - shipping}.00</span>
               </div>
 
               <div className="slidefull_btn">

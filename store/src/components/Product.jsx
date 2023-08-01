@@ -1,11 +1,15 @@
-import React, { lazy, useState } from "react";
+import React, { lazy, useEffect, useState } from "react";
 import { HeartFilled, HeartOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
-import loaderImage from "../assets/loaderImage.svg";
+import { Blurhash} from "react-blurhash";
 
 const Product = ({ product, isLoading }) => {
   const [hovered, setHoverd] = useState(false);
   const [heartHovered, setHeartHoverd] = useState(false);
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
+
+
+
   return (
     <>
       <div className="product">
@@ -24,22 +28,16 @@ const Product = ({ product, isLoading }) => {
           }}
           onMouseLeave={() => setHoverd(false)}
         >
-          {!hovered && (
+      
+
             <img
               className="product_image"
-              src={product.mainImage}
+              src={!isImageLoaded?"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAECAIAAADETxJQAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAMUlEQVR4nGP49u07EH399o3h7asXH969fv3yOYOjBq8xA8PEojCGKe21FXEex7avAwAw5RfOGuErtwAAAABJRU5ErkJggg==":hovered ? product.hoverImage : product.mainImage}
               alt="product"
-              loading="lazy"
+              onLoad={() => {
+                setIsImageLoaded(true);
+              }}
             />
-          )}
-          {hovered && (
-            <img
-              className="product_image"
-              src={product.hoverImage}
-              alt="product"
-              loading="lazy"
-            />
-          )}
         </Link>
 
         <div className="data">

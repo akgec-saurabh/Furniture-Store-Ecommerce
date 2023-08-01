@@ -82,7 +82,7 @@
       .viewCartBtn {
         background-color: $black-light;
         color: #fff;
-        border: 1px solid $text-color-gray;
+        border: 1px solid $text-color-black;
         margin-bottom: 15px;
       }
 
@@ -91,6 +91,14 @@
         color: #fff;
         border: 1px solid #000;
       }
+    }
+    .subTotal {
+      display: flex;
+      justify-content: space-between;
+      margin: 45px 0px;
+      border-top: 1px solid $text-color-black;
+      border-bottom: 1px solid $text-color-black;
+      padding: 15px 0px;
     }
   }
 }
