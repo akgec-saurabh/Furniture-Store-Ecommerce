@@ -26,7 +26,11 @@ const countryApi = createApi({
       query: ({ code, stateCode }) =>
         `iso_alpha2%3A${code}/admin1_divisions/geonames%3A${stateCode}/cities/`,
       transformResponse: (response) =>
-        response._links["city:items"].sort((a, b) => a.name > b.name),
+        response._links["city:items"]
+          .map((city) => {
+            return city.name.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+          })
+          .sort(),
     }),
   }),
 });

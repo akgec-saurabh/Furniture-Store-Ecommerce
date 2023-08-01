@@ -21,7 +21,7 @@ function RootLayout() {
   const error = useSelector((state) => state.error.message);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(cartSliceActions.removeCart());
+    // dispatch(cartSliceActions.removeCart());
     dispatch(cartSliceActions.getCart());
   }, []);
 

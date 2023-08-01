@@ -1,0 +1,46 @@
+.checkout {
+  width: 100%;
+  @include max-width;
+  display: flex;
+
+  @include lg {
+    flex-direction: column;
+  }
+
+  .billing {
+    flex: 3;
+    padding: 30px 30px 30px 0px;
+
+    @include lg {
+      padding: 30px 15px;
+    }
+    > .box {
+      margin: 15px 0px;
+    }
+
+    > h2 {
+      margin-bottom: 15px;
+    }
+
+    > .nameInputBox {
+      display: flex;
+      gap: 15px;
+    }
+    > .addressInputBox {
+      input {
+        margin-top: 5px;
+      }
+    }
+  }
+
+  .order {
+    flex: 2;
+    padding: 30px 0px 30px 30px;
+    @include lg {
+      padding: 30px 15px;
+    }
+    > h2 {
+      margin-bottom: 15px;
+    }
+  }
+}

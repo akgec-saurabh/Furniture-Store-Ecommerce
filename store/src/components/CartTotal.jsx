@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { cartSliceActions } from "../store/cart-slice";
 
 function CartTotal({ total }) {
+  const { shipping } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
   const onShippingChangeHandler = (shippingPrice) => {
@@ -12,7 +13,9 @@ function CartTotal({ total }) {
   };
 
   useEffect(() => {
-    dispatch(cartSliceActions.updateShipping(10));
+    if (shipping === 0) {
+      dispatch(cartSliceActions.updateShipping(10));
+    }
   }, [total]);
 
   return (
@@ -28,9 +31,9 @@ function CartTotal({ total }) {
             <div className="standard">
               <div className="ct-shipping-label">
                 <input
-                  type="radio"
                   name="shipping"
-                  defaultChecked
+                  type="radio"
+                  checked={shipping === 10 || shipping === 0}
                   id="standard"
                   onChange={() => onShippingChangeHandler(10)}
                 />
@@ -45,6 +48,7 @@ function CartTotal({ total }) {
                   type="radio"
                   name="shipping"
                   id="express"
+                  checked={shipping === 19}
                 />
                 <span>Express:</span>
               </div>
@@ -67,9 +71,6 @@ function CartTotal({ total }) {
           <div className="t-value">${total}.00</div>
         </div>
       </div>
-      <Link to="/checkout">
-        <button className="btn ct-btn">Proceed to checkout</button>
-      </Link>
     </>
   );
 }

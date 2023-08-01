@@ -6,6 +6,7 @@ import productsSlice from "./products-slice";
 import errorSlice from "./error-slice";
 import countryApi from "./country-slice";
 import productApi from "./product-api";
+import checkoutFormSlice from "./ checkoutform-slice";
 
 const store = configureStore({
   reducer: {
@@ -13,6 +14,8 @@ const store = configureStore({
     cart: cartSlice.reducer,
     auth: authSlice.reducer,
     products: productsSlice.reducer,
+    checkoutForm: checkoutFormSlice.reducer,
+
     error: errorSlice.reducer,
     [productApi.reducerPath]: productApi.reducer,
     [countryApi.reducerPath]: countryApi.reducer,

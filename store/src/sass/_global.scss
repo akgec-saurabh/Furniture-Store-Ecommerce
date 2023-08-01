@@ -58,3 +58,11 @@ li {
 html {
   @include scrollbar;
 }
+
+input[type="text"] {
+  @include input;
+}
+
+select {
+  @include input;
+}

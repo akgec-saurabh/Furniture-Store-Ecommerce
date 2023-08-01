@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import SideCartItem from "../components/SideCartItem";
 import CartTotal from "../components/CartTotal";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { CloseCircleOutlined } from "@ant-design/icons";
 import { saveCart } from "../store/cart-actions";
 function CartPage() {
@@ -115,7 +115,14 @@ function CartPage() {
                 <div className="cartpage-carttotal-container">
                   <div className="shoppingCart_head">Cart Total</div>
 
-                  <CartTotal total={total} />
+                  <div>
+                    <CartTotal total={total} />
+                    <Link to="/checkout">
+                      <button className="btn ct-btn">
+                        Proceed to checkout
+                      </button>
+                    </Link>
+                  </div>
                 </div>
               </>
             )}

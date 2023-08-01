@@ -12,7 +12,15 @@
 
   .item_data {
     margin-right: auto;
-    .name {
+    > .name {
+      > span {
+        background-color: $black;
+        color: $white;
+        padding: 0px 15px;
+        border-radius: 15px;
+        font-size: 14px;
+        margin-left: 5px;
+      }
     }
     .quantity {
       .qty_tag {
