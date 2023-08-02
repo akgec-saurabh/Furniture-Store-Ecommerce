@@ -1,0 +1,24 @@
+.dashboard {
+  position: absolute;
+  top: 100%;
+  left: -50%;
+  z-index: 999;
+  background-color: $white;
+  padding: 15px;
+  width: max-content;
+
+  > .firstname,
+  > .email,
+  > .btn,
+  > .icon {
+    margin: 5px;
+  }
+
+  > .btn {
+    padding: 10px;
+    > .icon {
+      font-size: 14px;
+      margin-left: 5px;
+    }
+  }
+}

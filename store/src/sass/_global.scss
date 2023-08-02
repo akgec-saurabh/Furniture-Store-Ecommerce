@@ -8,6 +8,8 @@ body {
   min-height: 100vh;
   font-family: "Poppins", sans-serif;
   font-size: 16px;
+  width: 100vw;
+  overflow-x: hidden;
 }
 
 a {
@@ -56,10 +58,11 @@ li {
 }
 // SCROLLBAR
 html {
-  @include scrollbar;
+  // @include scrollbar;
 }
 
-input[type="text"] {
+input[type="text"],
+input[type="password"] {
   @include input;
 }
 

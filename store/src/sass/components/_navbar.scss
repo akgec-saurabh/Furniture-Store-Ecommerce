@@ -82,10 +82,24 @@
     .nav_icons {
       display: flex;
       align-items: center;
-      > li {
+      > li,
+      > .authBtn {
         margin-left: 20px;
+
+        .dashboard {
+          display: none;
+        }
+
+        &:hover {
+          .dashboard {
+            display: block;
+          }
+        }
       }
-      .nav_cart {
+      > .authBtn {
+        position: relative;
+      }
+      > .nav_cart {
         padding-right: 10px;
       }
     }

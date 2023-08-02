@@ -17,6 +17,27 @@ const productApi = createApi({
     // addToCart:builder.query({
     //   query:()
     // })
+    loginUser: builder.mutation({
+      query: (data) => ({
+        url: "/api/auth/login",
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }),
+    }),
+
+    registerUser: builder.mutation({
+      query: (data) => ({
+        url: "/api/auth/register",
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }),
+    }),
   }),
 });
 
@@ -24,5 +45,7 @@ export const {
   useGetProductsByPageQuery,
   useGetProductByCategoryQuery,
   useGetProductByIdQuery,
+  useLoginUserMutation,
+  useRegisterUserMutation,
 } = productApi;
 export default productApi;

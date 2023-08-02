@@ -9,11 +9,12 @@ import { getToken } from "./store/auth-actions";
 import { useDispatch } from "react-redux";
 import Checkout from "./pages/Checkout";
 import CheckoutSuccess from "./components/CheckoutSuccess";
+import { authSliceActions } from "./store/auth-slice";
 
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getToken());
+    dispatch(authSliceActions.getToken());
   }, []);
 
   const router = createBrowserRouter([

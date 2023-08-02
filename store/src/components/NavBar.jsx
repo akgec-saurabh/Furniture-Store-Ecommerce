@@ -17,6 +17,7 @@ import DropDownMobile from "./DropDownMobile";
 import { clearToken } from "../store/auth-actions";
 
 import { AnimatePresence, motion } from "framer-motion";
+import Dashboard from "./Dashboard";
 
 const mobileVariants = {
   hide: {
@@ -55,9 +56,6 @@ const NavBar = () => {
     setIsMobileMenuOpen((prv) => !prv);
   };
 
-  const onLogoutHandler = () => {
-    dispatch(clearToken());
-  };
   return (
     <>
       <div className="nav_container">
@@ -117,11 +115,7 @@ const NavBar = () => {
                     Login
                   </button>
                 )}
-                {token && (
-                  <button onClick={onLogoutHandler} className="btn">
-                    Logout
-                  </button>
-                )}
+                {token && <button className="btn">Logout</button>}
               </motion.ul>
             )}
           </AnimatePresence>
@@ -136,10 +130,13 @@ const NavBar = () => {
               </li>
             )}
             {!isMobile && (
-              <li onClick={onSignInHandler}>
-                {!token && <span> Sign In </span>}
-                {token && <span onClick={onLogoutHandler}>Logout</span>}
-              </li>
+              <div className="authBtn">
+                <li onClick={onSignInHandler}>
+                  {!token && <span> Sign In </span>}
+                  {token && <span>Dashboard</span>}
+                </li>
+                {token && <Dashboard />}
+              </div>
             )}
             <li onClick={onSideCartHandler} className="nav_cart">
               <Badge className="nav_badge" value={cart.length}>

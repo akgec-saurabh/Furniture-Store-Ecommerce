@@ -1,7 +1,6 @@
 import { DownOutlined, EnvironmentOutlined } from "@ant-design/icons";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import { cartSliceActions } from "../store/cart-slice";
 
 function CartTotal({ total }) {
