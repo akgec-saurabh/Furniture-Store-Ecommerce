@@ -14,21 +14,31 @@
     @include lg {
       padding: 30px 15px;
     }
-    > .box {
-      margin: 15px 0px;
-    }
+    > form {
+      display: block;
+      width: 100%;
+      > .box {
+        margin: 15px 0px;
+      }
 
-    > h2 {
-      margin-bottom: 15px;
-    }
+      > h2 {
+        margin-bottom: 15px;
+      }
 
-    > .nameInputBox {
-      display: flex;
-      gap: 15px;
-    }
-    > .addressInputBox {
-      input {
-        margin-top: 5px;
+      > .nameInputBox {
+        display: flex;
+        gap: 15px;
+        justify-content: space-between;
+
+        .firstnameInputBox,
+        .lastnameInputBox {
+          width: 100%;
+        }
+      }
+      > .addressInputBox {
+        input {
+          margin-top: 5px;
+        }
       }
     }
   }
@@ -41,6 +51,15 @@
     }
     > h2 {
       margin-bottom: 15px;
+    }
+  }
+
+  .form-control {
+    display: flex;
+    gap: 15px;
+
+    .btnReset {
+      background-color: $error;
     }
   }
 }

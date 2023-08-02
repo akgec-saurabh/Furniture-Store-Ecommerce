@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { getToken } from "./store/auth-actions";
 import { useDispatch } from "react-redux";
 import Checkout from "./pages/Checkout";
+import CheckoutSuccess from "./components/CheckoutSuccess";
 
 function App() {
   const dispatch = useDispatch();
@@ -35,6 +36,7 @@ function App() {
         {
           path: "checkout",
           element: <Checkout />,
+          children: [{ path: "sucsess", element: <CheckoutSuccess /> }],
         },
       ],
       errorElement: <p>Error Page</p>,

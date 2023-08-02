@@ -14,6 +14,7 @@ const adminRoute = require("./routes/admin-route");
 const productRoute = require("./routes/product-route");
 const authRoute = require("./routes/auth-route");
 const cartRoute = require("./routes/cart-route");
+const stripeRoute = require("./routes/stripe-route");
 
 const app = express();
 
@@ -28,6 +29,9 @@ app.use("/", productRoute);
 app.use("/auth", authRoute);
 
 app.use("/", cartRoute);
+
+//STRIPE ROUTE
+app.use("/payment", stripeRoute);
 
 //Catch all routes that doesn't exist
 app.use("/", (req, res, next) => {
@@ -46,9 +50,7 @@ app.use((error, req, res, next) => {
 });
 
 mongoose
-  .connect(
-    "mongodb+srv://akgecsaurabh:g5tzlptwM2bFFS06@cluster0.mc4o4uu.mongodb.net/"
-  )
+  .connect(process.env.TASK_MONGO_URI)
   .then(() => {
     app.listen(5000);
 

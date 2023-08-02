@@ -65,4 +65,5 @@ input[type="text"] {
 
 select {
   @include input;
+  background-color: transparent;
 }
