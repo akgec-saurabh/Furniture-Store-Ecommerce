@@ -16,25 +16,7 @@ import { authSliceActions } from "../store/auth-slice";
 import DropDownMobile from "./DropDownMobile";
 import { clearToken } from "../store/auth-actions";
 
-import { AnimatePresence, motion } from "framer-motion";
 import Dashboard from "./Dashboard";
-
-const mobileVariants = {
-  hide: {
-    opacity: 1,
-    x: "-100vw",
-    transition: {
-      type: "tween",
-    },
-  },
-  show: {
-    opacity: 1,
-    x: 0,
-    transition: {
-      type: "tween",
-    },
-  },
-};
 
 const NavBar = () => {
   const isMobile = window.matchMedia("(max-width: 960px)").matches;
@@ -89,36 +71,28 @@ const NavBar = () => {
               className="mobile-menu"
             />
           )}
-          <AnimatePresence>
-            {isMobile && isMobileMenuOpen && (
-              <motion.ul
-                variants={mobileVariants}
-                initial="hide"
-                animate="show"
-                exit="hide"
-                className="nav_list-mobile"
-              >
-                <li>
-                  <DropDownMobile name={"Shop"} item={menu.shop} />
-                </li>
-                <li>
-                  <DropDownMobile name={"Category"} item={menu.categories} />{" "}
-                </li>
-                <li>
-                  <DropDownMobile name={"Pages"} item={menu.pages} />
-                </li>
-                <li>
-                  <DropDownMobile name={"Elements"} item={menu.elements} />
-                </li>
-                {!token && (
-                  <button onClick={onSignInHandler} className="btn">
-                    Login
-                  </button>
-                )}
-                {token && <button className="btn">Logout</button>}
-              </motion.ul>
-            )}
-          </AnimatePresence>
+          {isMobile && isMobileMenuOpen && (
+            <ul className="nav_list-mobile">
+              <li>
+                <DropDownMobile name={"Shop"} item={menu.shop} />
+              </li>
+              <li>
+                <DropDownMobile name={"Category"} item={menu.categories} />{" "}
+              </li>
+              <li>
+                <DropDownMobile name={"Pages"} item={menu.pages} />
+              </li>
+              <li>
+                <DropDownMobile name={"Elements"} item={menu.elements} />
+              </li>
+              {!token && (
+                <button onClick={onSignInHandler} className="btn">
+                  Login
+                </button>
+              )}
+              {token && <button className="btn">Logout</button>}
+            </ul>
+          )}
 
           <div className="logo">
             <Link to="/">FurniZen</Link>

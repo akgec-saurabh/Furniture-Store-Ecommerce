@@ -8,6 +8,7 @@ import { AnimatePresence, easeInOut, motion } from "framer-motion";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import {
+  useLoginGuestQuery,
   useLoginUserMutation,
   useRegisterUserMutation,
 } from "../store/product-api";
@@ -44,6 +45,13 @@ function Auth() {
     { data: registerData, isLoading: registerLoading, isSuccess: regSuccess },
   ] = useRegisterUserMutation();
 
+  const [enableGuest, setEnableGuest] = useState(false);
+
+  const {
+    data: guestData,
+    isLoading,
+    isSuccess,
+  } = useLoginGuestQuery({ skip: !enableGuest });
   const [login, setlogin] = useState(true);
 
   const authModalOpen = useSelector((state) => state.auth.authModalOpen);
@@ -58,9 +66,17 @@ function Auth() {
     setlogin((prv) => !prv);
   };
 
+  const onGuestLoginHandler = () => {
+    setEnableGuest(true);
+  };
+
   useEffect(() => {
-    if (regSuccess || loginSuccess) {
-      const data = regSuccess ? registerData : loginSuccess ? loginData : null;
+    if (regSuccess || loginSuccess || guestData) {
+      const data = regSuccess
+        ? registerData
+        : loginSuccess
+        ? loginData
+        : guestData;
       try {
         localStorage.setItem(
           "userData",
@@ -73,6 +89,7 @@ function Auth() {
       } catch (error) {
         console.log(error);
       }
+      console.log(guestData);
 
       //Sharing State across app
       dispatch(
@@ -85,7 +102,7 @@ function Auth() {
 
       dispatch(authSliceActions.toggleAuthModal());
     }
-  }, [loginSuccess, regSuccess]);
+  }, [loginSuccess, regSuccess, enableGuest]);
 
   return (
     <AnimatePresence>
@@ -224,6 +241,9 @@ function Auth() {
           </div>
           <button onClick={toggleAuthHandler} className="btnw authToggleBtn">
             {login ? "Register" : "Log In"}
+          </button>
+          <button className="btn" onClick={onGuestLoginHandler}>
+            Guest Login
           </button>
         </motion.div>
       )}

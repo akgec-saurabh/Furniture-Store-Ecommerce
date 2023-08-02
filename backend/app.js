@@ -26,7 +26,7 @@ app.use("/", adminRoute);
 
 app.use("/", productRoute);
 
-app.use("/auth", authRoute);
+app.use("/api", authRoute);
 
 app.use("/", cartRoute);
 
@@ -43,6 +43,7 @@ app.use((error, req, res, next) => {
   if (error.headersSent) {
     return next(error);
   }
+  console.log(error, req.body);
   res.status(error.statusCode || 500);
   res.json({
     message: error.message || "An unknown error occured on the server side",

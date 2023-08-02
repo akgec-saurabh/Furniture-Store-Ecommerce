@@ -8,7 +8,7 @@ const productApi = createApi({
       query: (page) => `products?page=${page}`,
     }),
     getProductByCategory: builder.query({
-      query: (category) => `products?Category=${category}`,
+      query: (category) => `products/category/${category}`,
     }),
     getProductById: builder.query({
       query: (id) => `product/${id}`,
@@ -17,6 +17,11 @@ const productApi = createApi({
     // addToCart:builder.query({
     //   query:()
     // })
+
+    loginGuest: builder.query({
+      query: () => "api/auth/guest",
+    }),
+
     loginUser: builder.mutation({
       query: (data) => ({
         url: "/api/auth/login",
@@ -47,5 +52,6 @@ export const {
   useGetProductByIdQuery,
   useLoginUserMutation,
   useRegisterUserMutation,
+  useLoginGuestQuery,
 } = productApi;
 export default productApi;

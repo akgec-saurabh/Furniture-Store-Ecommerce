@@ -2,9 +2,12 @@ const bcryptjs = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const httpError = require("../models/http-error");
 const User = require("../models/user");
+const Guest = require("../models/guest");
+const random = require("randomstring");
 
 const register = async (req, res, next) => {
   const { firstname, lastname, email, password } = req.body;
+  console.log(req.body);
 
   let existingUser;
   try {
@@ -41,20 +44,31 @@ const register = async (req, res, next) => {
 
   let token;
   try {
-    token = jwt.sign({ name: { firstname, lastname }, email }, "secret$key", {
-      expiresIn: "4h",
-    });
+    token = jwt.sign(
+      { name: { firstname, lastname }, email, userId: newUser.userId },
+      process.env.JWT_KEY,
+      {
+        expiresIn: "4h",
+      }
+    );
   } catch (error) {
     console.log(error);
     return next(httpError("Some error occured on server", 500));
   }
 
-  res
-    .status(201)
-    .json({ message: "User registerd", userId: newUser.id, token });
+  res.status(201).json({
+    message: "User registerd",
+    firstname,
+    email,
+    token,
+  });
 };
+
+//LOGIN
 const login = async (req, res, next) => {
   const { email, password } = req.body;
+
+  console.log(email);
 
   let existingUser;
   try {
@@ -90,10 +104,60 @@ const login = async (req, res, next) => {
     return next(httpError("Some error occured on server", 500));
   }
 
-  res
-    .status(201)
-    .json({ message: "User logged in", userId: existingUser.id, token });
+  res.status(201).json({
+    message: "User logged in",
+    email,
+    firstname: existingUser.name.firstname,
+    token,
+  });
+};
+
+//GUEST LOGIN
+
+const guestLogin = (req, res, next) => {
+  //Creating random firstname lastname and email password
+
+  const firstname = random.generate(7);
+  const lastname = random.generate(7);
+  const email = `${random.generate(7)}@guest.com`;
+
+  const newUser = Guest({
+    name: {
+      firstname,
+      lastname,
+    },
+    email,
+    password: "guestpassword",
+  });
+
+  try {
+    newUser.save();
+  } catch (error) {
+    return next("Unable to save User", 500);
+  }
+
+  let token;
+  try {
+    token = jwt.sign(
+      { name: { firstname, lastname }, email, userId: newUser.userId },
+      process.env.JWT_KEY,
+      {
+        expiresIn: "4h",
+      }
+    );
+  } catch (error) {
+    console.log(error);
+    return next(httpError("Some error occured on server", 500));
+  }
+
+  res.status(201).json({
+    message: "User registerd",
+    firstname,
+    email,
+    token,
+  });
 };
 
 exports.login = login;
 exports.register = register;
+exports.guestLogin = guestLogin;

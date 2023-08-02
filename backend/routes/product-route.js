@@ -15,12 +15,12 @@ router.get("/products", getAllProducts);
 // To get All Category of Product
 router.get("/category", getProductCategory);
 // To get product of specific Category
-router.get("/category/:categoryname", getProductByCategoryName);
+router.get("/products/category/:categoryname", getProductByCategoryName);
 
 // To get All Tag of Product
-router.get("/tag", getProductTag);
+router.get("products/tag", getProductTag);
 // To get product of specific Tag
-router.get("/tag/:tagname", getProductByTagName);
+router.get("products/tag/:tagname", getProductByTagName);
 
 // for product by id
 router.get("/product/:pid", getProductById);

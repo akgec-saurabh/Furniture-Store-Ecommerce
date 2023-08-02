@@ -101,7 +101,7 @@ function Checkout() {
       if (responseData.url) {
         // navigate(`/${responseData.url}`);
         // redirect(responseData.url);
-        window.open(responseData.url, "noreferrer");
+        window.open(responseData.url);
       }
     };
 
