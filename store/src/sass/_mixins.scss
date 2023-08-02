@@ -24,7 +24,15 @@
   font-family: inherit;
   outline: none;
   border: none;
-  border: 1px solid $text-color-gray;
+  border: 1px solid $border;
+
+  &:focus {
+    border: 1px solid $text-color-black;
+  }
+
+  &::after {
+    color: red;
+  }
 }
 
 //Scrollbar

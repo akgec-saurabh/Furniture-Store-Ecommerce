@@ -36,7 +36,12 @@ function App() {
         {
           path: "checkout",
           element: <Checkout />,
-          children: [{ path: "sucsess", element: <CheckoutSuccess /> }],
+        },
+
+        //Can create nested children with outlet for checkout
+        {
+          path: "checkout/success",
+          element: <CheckoutSuccess />,
         },
       ],
       errorElement: <p>Error Page</p>,

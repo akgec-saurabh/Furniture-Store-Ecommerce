@@ -7,7 +7,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import SideCartItem from "../components/SideCartItem";
 import CartTotal from "../components/CartTotal";
-import { Link } from "react-router-dom";
+import { Link, redirect, useNavigate } from "react-router-dom";
 
 import { ErrorMessage, Field, Form, Formik, useFormikContext } from "formik";
 import * as Yup from "yup";
@@ -45,20 +45,9 @@ const Select = ({ onCountrySelect, onStateSelect }) => {
 };
 
 function Checkout() {
-  const {
-    firstname,
-    lastname,
-    housenumber,
-    apartment,
-    zipcode,
-    phone,
-    email,
-    country: countryname,
-    state: statename,
-    city: cityname,
-    error,
-  } = useSelector((state) => state.checkoutForm);
-  const { cart, total } = useSelector((state) => state.cart);
+  const userId = useSelector((state) => state.auth.userId);
+  const { cart, total, shipping } = useSelector((state) => state.cart);
+  const navigate = useNavigate();
 
   const [country, setCountry] = useState({
     code: "",
@@ -88,6 +77,39 @@ function Checkout() {
 
   const onPlaceOrderHandler = () => {
     console.log(cart);
+
+    //TODO Replace with redux query mutataion
+
+    const sendReq = async () => {
+      const response = await fetch(
+        `${process.env.REACT_APP_API}/payment/checkout-session`,
+        {
+          method: "POST",
+          body: JSON.stringify({ userId, cart, shipping }),
+          headers: {
+            "Content-type": "application/json",
+          },
+        }
+      );
+
+      if (!response.ok) {
+        console.log(response);
+        throw new Error("Could not go to checkout page");
+      }
+
+      const responseData = await response.json();
+      if (responseData.url) {
+        // navigate(`/${responseData.url}`);
+        // redirect(responseData.url);
+        window.open(responseData.url, "noreferrer");
+      }
+    };
+
+    try {
+      sendReq();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
