@@ -3,6 +3,18 @@
   margin: 0px auto;
 }
 
+@mixin card {
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+@mixin darkCard {
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+@mixin heading {
+  font-weight: 500;
+}
+
 //Buttons
 @mixin button($backgroundColor: $black-light, $color: $white, $padding: 15px) {
   padding: $padding;

@@ -26,6 +26,16 @@
 @import "./components/pagination";
 @import "./components/checkout";
 @import "./components/dashboard";
+@import "./components/input";
+@import "./components/loginForm";
+@import "./components/registerForm";
+@import "./components/button";
+
+//MODULES
+@import "./modules/authForm";
+
+//HOC
+@import "./hoc/modal";
 
 //PAGES
 @import "./pages/cart";

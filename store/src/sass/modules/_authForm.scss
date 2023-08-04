@@ -1,0 +1,10 @@
+.authForm {
+  padding: 50px;
+  position: relative;
+  .close-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: $xl;
+  }
+}

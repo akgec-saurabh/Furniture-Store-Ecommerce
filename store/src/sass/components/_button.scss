@@ -1,0 +1,54 @@
+.button {
+  background-color: $black;
+  padding: 8px 0px;
+  width: 100%;
+  color: $white;
+  border: none;
+  outline: none;
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  cursor: pointer;
+  margin: $s 0px;
+
+  &:focus {
+    background-color: $light-black;
+  }
+
+  &:hover {
+    background-color: $light-black;
+  }
+
+  > .button-text-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    // display: none;vis
+
+    .loading-text {
+      visibility: hidden;
+    }
+  }
+
+  .loading-icon {
+    position: absolute;
+    top: 0;
+  }
+}
+
+.border-button {
+  background-color: $white;
+  border: 1px solid $border;
+  color: $black;
+
+  &:focus {
+    border: 1px solid $black;
+    background-color: $white;
+  }
+
+  &:hover {
+    border: 1px solid $black;
+    background-color: $white;
+  }
+}

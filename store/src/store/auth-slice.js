@@ -4,7 +4,7 @@ const initalAuthState = {
   email: null,
   firstname: null,
   token: null,
-  authModalOpen: false,
+  authModalIsOpen: false,
 };
 
 const authSlice = createSlice({
@@ -17,8 +17,23 @@ const authSlice = createSlice({
       state.email = email;
       state.token = token;
     },
+
+    openAuthModal(state) {
+      state.authModalIsOpen = true;
+    },
+
     toggleAuthModal(state) {
-      state.authModalOpen = !state.authModalOpen;
+      state.authModalIsOpen = !state.authModalIsOpen;
+    },
+    closeAuthModal(state) {
+      state.authModalIsOpen = false;
+    },
+
+    openRegister(state) {
+      state.isLogin = false;
+    },
+    onLogin(state) {
+      state.isLogin = true;
     },
 
     getToken(state, action) {

@@ -3,10 +3,10 @@ import sideCartSlice from "./sideCart-slice";
 import cartSlice from "./cart-slice";
 import authSlice from "./auth-slice";
 import productsSlice from "./products-slice";
-import errorSlice from "./error-slice";
 import countryApi from "./country-slice";
 import productApi from "./product-api";
 import checkoutFormSlice from "./ checkoutform-slice";
+import toastSlice from "./toast-slice";
 
 const store = configureStore({
   reducer: {
@@ -15,8 +15,7 @@ const store = configureStore({
     auth: authSlice.reducer,
     products: productsSlice.reducer,
     checkoutForm: checkoutFormSlice.reducer,
-
-    error: errorSlice.reducer,
+    toast: toastSlice.reducer,
     [productApi.reducerPath]: productApi.reducer,
     [countryApi.reducerPath]: countryApi.reducer,
   },

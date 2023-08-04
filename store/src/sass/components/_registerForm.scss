@@ -1,0 +1,5 @@
+.registerForm {
+  > h2 {
+    @include heading;
+  }
+}

@@ -5,7 +5,6 @@ import ProductPage from "./pages/ProductPage";
 import RootLayout from "./Layout/RootLayout";
 import CartPage from "./pages/CartPage";
 import { useEffect } from "react";
-import { getToken } from "./store/auth-actions";
 import { useDispatch } from "react-redux";
 import Checkout from "./pages/Checkout";
 import CheckoutSuccess from "./components/CheckoutSuccess";

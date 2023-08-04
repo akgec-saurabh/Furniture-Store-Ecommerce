@@ -8,8 +8,8 @@ body {
   min-height: 100vh;
   font-family: "Poppins", sans-serif;
   font-size: 16px;
-  width: 100vw;
-  overflow-x: hidden;
+  // width: 100vw;
+  // overflow-x: hidden;
 }
 
 a {
@@ -21,32 +21,17 @@ li {
   list-style-type: none;
 }
 
-.backdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: $black;
-  opacity: 0.5;
-  z-index: 999;
-}
+// .btn {
+//   @include button;
 
-.input {
-  @include input;
-}
-
-.btn {
-  @include button;
-
-  &:hover {
-    opacity: 0.8;
-  }
-}
-.btnw {
-  @include button($white, $black);
-  border: 1px solid $black;
-}
+//   &:hover {
+//     opacity: 0.8;
+//   }
+// }
+// .btnw {
+//   @include button($white, $black);
+//   border: 1px solid $black;
+// }
 
 //STICKY NAVBAR
 .sticky {
@@ -59,14 +44,4 @@ li {
 // SCROLLBAR
 html {
   // @include scrollbar;
-}
-
-input[type="text"],
-input[type="password"] {
-  @include input;
-}
-
-select {
-  @include input;
-  background-color: transparent;
 }
