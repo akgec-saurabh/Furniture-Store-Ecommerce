@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
-import NavBar from "../components/NavBar";
-import { Outlet } from "react-router-dom";
+import { Outlet, useSearchParams } from "react-router-dom";
 import SideCart from "../components/SideCart";
 import { useDispatch, useSelector } from "react-redux";
 import Footer from "../components/Footer";
@@ -10,15 +9,17 @@ import { authSliceActions } from "../store/auth-slice";
 import { sideCartSliceActions } from "../store/sideCart-slice";
 import { AnimatePresence } from "framer-motion";
 import AuthForm from "../Modules/AuthForm";
+import NavBar from "../Modules/NavBar";
 
 function RootLayout() {
   const authModalIsOpen = useSelector((state) => state.auth.authModalIsOpen);
   const sideCartOpen = useSelector((state) => state.sideCart.open);
   const toast = useSelector((state) => state.toast.toasts);
   const dispatch = useDispatch();
+
   useEffect(() => {
     // dispatch(cartSliceActions.removeCart());
-    dispatch(cartSliceActions.getCart());
+    // dispatch(cartSliceActions.getCart());
   }, []);
 
   const onConfirmAuthModalHandler = () => {
@@ -45,6 +46,12 @@ function RootLayout() {
         <Footer />
       </div>
 
+      {authModalIsOpen && (
+        <Modal onConfirm={closeAuthModalHandler}>
+          <AuthForm />
+        </Modal>
+      )}
+
       {/* SIDE-CART-MODAL 
       <AnimatePresence>
         {sideCartOpen && (
@@ -52,13 +59,6 @@ function RootLayout() {
         )}
       </AnimatePresence>
       {ReactDOM.createPortal(<SideCart />, document.getElementById("overlay"))} */}
-      <AnimatePresence>
-        {authModalIsOpen && (
-          <Modal onConfirm={closeAuthModalHandler}>
-            <AuthForm />
-          </Modal>
-        )}
-      </AnimatePresence>
 
       {/* AUTH-MODAL 
       <AnimatePresence>

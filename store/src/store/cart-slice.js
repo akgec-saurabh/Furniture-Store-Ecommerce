@@ -75,45 +75,46 @@ const cartSlice = createSlice({
           0
         ) + state.shipping;
     },
-    setCart(state, action) {
-      try {
-        localStorage.setItem(
-          "cart",
-          JSON.stringify({
-            cart: state.cart,
-            total: state.total,
-            shipping: state.shipping,
-          })
-        );
-      } catch (error) {
-        console.log(error);
-      }
-    },
+    // setCart(state, action) {
+    //   try {
+    //     localStorage.setItem(
+    //       "cart",
+    //       JSON.stringify({
+    //         cart: state.cart,
+    //         total: state.total,
+    //         shipping: state.shipping,
+    //       })
+    //     );
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+    // },
 
-    getCart(state) {
-      let item;
-      try {
-        item = localStorage.getItem("cart");
-      } catch (error) {
-        console.log(error);
-      }
+    // getCart(state) {
+    //   let item;
+    //   try {
+    //     item = localStorage.getItem("cart");
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+    //   console.log(item);
 
-      if (item) {
-        const data = JSON.parse(item);
-        state.cart = data.cart;
-        state.total = data.total;
-        state.shipping = data.shipping;
-      }
-    },
+    //   if (item) {
+    //     const data = JSON.parse(item);
+    //     state.cart = data.cart;
+    //     state.total = data.total;
+    //     state.shipping = data.shipping;
+    //   }
+    // },
 
-    removeCart(state) {
-      let item;
-      try {
-        item = localStorage.removeItem("cart");
-      } catch (error) {
-        console.log(error);
-      }
-    },
+    // removeCart(state) {
+    //   let item;
+    //   try {
+    //     item = localStorage.removeItem("cart");
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+    // },
 
     updateShipping(state, action) {
       state.shipping = action.payload;

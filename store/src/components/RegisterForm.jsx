@@ -3,10 +3,6 @@ import * as Yup from "yup";
 import { Formik, Form } from "formik";
 import Input from "./Input";
 import Button from "./Button";
-import { easeInOut, motion } from "framer-motion";
-import { basicVariants } from "../helpers/framer-variants";
-import { useDispatch } from "react-redux";
-import { authSliceActions } from "../store/auth-slice";
 
 const initialRegisterValue = {
   firstname: "",
@@ -34,7 +30,7 @@ const yupValidationSchema = Yup.object({
     .required("Required"),
 });
 
-function RegisterForm() {
+function RegisterForm({ registerUser, error, isError, isLoading }) {
   return (
     <div className="registerForm">
       <h2>Create account</h2>
@@ -42,8 +38,8 @@ function RegisterForm() {
         initialValues={initialRegisterValue}
         validationSchema={yupValidationSchema}
         onSubmit={(values, { setSubmitting }) => {
-          regUser({ ...values });
-          console.log("Registering User with ", values);
+          registerUser({ ...values });
+          console.log("Registering User");
 
           setSubmitting(false);
         }}
@@ -54,7 +50,13 @@ function RegisterForm() {
           <Input label="Email" name="email" />
           <Input label="Password" type="password" name="password" />
 
-          <Button type="submit" text="Create Account" />
+          <Button isLoading={isLoading} type="submit" text="Create Account" />
+
+          {isError && (
+            <div className="error-register-text">
+              ({error.error || error.data.message})
+            </div>
+          )}
         </Form>
       </Formik>
     </div>

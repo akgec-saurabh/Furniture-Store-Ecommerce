@@ -1,0 +1,13 @@
+.mobile-nav {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  .mobileMenu {
+    position: absolute;
+    left: -15px;
+    top: 35px;
+    width: calc(100% + 30px);
+  }
+}

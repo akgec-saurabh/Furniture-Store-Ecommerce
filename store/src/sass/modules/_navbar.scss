@@ -1,0 +1,40 @@
+.nav_container {
+  border-bottom: 1px solid $light-gray;
+  background-color: $white;
+  /* Sticky navbar styles */
+  position: sticky;
+  top: 0;
+  padding: 0px;
+  z-index: 99;
+
+  @include lg {
+    padding: $s;
+    height: 50px;
+    position: relative;
+    z-index: 100;
+  }
+
+  .nav_container_wrapper {
+    @include max-width;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    color: $text-color-black;
+  }
+}
+
+.nav_icons {
+  display: flex;
+  align-items: center;
+  > li,
+  > .authBtn {
+    margin-left: 20px;
+    cursor: pointer;
+  }
+
+  > .nav_cart {
+    padding-right: 10px;
+    cursor: pointer;
+  }
+}

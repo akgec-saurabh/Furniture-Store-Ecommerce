@@ -3,13 +3,12 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 
-function Pagination({ maxPageRange = 5 }) {
+function Pagination({ maxPageRange = 3 }) {
   const [searchParams, setSearchParms] = useSearchParams();
   const [pageRange, setPageRange] = useState(1);
   //Setting the active page from searchParms if it is avaliable else setting it to 1
-  const page =parseInt(searchParams.get('page')||1)
+  const page = parseInt(searchParams.get("page") || 1);
   const [pageActive, setPageActive] = useState(page);
-
 
   const onPageClickedHandler = (pageNum) => {
     setPageActive(pageNum);
@@ -37,10 +36,14 @@ function Pagination({ maxPageRange = 5 }) {
 
   //To dispatch activePage as soon as active Page Changes
   useEffect(() => {
-    setSearchParms({ page: pageActive });
+    if (pageActive === 1) {
+      setSearchParms({});
+    } else {
+      setSearchParms({ page: pageActive });
+    }
   }, [pageActive]);
 
-  console.log(pageActive,'pageActive === i ? "active" : ""')
+  console.log(pageActive, 'pageActive === i ? "active" : ""');
 
   const renderPage = () => {
     const pages = [];

@@ -1,39 +1,19 @@
 import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
-import { motion } from "framer-motion";
-import { backdropVariants, overlayVariants } from "../helpers/framer-variants";
 
 const Backdrop = ({ onConfirm }) => {
-  return (
-    <motion.div
-      variants={backdropVariants}
-      initial="hide"
-      animate="show"
-      exit="hide"
-      onClick={onConfirm}
-      className="backdrop"
-    ></motion.div>
-  );
+  return <div onClick={onConfirm} className="backdrop"></div>;
 };
 
-const Overlay = ({ children }) => {
-  useEffect(() => {
-    console.log("overlay rendered");
-  }, []);
+const Overlay = ({ children, mobileNavOverlay = false }) => {
   return (
-    <motion.div
-      variants={overlayVariants}
-      initial="hide"
-      animate="show"
-      exit="hide"
-      className="overlay"
-    >
+    <div className={`overlay ${mobileNavOverlay ? "mobileNavOverlay" : ""}`}>
       {children}
-    </motion.div>
+    </div>
   );
 };
 
-function Modal({ onConfirm, children }) {
+function Modal({ onConfirm, children, mobileNavOverlay = false }) {
   return (
     <>
       {ReactDOM.createPortal(
@@ -42,7 +22,7 @@ function Modal({ onConfirm, children }) {
       )}
 
       {ReactDOM.createPortal(
-        <Overlay children={children} />,
+        <Overlay mobileNavOverlay={mobileNavOverlay} children={children} />,
         document.getElementById("overlay")
       )}
     </>

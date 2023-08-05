@@ -1,28 +1,151 @@
 .secondaryNav {
-  @include max-width;
-  padding: 56px 0px;
-  width: 100%;
-  font-size: 18px;
-  font-weight: 400;
-  color: $text-color-black;
-
-  display: flex;
-  justify-content: space-between;
-
-  .category,
-  .filter {
+  padding: 56px 0px 16px 0px;
+  > .secondaryNav-head-wrapper {
+    @include max-width;
+    width: 100%;
+    font-weight: 400;
+    color: $text-color-black;
+    // overflow: hidden;
     display: flex;
-    gap: 16px;
+    align-items: center;
+    justify-content: space-between;
 
-    > span:nth-of-type(odd) {
-      cursor: pointer;
+    .categoryWrapper {
+      > .head {
+        display: none;
+      }
+      > .category-items {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+
+        > .categoryname {
+          cursor: pointer;
+
+          > .seprator {
+            margin-left: 15px;
+            font-size: 12px;
+            color: $border;
+          }
+        }
+        > .active {
+          color: $primary-color;
+        }
+      }
     }
-    > span:nth-of-type(even) {
-      color: $light-gray;
+
+    .filter {
+      display: flex;
+      align-items: center;
+      > .filterWrapper {
+        > .head {
+        }
+        > .filter-items {
+        }
+      }
+      > .seprator {
+        margin: 0px 15px;
+        font-size: 12px;
+        color: $border;
+      }
+      > .search {
+        > .icon {
+          transform: scaleX(-1);
+          color: $border;
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+  > .filter-items {
+    display: flex;
+
+    > .filter-item {
+      flex: 1;
+
+      > .head {
+        margin: 15px 0px;
+        color: $light-black;
+        font-size: 14px;
+      }
+      > .items {
+        font-weight: 300;
+        font-size: 14px;
+        color: $text-color-black;
+        cursor: pointer;
+
+        //FOR SORT
+        .sort {
+          margin-bottom: 5px;
+          span {
+            &:hover {
+              color: $primary-color;
+            }
+          }
+        }
+
+        //FOR PRICES
+
+        .price {
+          margin-bottom: 5px;
+          span {
+            &:hover {
+              color: $primary-color;
+            }
+          }
+        }
+      }
+
+      //FOR COLORS
+      > .colors {
+        display: flex;
+        flex-direction: column;
+
+        > .color-wrapper {
+          display: flex;
+          align-items: center;
+
+          > .color {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: 1px solid $border;
+            margin-right: 10px;
+          }
+
+          .name {
+            margin-bottom: 5px;
+            &:hover {
+              color: $primary-color;
+            }
+          }
+        }
+      }
+
+      //FOR TAGS
+      > .tags {
+        display: flex;
+        flex-wrap: wrap;
+        > .tag {
+          font-size: 12px;
+          background-color: $light-black;
+          color: $white;
+          border-radius: 10px;
+          padding: 0 10px;
+          margin-bottom: 5px;
+          margin-right: 5px;
+        }
+      }
     }
   }
 
-  .active {
-    color: $primary-color;
+  .activeFilterWrapper {
+    margin-top: 15px;
+    margin-bottom: 40px;
   }
+}
+
+.active {
+  color: $primary-color;
 }

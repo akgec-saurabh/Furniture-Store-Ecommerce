@@ -3,8 +3,7 @@
 @import "global";
 
 // COMPONENTS
-@import "./components/navbar";
-@import "./components/dropdown";
+@import "./components/dropdownDesktop";
 @import "./components/dropdownMobile";
 @import "./components/addcomment";
 @import "./components/detail";
@@ -25,11 +24,26 @@
 @import "./components/errorModal";
 @import "./components/pagination";
 @import "./components/checkout";
-@import "./components/dashboard";
+@import "./components/activeFilter";
+
+//Error
+@import "./components/error";
+
+//Loading
+@import "./components/loading";
+
 @import "./components/input";
 @import "./components/loginForm";
 @import "./components/registerForm";
 @import "./components/button";
+
+//LOGO
+@import "./components/logo";
+//NAV
+@import "./modules/navbar";
+@import "./modules/desktopNavbar";
+@import "./modules/mobileNavbar";
+@import "./components/mobileMenu";
 
 //MODULES
 @import "./modules/authForm";

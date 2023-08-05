@@ -1,29 +1,32 @@
-.dropdownMobile {
-  //   padding: 20px;
+.dropDown {
   background-color: $white;
-
-  .dm_head {
-    width: 100%;
+  > .head {
     display: flex;
+    width: 100%;
     justify-content: space-between;
     align-items: center;
-    padding: 15px;
-    border-bottom: 1px solid $light-gray;
+    padding: $s;
+    text-transform: capitalize;
     cursor: pointer;
-    font-weight: 500;
+    border-bottom: 1px solid $bg-color;
+    color: $light-black;
+
+    // &:hover {
+    //   background-color: $black-light;
+    //   color: white;
+    // }
   }
-  .dm_drop {
-    .dm_drop_head {
-      //   color: aqua;
-      padding: 15px 15px 5px 30px;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-weight: 400;
-    }
-    .dm_drop_item {
-      padding: 5px 15px 5px 45px;
-    }
+
+  > .item {
+    width: 100%;
+    padding: $xs $ls;
+    text-transform: capitalize;
+    color: $text-color-black;
+    font-size: 14px;
+
+    // &:hover {
+    //   background-color: $black-light;
+    //   color: white;
+    // }
   }
 }

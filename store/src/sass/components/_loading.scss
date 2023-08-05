@@ -1,0 +1,13 @@
+.loading {
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  .dot {
+    width: 20px;
+    height: 20px;
+    background-color: $light-black;
+    border-radius: 50%;
+  }
+}

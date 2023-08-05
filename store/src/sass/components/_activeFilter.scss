@@ -1,0 +1,46 @@
+.activeFilter {
+  padding: 2px 10px 2px 5px;
+  font-size: 14px;
+  border: 1px solid $text-color-black;
+  color: $text-color-black;
+  border-radius: 20px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s;
+  margin: 15px 0px;
+
+  > .linethrough {
+    height: 1px;
+    width: 75%;
+    margin-right: 10%;
+    margin-left: 20%;
+    background-color: $light-black;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  &:hover {
+    color: $light-black;
+    border: 1px solid $light-black;
+
+    .linethrough {
+      visibility: unset;
+      opacity: 1;
+    }
+  }
+
+  > .icon {
+    margin-right: 10px;
+  }
+
+  > .label {
+    > .text {
+      margin-left: 5px;
+      color: $light-black;
+    }
+  }
+}

@@ -4,13 +4,25 @@ import { LayoutGroup, motion } from "framer-motion";
 
 import { basicVariants } from "../helpers/framer-variants";
 
-function Button({ text, onClick, isLoading, border = false, ...props }) {
+function Button({
+  s = false,
+  m = false,
+  l = false,
+  text,
+  onClick,
+  isLoading,
+  border = false,
+  ...props
+}) {
   return (
     <motion.button
       layout
       variants={basicVariants}
       onClick={onClick}
-      className={`button  ${border ? "border-button" : ""} `}
+      className={`button  ${border ? "border-button" : ""} ${s ? "s" : ""}
+        ${m ? "m" : ""}
+        ${l ? "l" : ""}
+      }`}
       {...props}
     >
       <div className="button-text-wrapper">

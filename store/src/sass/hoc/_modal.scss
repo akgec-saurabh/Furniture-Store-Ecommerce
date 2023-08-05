@@ -12,7 +12,6 @@
 .overlay {
   position: fixed;
   z-index: 100;
-  top: 10px;
   left: 0;
   width: 100%;
   top: 50%;
@@ -21,4 +20,11 @@
   max-width: 600px;
   background-color: $white;
   @include card;
+}
+
+.mobileNavOverlay {
+  top: 50px;
+  left: 0;
+  transform: unset;
+  max-width: 100%;
 }

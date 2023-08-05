@@ -8,7 +8,14 @@ const productApi = createApi({
       query: (page) => `products?page=${page}`,
     }),
     getProductByCategory: builder.query({
-      query: (category) => `products/category/${category}`,
+      query: ({ categoryname, page }) =>
+        `products/category/${categoryname}?page=${page}`,
+    }),
+    getProductTags: builder.query({
+      query: () => `products/tags`,
+    }),
+    getProductByTags: builder.query({
+      query: (tagname) => `products/tag/${tagname}`,
     }),
     getProductById: builder.query({
       query: (id) => `product/${id}`,
@@ -49,6 +56,8 @@ const productApi = createApi({
 export const {
   useGetProductsByPageQuery,
   useGetProductByCategoryQuery,
+  useGetProductTagsQuery,
+  useGetProductByTagsQuery,
   useGetProductByIdQuery,
   useLoginUserMutation,
   useRegisterUserMutation,

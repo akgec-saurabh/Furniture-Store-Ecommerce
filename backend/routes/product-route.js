@@ -18,9 +18,9 @@ router.get("/category", getProductCategory);
 router.get("/products/category/:categoryname", getProductByCategoryName);
 
 // To get All Tag of Product
-router.get("products/tag", getProductTag);
+router.get("/products/tags", getProductTag);
 // To get product of specific Tag
-router.get("products/tag/:tagname", getProductByTagName);
+router.get("/products/tag/:tagname", getProductByTagName);
 
 // for product by id
 router.get("/product/:pid", getProductById);

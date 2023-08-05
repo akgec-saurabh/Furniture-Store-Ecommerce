@@ -2,4 +2,9 @@
   > h2 {
     @include heading;
   }
+
+  .error-register-text {
+    font-size: 14px;
+    color: $error;
+  }
 }

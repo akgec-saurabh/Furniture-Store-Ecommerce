@@ -9,20 +9,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { toastSliceActions } from "../store/toast-slice";
 import { authSliceActions } from "../store/auth-slice";
 
-function LoginForm() {
-  const [loginUser, { data, isLoading, isSuccess, isError, error }] =
-    useLoginUserMutation();
-  const dispatch = useDispatch();
+function LoginForm({ loginUser, isLoading, isError, error }) {
+  // const [loginUser, { data, isLoading, isSuccess, isError, error }] =
+  // useLoginUserMutation();
+  // const dispatch = useDispatch();
 
-  useEffect(() => {
-    console.log(data, isSuccess, isError, error);
+  // useEffect(() => {
+  //   console.log(data, isSuccess, isError, error);
 
-    if (isSuccess) {
-      dispatch(
-        authSliceActions.updateUserData(data.message, data.head, data.token)
-      );
-    }
-  }, [isSuccess]);
+  //   if (isSuccess) {
+  //     dispatch(
+  //       authSliceActions.updateUserData(data.message, data.head, data.token)
+  //     );
+  //   }
+  // }, [isSuccess]);
 
   return (
     <div className="loginForm">
@@ -53,7 +53,9 @@ function LoginForm() {
           <Input label="Password" type="password" name="password" />
           <Button isLoading={isLoading} type="submit" text="Login" />
           {isError && (
-            <div className="error-login-text">({error.data.message})</div>
+            <div className="error-login-text">
+              ({error.error || error.data.message})
+            </div>
           )}
         </Form>
       </Formik>

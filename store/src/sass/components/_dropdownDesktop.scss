@@ -1,42 +1,29 @@
-.dropdown_container {
+.menu {
   position: relative;
-  .dropdown_head {
+  > .head {
     padding: 20px 0px;
     padding-right: 20px;
+    text-transform: capitalize;
+    cursor: pointer;
     &:hover {
       color: $black;
     }
   }
 
-  &:hover {
-    .dropdown_drop {
-      visibility: visible;
-      opacity: 1;
-    }
-  }
-
-  .dropdown_drop {
+  > .subMenu {
     position: absolute;
     left: -20px;
     background-color: $black;
     padding: 20px;
     font-size: 14px;
-    display: flex;
-    gap: 20px;
-    opacity: 0;
-    visibility: hidden;
     z-index: 99;
 
-    .dropdown_drop_head {
-      color: $white;
-      width: max-content;
+    > .item {
+      display: inline-block;
       padding: 5px 10px;
-    }
-
-    .dropdown_drop_item {
       width: max-content;
-      padding: 5px 10px;
       color: $text-color-gray;
+      cursor: pointer;
       &:hover {
         color: $white;
       }

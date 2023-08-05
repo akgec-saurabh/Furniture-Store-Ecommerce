@@ -8,7 +8,12 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import Checkout from "./pages/Checkout";
 import CheckoutSuccess from "./components/CheckoutSuccess";
+import OrderTracking from "./pages/OrderTracking";
 import { authSliceActions } from "./store/auth-slice";
+import ErrorPage from "./pages/ErrorPage";
+import About from "./pages/About";
+import MyAccount from "./pages/MyAccount";
+import WishList from "./pages/WishList";
 
 function App() {
   const dispatch = useDispatch();
@@ -30,6 +35,14 @@ function App() {
           element: <ProductPage />,
         },
         {
+          path: "category/:categoryname",
+          element: <Homepage />,
+        },
+        {
+          path: "tag/:tagname",
+          element: <Homepage />,
+        },
+        {
           path: "cart",
           element: <CartPage />,
         },
@@ -43,8 +56,25 @@ function App() {
           path: "checkout/success",
           element: <CheckoutSuccess />,
         },
+        {
+          path: "/order-tracking",
+          element: <OrderTracking />,
+        },
+        {
+          path: "/my-account",
+          element: <MyAccount />,
+        },
+        {
+          path: "/about-us",
+          element: <About />,
+        },
+        {
+          path: "/wishlist",
+          element: <WishList />,
+        },
       ],
-      errorElement: <p>Error Page</p>,
+
+      errorElement: <ErrorPage />,
     },
   ]);
   return <RouterProvider router={router} />;

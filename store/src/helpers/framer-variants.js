@@ -29,3 +29,38 @@ export const backdropVariants = {
     },
   },
 };
+export const loadingContainerVariants = {
+  hide: {},
+  show: {
+    transition: { staggerChildren: 0.15 },
+  },
+};
+
+export const loadingDotVariants = {
+  hide: {
+    y: "0%", //move out of the site
+  },
+  show: {
+    y: "-100%", // bring it back to nrmal
+
+    transition: {
+      repeat: Infinity,
+      repeatType: "reverse",
+      duration: 0.5,
+    },
+  },
+};
+export const loadingErrorVariants = {
+  hide: {
+    y: "0%", //move out of the site
+  },
+  show: {
+    y: "-10%", // bring it back to nrmal
+
+    transition: {
+      repeat: Infinity,
+      repeatType: "reverse",
+      duration: 0.5,
+    },
+  },
+};

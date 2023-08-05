@@ -5,7 +5,9 @@ const getAllProducts = async (req, res, next) => {
   const page = parseInt(req.query.page) || 1;
   const pageSize = 5;
   let products;
+  let total_count = 0;
   try {
+    total_count = (await Product.find({})).length;
     products = await Product.find({})
       .skip((page - 1) * pageSize)
       .limit(pageSize);
@@ -15,6 +17,7 @@ const getAllProducts = async (req, res, next) => {
   res.status(200).json({
     message: "Fetched Products Successfully",
     products: products.map((product) => product.toObject({ getters: true })),
+    total_count,
   });
 };
 
@@ -61,12 +64,21 @@ const getProductByCategoryName = async (req, res, next) => {
   const categoryName = req.params.categoryname;
   const decodedCategoryName = decodeURIComponent(categoryName);
 
+  console.log(decodedCategoryName);
+
   const page = parseInt(req.query.page) || 1;
   const pageSize = 5;
 
   let products;
+  let total_count;
 
   try {
+    total_count = (
+      await Product.find({
+        category: decodedCategoryName,
+      })
+    ).length;
+
     products = await Product.find({
       category: decodedCategoryName,
     })
@@ -83,9 +95,11 @@ const getProductByCategoryName = async (req, res, next) => {
     return next(httpError("No product found for the specified Category", 404));
   }
 
-  res
-    .status(200)
-    .json({ message: "Successfully Fetched Product by Category", products });
+  res.status(200).json({
+    message: "Successfully Fetched Product by Category " + categoryName,
+    products,
+    total_count,
+  });
 };
 
 //Fetch all the tag of Product
@@ -113,7 +127,9 @@ const getProductByTagName = async (req, res, next) => {
   const page = parseInt(req.query.page) || 1;
   const pageSize = 5;
   let products;
+  let total_count;
   try {
+    total_count = (await Product.find({ tag: tagname })).length;
     products = await Product.find({ tag: tagname })
       .skip((page - 1) * pageSize)
       .limit(pageSize);
@@ -125,7 +141,11 @@ const getProductByTagName = async (req, res, next) => {
     return next(httpError("No product found for the specified Tag", 404));
   }
 
-  res.status(200).json({ message: "Fetch Successfully by tag", products });
+  res.status(200).json({
+    message: "Fetch Successfully by tag " + tagname,
+    products,
+    total_count,
+  });
 };
 
 exports.getAllProducts = getAllProducts;
