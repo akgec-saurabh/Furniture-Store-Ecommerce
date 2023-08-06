@@ -2,13 +2,28 @@ const httpError = require("../models/http-error");
 const Product = require("../models/product");
 
 const getAllProducts = async (req, res, next) => {
+  const categoryquery = req.query.category;
+  const tag = req.query.tag;
+
+  console.log(categoryquery, tag);
+  let search_query = {};
+
+  if (categoryquery) {
+    search_query.category = categoryquery;
+  }
+  if (tag) {
+    search_query.tag = tag;
+  }
+
+  console.log(search_query);
+
   const page = parseInt(req.query.page) || 1;
   const pageSize = 5;
   let products;
   let total_count = 0;
   try {
-    total_count = (await Product.find({})).length;
-    products = await Product.find({})
+    total_count = (await Product.find(search_query)).length;
+    products = await Product.find(search_query)
       .skip((page - 1) * pageSize)
       .limit(pageSize);
   } catch (error) {
@@ -16,8 +31,8 @@ const getAllProducts = async (req, res, next) => {
   }
   res.status(200).json({
     message: "Fetched Products Successfully",
-    products: products.map((product) => product.toObject({ getters: true })),
     total_count,
+    products: products.map((product) => product.toObject({ getters: true })),
   });
 };
 

@@ -1,22 +1,15 @@
 import { SearchOutlined } from "@ant-design/icons";
 import React, { useEffect, useState } from "react";
-import { NavLink, useLocation, useSearchParams } from "react-router-dom";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import menu from "../menuData";
 import { useGetProductTagsQuery } from "../store/product-api";
 import ActiveFilter from "./ActiveFilter";
-
-const colors = [
-  { color: "#0000FF", name: "Blue" },
-  { color: "#A52A2A", name: "Brown" },
-  { color: "#808080", name: "Gray" },
-  { color: "#008000", name: "Green" },
-  { color: "#FFA500", name: "Orange" },
-  { color: "#FFFFFF", name: "White" },
-];
+import { colors, priceRanges, sortOptions } from "../filterData";
 
 const SecondaryNav = () => {
   const [searchParams, setSearchParms] = useSearchParams();
   const location = useLocation();
+  const navigate = useNavigate();
 
   const { data, isError, isLoading, isSuccess } = useGetProductTagsQuery();
 
@@ -56,6 +49,19 @@ const SecondaryNav = () => {
       });
     }
   };
+
+  //ON SORT FILTER HANDLER
+  const onSortFilterHandler = (sortname) => {
+    setSearchParms({ ...query, orderby: sortname });
+  };
+
+  //ON PRICE FILTER HANDLER
+  const onPriceFilterHandler = (min_price, max_price) => {
+    console.log("adding price filter");
+    console.log(searchParams.get("min_price"));
+    setSearchParms({ ...query, min_price: min_price, max_price: max_price });
+  };
+
   //ON COLOR FILTER HANDLER
   const onColorFilterHandler = (colorname) => {
     setSearchParms({ ...query, color: colorname });
@@ -63,7 +69,15 @@ const SecondaryNav = () => {
 
   //ON CLEAR HANDLER
   const onClearHandler = () => {
-    // urlquery.d;
+    console.log("clearing filter");
+    navigate("/");
+  };
+
+  //ON CLEAR TAG HANDLER
+  const onClearTagHandler = () => {
+    console.log("clearing tag");
+    delete query.tag;
+    setSearchParms(query);
   };
 
   return (
@@ -102,47 +116,47 @@ const SecondaryNav = () => {
         <div className="filter-item">
           <div className="head">Sort By</div>
           <div className="items">
-            <div className="sort">
-              <span>Default</span>
-            </div>
-            <div className="sort">
-              <span>Popularity</span>
-            </div>
-            <div className="sort">
-              <span>Average rating</span>
-            </div>
-            <div className="sort">
-              <span>Newness</span>
-            </div>
-            <div className="sort">
-              <span>Price: Low to High</span>
-            </div>
-            <div className="sort">
-              <span>Price: High to Low</span>
-            </div>
+            {sortOptions.map((item) => (
+              <div className="sort">
+                <span
+                  className={`sortItem 
+                
+                ${
+                  searchParams.get("orderby") === item.paramValue
+                    ? "active"
+                    : ""
+                }
+                `}
+                  onClick={() => {
+                    onSortFilterHandler(item.paramValue);
+                  }}
+                >
+                  {item.label}
+                </span>
+              </div>
+            ))}
           </div>
         </div>
         <div className="filter-item">
           <div className="head">Price</div>
           <div className="items">
-            <div className="price">
-              <span>All</span>
-            </div>
-            <div className="price">
-              <span>$0 - $50</span>
-            </div>
-            <div className="price">
-              <span>$50 - $100</span>
-            </div>
-            <div className="price">
-              <span>$100 - $150</span>
-            </div>
-            <div className="price">
-              <span>$150 - $200</span>
-            </div>
-            <div className="price">
-              <span>$200+</span>
-            </div>
+            {priceRanges.map((price) => (
+              <div className="price">
+                <span
+                  className={`priceItem  ${
+                    Number(searchParams.get("min_price")) === price.min_price &&
+                    Number(searchParams.get("max_price")) === price.max_price
+                      ? "active"
+                      : ""
+                  }`}
+                  onClick={() => {
+                    onPriceFilterHandler(price.min_price, price.max_price);
+                  }}
+                >
+                  {price.label}
+                </span>
+              </div>
+            ))}
           </div>
         </div>
         <div className="filter-item">
@@ -201,6 +215,13 @@ const SecondaryNav = () => {
           text="(1)"
           label="Filter active"
         />
+        {query.tag && (
+          <ActiveFilter
+            onClear={onClearTagHandler}
+            text={`"${query.tag}"`}
+            label="Product Tagged"
+          />
+        )}
       </div>
     </div>
   );

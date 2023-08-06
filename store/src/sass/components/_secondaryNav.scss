@@ -77,10 +77,14 @@
         //FOR SORT
         .sort {
           margin-bottom: 5px;
-          span {
+          .sortItem {
             &:hover {
               color: $primary-color;
             }
+          }
+
+          .active {
+            color: $primary-color;
           }
         }
 
@@ -88,10 +92,14 @@
 
         .price {
           margin-bottom: 5px;
-          span {
+          .priceItem {
             &:hover {
               color: $primary-color;
             }
+          }
+
+          .active {
+            color: $primary-color;
           }
         }
       }
