@@ -8,7 +8,7 @@ import {
 
 function Error() {
   return (
-    <div className="error">
+    <div className="errorComponent">
       <motion.h1 variants={loadingContainerVariants} animate="show">
         <motion.span variants={loadingErrorVariants}>4</motion.span>
         <motion.span variants={loadingErrorVariants}>0</motion.span>

@@ -8,56 +8,26 @@ import {
   useGetProductByTagsQuery,
   useGetProductsByPageQuery,
 } from "../store/product-api";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 function Homepage() {
-  const [searchParams] = useSearchParams();
-  const params = useParams();
-  const page = searchParams.get("page");
+  const location = useLocation();
   // const category = searchParams.get("category");
-  const { data, isLoading, isError, isSuccess } =
-    useGetProductsByPageQuery(page);
-  const {
-    data: categoryData,
-    isLoadingCategory,
-    isErrorCategory,
-    isSuccessCategory,
-  } = useGetProductByCategoryQuery(
-    { categoryname: params.categoryname, page: page },
-    {
-      skip: !params.categoryname,
-    }
-  );
-
-  const {
-    data: tagData,
-    isLoadingTag,
-    isErrorTag,
-    isSuccessTag,
-  } = useGetProductByTagsQuery(params.tagname, {
-    skip: !params.tagname,
-  });
-
-  useEffect(() => {
-    console.log(
-      categoryData,
-      "searchparams category name is " + params.categoryname
-    );
-    console.log(tagData, "searchparams tag name is " + params.tagname);
-  }, [categoryData, tagData]);
+  const { data, isLoading, isError, isSuccess, isFetching } =
+    useGetProductsByPageQuery(location.search);
 
   return (
     <>
       <Slider />
       <SecondaryNav />
+      {isSuccess && <div>No of Products :{data.total_count}</div>}
       <Products
-        data={
-          params.categoryname ? categoryData : params.tagname ? tagData : data
-        }
+        data={data}
         isSuccess={isSuccess}
-        isLoading={isLoading}
+        isLoading={isFetching}
         isError={isError}
       />
+
       {/*  How to give Dynamically this page range  */}
     </>
   );

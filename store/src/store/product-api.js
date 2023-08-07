@@ -5,7 +5,7 @@ const productApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: process.env.REACT_APP_API }),
   endpoints: (builder) => ({
     getProductsByPage: builder.query({
-      query: (page) => `products?page=${page}`,
+      query: (search) => `products${search}`,
     }),
     getProductByCategory: builder.query({
       query: ({ categoryname, page }) =>

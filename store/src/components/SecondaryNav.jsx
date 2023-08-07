@@ -4,7 +4,7 @@ import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import menu from "../menuData";
 import { useGetProductTagsQuery } from "../store/product-api";
 import ActiveFilter from "./ActiveFilter";
-import { colors, priceRanges, sortOptions } from "../filterData";
+import { categoryData, colors, priceRanges, sortOptions } from "../filterData";
 
 const SecondaryNav = () => {
   const [searchParams, setSearchParms] = useSearchParams();
@@ -24,10 +24,11 @@ const SecondaryNav = () => {
     for (let [key, value] of urlquery) {
       paramsObj[key] = value;
     }
-    console.log(paramsObj);
+    console.log("This is the query object", paramsObj);
     setQuery(paramsObj);
   }, [location]);
 
+  // ON CATEGORY HANDLER
   const onCategoryHandler = (url) => {
     if (url !== "") {
       setSearchParms({
@@ -37,6 +38,12 @@ const SecondaryNav = () => {
     }
     console.log(searchParams.get("category"));
   };
+  // ON CLEAR CATEGORY HANDLER
+  const onClearCategoryHandler = () => {
+    delete query.category;
+    setSearchParms(query);
+  };
+
   const onTagHandler = (url) => {
     if (query.tag === url) {
       delete query.tag;
@@ -55,11 +62,28 @@ const SecondaryNav = () => {
     setSearchParms({ ...query, orderby: sortname });
   };
 
+  // ON CLEAR SORT HANDLER
+  const onClearSortHandler = () => {
+    delete query.orderby;
+    setSearchParms(query);
+  };
+
   //ON PRICE FILTER HANDLER
   const onPriceFilterHandler = (min_price, max_price) => {
     console.log("adding price filter");
     console.log(searchParams.get("min_price"));
-    setSearchParms({ ...query, min_price: min_price, max_price: max_price });
+    if (min_price === 0 && max_price === "Infinity") {
+      console.log("all s");
+      setSearchParms({ ...query });
+    } else {
+      setSearchParms({ ...query, min_price: min_price, max_price: max_price });
+    }
+  };
+  //ON PRICE CLEAR HANDLER (ALL:CLICK)
+  const onPriceClearHandler = () => {
+    delete query.min_price;
+    delete query.max_price;
+    setSearchParms(query);
   };
 
   //ON COLOR FILTER HANDLER
@@ -86,7 +110,18 @@ const SecondaryNav = () => {
         <div className="categoryWrapper">
           <div className="head">Category</div>
           <div className="category-items">
-            {menu[1].subMenu.map((subMenu) => (
+            <div
+              className={`categoryname ${
+                searchParams.get("category") ? "" : "active"
+              }`}
+              onClick={() => {
+                onClearCategoryHandler();
+              }}
+            >
+              All
+              <span className="seprator">/</span>
+            </div>
+            {categoryData.map((subMenu) => (
               <div
                 className={`categoryname ${
                   searchParams.get("category") === subMenu.url ? "active" : ""
@@ -116,8 +151,21 @@ const SecondaryNav = () => {
         <div className="filter-item">
           <div className="head">Sort By</div>
           <div className="items">
+            <div className="sort">
+              <span
+                className={`sortItem 
+                
+                ${searchParams.get("orderby") ? "" : "active"}
+                `}
+                onClick={() => {
+                  onClearSortHandler();
+                }}
+              >
+                Default
+              </span>
+            </div>
             {sortOptions.map((item) => (
-              <div className="sort">
+              <div className="sort" key={item.paramValue}>
                 <span
                   className={`sortItem 
                 
@@ -140,8 +188,16 @@ const SecondaryNav = () => {
         <div className="filter-item">
           <div className="head">Price</div>
           <div className="items">
+            <span
+              className={`priceItem ${
+                searchParams.get("min_price") ? "" : "active"
+              }`}
+              onClick={onPriceClearHandler}
+            >
+              All
+            </span>
             {priceRanges.map((price) => (
-              <div className="price">
+              <div className="price" key={price.label}>
                 <span
                   className={`priceItem  ${
                     Number(searchParams.get("min_price")) === price.min_price &&
@@ -168,6 +224,7 @@ const SecondaryNav = () => {
                   onColorFilterHandler(color.name);
                 }}
                 className="color-wrapper"
+                key={color.name}
               >
                 <span
                   className="color"
@@ -210,11 +267,16 @@ const SecondaryNav = () => {
       </div>
 
       <div className="activeFilterWrapper">
-        <ActiveFilter
-          onClear={onClearHandler}
-          text="(1)"
-          label="Filter active"
-        />
+        {(query.category ||
+          query.orderby ||
+          query.color ||
+          query.min_price) && (
+          <ActiveFilter
+            onClear={onClearHandler}
+            text={Object.keys(query).length}
+            label="Filter active"
+          />
+        )}
         {query.tag && (
           <ActiveFilter
             onClear={onClearTagHandler}

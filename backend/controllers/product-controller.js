@@ -9,13 +9,45 @@ const getAllProducts = async (req, res, next) => {
   let search_query = {};
 
   if (categoryquery) {
-    search_query.category = categoryquery;
+    if (categoryquery === "bags-backpacks") {
+      console.log("bagpacks");
+      search_query.category = "bags & backpacks";
+    } else {
+      search_query.category = categoryquery;
+    }
   }
   if (tag) {
     search_query.tag = tag;
   }
 
+  //FOR SORT
+  let sort_query = {};
+  const orderby = req.query.orderby;
+  // LOGIC FOR SORT QUERY
+  if (orderby) {
+    if (orderby === "price-low-to-high") {
+      sort_query = { price: 1 };
+    } else if (orderby === "price-hight-to-low") {
+      sort_query = { price: -1 };
+    } else if (orderby === "popularity") {
+      sort_query = { popularity: -1 };
+    } else if (orderby === "newness") {
+      sort_query = { date: 1 };
+    } else if (orderby === "rating") {
+      sort_query = { rating: -1 };
+    }
+  }
   console.log(search_query);
+
+  //FOR PRICE RANGE
+  const min_price = req.query.min_price;
+  const max_price = req.query.max_price;
+
+  if (min_price || max_price) {
+    search_query.price = { $gte: min_price, $lte: max_price };
+  }
+
+  console.log(sort_query);
 
   const page = parseInt(req.query.page) || 1;
   const pageSize = 5;
@@ -25,7 +57,8 @@ const getAllProducts = async (req, res, next) => {
     total_count = (await Product.find(search_query)).length;
     products = await Product.find(search_query)
       .skip((page - 1) * pageSize)
-      .limit(pageSize);
+      .limit(pageSize)
+      .sort(sort_query);
   } catch (error) {
     return next(httpError("Unable to find the Products", 404));
   }

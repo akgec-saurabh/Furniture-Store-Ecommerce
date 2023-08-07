@@ -1,5 +1,4 @@
 export const sortOptions = [
-  { label: "Default", paramName: "sort", paramValue: "default" },
   { label: "Popularity", paramName: "sort", paramValue: "popularity" },
   { label: "Average rating", paramName: "sort", paramValue: "rating" },
   { label: "Newness", paramName: "sort", paramValue: "newness" },
@@ -15,6 +14,25 @@ export const sortOptions = [
   },
 ];
 
+export const categoryData = [
+  {
+    text: "Bags & Backpacks",
+    url: "bags-backpacks",
+  },
+  {
+    text: "Decoration",
+    url: "decoration",
+  },
+  {
+    text: "Essentials",
+    url: "essentials",
+  },
+  {
+    text: "Interior",
+    url: "interior",
+  },
+];
+
 export const colors = [
   { color: "#0000FF", name: "Blue" },
   { color: "#A52A2A", name: "Brown" },
@@ -25,7 +43,6 @@ export const colors = [
 ];
 
 export const priceRanges = [
-  { label: "All", min_price: 0, max_price: Infinity },
   { label: "$0 - $50", min_price: 0, max_price: 50 },
   { label: "$50 - $100", min_price: 50, max_price: 100 },
   { label: "$100 - $150", min_price: 100, max_price: 150 },

@@ -3,7 +3,7 @@
     margin-bottom: 15px;
     @include heading;
   }
-  .error-login-text {
+  > .error-login-text {
     font-size: 14px;
     color: $error;
   }

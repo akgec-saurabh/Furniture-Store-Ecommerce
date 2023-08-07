@@ -27,6 +27,7 @@ const Product = ({ product, isLoading }) => {
         >
           <img
             className="product_image"
+            style={{ width: "250px" }}
             src={
               !isImageLoaded
                 ? "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAECAIAAADETxJQAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAMUlEQVR4nGP49u07EH399o3h7asXH969fv3yOYOjBq8xA8PEojCGKe21FXEex7avAwAw5RfOGuErtwAAAABJRU5ErkJggg=="
@@ -61,29 +62,18 @@ const Product = ({ product, isLoading }) => {
                 `$${product.price}.00`
               )}
             </Link>
-
-            {/* //TODO CHANGE STYLING OR REMOVE THIS DATE  */}
-            <div>Rating : {product.rating}</div>
-            <div>
-              {new Date(product.date).toLocaleDateString(undefined, {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}
-            </div>
           </div>
           <div
             onMouseEnter={() => setHeartHoverd(true)}
             onMouseLeave={() => setHeartHoverd(false)}
             className="heart"
           >
-            {product.popularity}
             {!heartHovered && <HeartOutlined />}
             {heartHovered && <HeartFilled />}
           </div>
         </div>
       </div>
-      {/* {isLoading && <p>Loading...</p>} */}
+      {isLoading && <p>Loading...</p>}
     </>
   );
 };

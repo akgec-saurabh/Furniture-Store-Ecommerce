@@ -74,7 +74,8 @@ function ProductDisplay({ product }) {
               <Ratings rating={4} />
 
               <div className="pd_btns">
-                <div className="pd_btns_color">
+                {/* //TODO ADD COLORS  */}
+                {/* <div className="pd_btns_color">
                   Color
                   {product.colorVariant && (
                     <div className="pd_btns_color_wrapper">
@@ -89,12 +90,12 @@ function ProductDisplay({ product }) {
                             className="ccode"
                             style={{ backgroundColor: `${c.colorCode}` }}
                           ></div>
-                          {/* <img src={c.images[0]} alt="" /> */}
+                          <img src={c.images[0]} alt="" /> 
                         </div>
                       ))}
                     </div>
                   )}
-                </div>
+                </div> */}
                 <div className="pd_btns_quantity">
                   Quantity
                   <div className="pd_btns_quantity_wrapper">

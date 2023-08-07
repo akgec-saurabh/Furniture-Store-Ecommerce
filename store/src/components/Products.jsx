@@ -4,11 +4,11 @@ import Error from "./Error";
 import Pagination from "./Pagination";
 import Loading from "./Loading";
 
-const Products = ({ data, isError, isLoading, isSuccess, param }) => {
+const Products = ({ data, isError, isLoading, isSuccess }) => {
   console.log(data);
   return (
     <div className="products_container">
-      {isSuccess && (
+      {isSuccess && !isLoading && (
         <div className="products_wrapper">
           {data &&
             data.products.map((product) => (

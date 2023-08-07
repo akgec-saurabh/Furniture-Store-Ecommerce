@@ -40,6 +40,10 @@ const productSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  date: {
+    type: Date,
+    required: true,
+  },
   colorVariant: [colorVariantSchema], // Array of color variants using the colorVariantSchema
   shortDescription: String,
   longDescription: String,
