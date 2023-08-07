@@ -45,17 +45,67 @@ const productApi = createApi({
     }),
 
     //ADD TO CART QUERY
+    getUserCart: builder.query({
+      query: (token) => ({
+        url: "/api/cart",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }),
+      providesTags: ["Cart"],
+    }),
+    //ADD ITEM TO CART
+    addItemToCart: builder.mutation({
+      query: ({ productId, qty, token }) => ({
+        url: "/api/cart",
+        method: "POST",
+        body: JSON.stringify({ productId, qty }),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }),
+      invalidatesTags: ["Cart"],
+    }),
+    //REMOVE ITEM
+    removeCartItem: builder.mutation({
+      query: ({ productId, token }) => ({
+        url: `/api/cart/${productId}`,
+        method: "PATCH",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }),
+      invalidatesTags: ["Cart"],
+    }),
+
+    //UPDATE QUANTITY
+    updateCartItem: builder.mutation({
+      query: ({ productId, token, type }) => ({
+        // qty is string 'increase' or 'decrease' by 1 default
+        url: `/api/cart?type=${type}`,
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ productId }),
+      }),
+      invalidatesTags: ["Cart"],
+    }),
   }),
 });
 
 export const {
   useGetProductsByPageQuery,
-  useGetProductByCategoryQuery,
   useGetProductTagsQuery,
-  useGetProductByTagsQuery,
   useGetProductByIdQuery,
   useLoginUserMutation,
   useRegisterUserMutation,
   useLoginGuestQuery,
+  useGetUserCartQuery,
+  useAddItemToCartMutation,
+  useRemoveCartItemMutation,
+  useUpdateCartItemMutation,
 } = productApi;
 export default productApi;

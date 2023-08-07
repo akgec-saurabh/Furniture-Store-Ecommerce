@@ -15,6 +15,7 @@ const productRoute = require("./routes/product-route");
 const authRoute = require("./routes/auth-route");
 const cartRoute = require("./routes/cart-route");
 const stripeRoute = require("./routes/stripe-route");
+const checkAuth = require("./middleware/check-auth");
 
 const app = express();
 
@@ -27,6 +28,8 @@ app.use("/", adminRoute);
 app.use("/", productRoute);
 
 app.use("/api", authRoute);
+
+app.use(checkAuth);
 
 app.use("/api", cartRoute);
 

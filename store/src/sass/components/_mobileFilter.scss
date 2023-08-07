@@ -1,0 +1,22 @@
+.mobileFilter {
+  display: flex;
+  > .category {
+    > .head {
+      margin: 5px 15px 5px 0px;
+      cursor: pointer;
+    }
+    > .items {
+      > .item {
+      }
+    }
+  }
+  > .filter {
+    > .head {
+      margin: 5px 15px 5px 5px;
+      cursor: pointer;
+    }
+    > .items {
+      width: 100%;
+    }
+  }
+}

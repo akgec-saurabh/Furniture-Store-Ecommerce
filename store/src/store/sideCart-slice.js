@@ -11,6 +11,12 @@ const sideCartSlice = createSlice({
     toggleSideCart(state) {
       state.open = !state.open;
     },
+    openSideCart(state) {
+      state.open = true;
+    },
+    closeSideCart(state) {
+      state.open = false;
+    },
   },
 });
 

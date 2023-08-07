@@ -64,6 +64,16 @@ function AuthForm() {
         })
       );
 
+      //SAVE TO LOCAL DB
+      localStorage.setItem(
+        "userData",
+        JSON.stringify({
+          email: loginData.email,
+          token: loginData.token,
+          firstname: loginData.firstname,
+        })
+      );
+
       disaptch(authSliceActions.closeAuthModal());
     }
   }, [registerIsSuccess, loginIsSuccess]);

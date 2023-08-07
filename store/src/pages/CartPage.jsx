@@ -6,11 +6,17 @@ import CartTotal from "../components/CartTotal";
 import { Link, useNavigate } from "react-router-dom";
 import { CloseCircleOutlined } from "@ant-design/icons";
 import { saveCart } from "../store/cart-actions";
+import { useGetUserCartQuery } from "../store/product-api";
 function CartPage() {
   const { cart, total: localTotal } = useSelector((state) => state.cart);
   const userId = useSelector((state) => state.auth.userId);
   const token = useSelector((state) => state.auth.token);
-
+  const { data, isFetching, isSuccess, isLoading } = useGetUserCartQuery(
+    token,
+    {
+      skip: !token,
+    }
+  );
   const [total, setTotal] = useState(localTotal);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -28,46 +34,27 @@ function CartPage() {
   };
 
   useEffect(() => {
-    //Saving Cart to database
-    if (token) {
-      dispatch(
-        saveCart({
-          userId,
-          products: cart.map((product) => {
-            return {
-              productId: product.id,
-              quantity: product.qty,
-            };
-          }),
-        })
-      );
-    }
-  }, [cart.length]);
-
-  useEffect(() => {
     // getTotal();
 
     console.log("redered Cart");
   }, [cart.length]);
 
   const onUpdateHandler = () => {
-    // setTotal(tempTotal);
-
-    // getTotal();
-    //updating total only on update click
-    setTotal(localTotal);
-
-    dispatch(
-      saveCart({
-        userId: "64c5a93cfe443cf3bd99374a",
-        products: cart.map((product) => {
-          return {
-            productId: product.id,
-            quantity: product.qty,
-          };
-        }),
-      })
-    );
+    // // setTotal(tempTotal);
+    // // getTotal();
+    // //updating total only on update click
+    // setTotal(localTotal);
+    // dispatch(
+    //   saveCart({
+    //     userId: "64c5a93cfe443cf3bd99374a",
+    //     products: cart.map((product) => {
+    //       return {
+    //         productId: product.id,
+    //         quantity: product.qty,
+    //       };
+    //     }),
+    //   })
+    // );
   };
 
   console.log("rendering cartPage");
@@ -78,7 +65,7 @@ function CartPage() {
       {token && (
         <div className="cartpage">
           <div className="cartpage_container">
-            {cart.length === 0 && (
+            {data?.cart.products.length === 0 && (
               <div className="se_empty">
                 <CloseCircleOutlined className="icon" />
                 <div>No products in the cart.</div>
@@ -91,13 +78,19 @@ function CartPage() {
                 </button>
               </div>
             )}
-            {cart.length !== 0 && (
+            {data?.cart.products.length !== 0 && (
               <>
                 <div className="shoppingCart">
                   <div className="shoppingCart_head">Shopping Cart</div>
-                  {cart.map((item) => (
-                    <div className="sideCartItem_wrapper">
-                      <SideCartItem product={item} />
+                  {data?.cart.products.map((item) => (
+                    <div
+                      key={item.productId._id}
+                      className="sideCartItem_wrapper"
+                    >
+                      <SideCartItem
+                        product={item.productId}
+                        quantity={item.quantity}
+                      />
                     </div>
                   ))}
                   <div className="btn_container">
@@ -116,7 +109,7 @@ function CartPage() {
                   <div className="shoppingCart_head">Cart Total</div>
 
                   <div>
-                    <CartTotal total={total} />
+                    <CartTotal total={data?.total} />
                     <Link to="/checkout">
                       <button className="btn ct-btn">
                         Proceed to checkout

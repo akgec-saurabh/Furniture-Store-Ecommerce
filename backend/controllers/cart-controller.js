@@ -5,7 +5,8 @@ const { findOneAndUpdate, find, findOne } = require("../models/user");
 
 //ADD ITEM TO CART
 const addItemToCart = async (req, res, next) => {
-  const { userId, productId, qty } = req.body;
+  const { userId } = req.userData;
+  const { productId, qty } = req.body;
   //finding userCart
   let cart;
   try {
@@ -39,19 +40,31 @@ const addItemToCart = async (req, res, next) => {
     return next(httpError("Not able to Save to cart", 500));
   }
   const populatedCart = await cart.populate("products.productId");
+  console.log(populatedCart);
+
+  // const total = cart.products.reduce((a) => a.productId.price * a.quantity);
+
+  // Calculate the total price of items in the cart
+  const total = cart.products.reduce((acc, product) => {
+    const productPrice = product.productId.price;
+    const productQuantity = product.quantity;
+    return acc + productPrice * productQuantity;
+  }, 0);
 
   // cart.push()
   res.status(201).json({
     message: "Product Added",
     cart: populatedCart,
+    total,
   });
 };
 
 //REMOVE ITEM FROM CART
 const removeItemFromCart = async (req, res, next) => {
-  const { userId } = req.body;
+  const { userId } = req.userData;
 
   const productId = req.params.productId;
+  console.log(productId);
 
   let cart;
   try {
@@ -59,6 +72,14 @@ const removeItemFromCart = async (req, res, next) => {
   } catch (error) {
     console.log(error);
     return next(httpError("Some error occured while finding cart", 500));
+  }
+
+  const productIndex = cart.products.findIndex(
+    (product) => product.productId === productId
+  );
+
+  if (productIndex === -1) {
+    return next(httpError("Product Cannot be removed", 500));
   }
 
   cart.products = cart.products.filter(
@@ -76,14 +97,16 @@ const removeItemFromCart = async (req, res, next) => {
 
   res.status(201).json({
     message: "Product Removed",
-    cart:populatedCart,
+    cart: populatedCart,
   });
 };
 
 // UPDATE ITEM QUANTITY
 const updateItemCart = async (req, res, next) => {
-  const query = req.query.qty || "increase";
-  const { userId, productId } = req.body;
+  const query = req.query.type || "increase";
+  const { userId } = req.userData;
+
+  const { productId } = req.body;
   //finding userCart
   let UPDATE_QTY = 1;
   if (query === "decrease") {
@@ -105,7 +128,7 @@ const updateItemCart = async (req, res, next) => {
   let myresponse = { status: 201, message: "Cart Updated" };
   if (productIndex !== -1) {
     // IF CART HAS ONE QUANTITY REMOVED THE PRODUCT
-    if (cart.products[productIndex].quantity === 1) {
+    if (cart.products[productIndex].quantity === 1 && query === "decrease") {
       console.log("removing product");
       cart.products = cart.products.filter(
         (product) => product.productId !== productId
@@ -132,10 +155,9 @@ const updateItemCart = async (req, res, next) => {
 
   const populatedCart = await cart.populate("products.productId");
 
-
   res.status(myresponse.status).json({
     message: myresponse.message,
-    cart:populatedCart,
+    cart: populatedCart,
   });
 };
 
@@ -200,7 +222,7 @@ const updateItemCart = async (req, res, next) => {
 // };
 
 const getCartByUser = async (req, res, next) => {
-  const { userId } = req.body;
+  const { userId } = req.userData;
 
   let existingCart;
   try {
@@ -209,17 +231,18 @@ const getCartByUser = async (req, res, next) => {
     console.log(error);
     return next(httpError("Some error occured while getting Cart", 500));
   }
-
   if (!existingCart) {
-    //create cart
-    try {
-      await Cart.create({ userId });
-    } catch (error) {
-      return next(httpError("Some error Occured while creating Cart", 500));
-    }
+    return next(httpError("Could not find Cart", 500));
   }
+  const populatedCart = await existingCart.populate("products.productId");
+  // Calculate the total price of items in the cart
+  const total = populatedCart.products.reduce((acc, product) => {
+    const productPrice = product.productId.price;
+    const productQuantity = product.quantity;
+    return acc + productPrice * productQuantity;
+  }, 0);
 
-  res.status(200).json({ message: "Cart Fetched", existingCart });
+  res.status(200).json({ message: "Cart Fetched", cart: populatedCart, total });
 };
 
 exports.getCartByUser = getCartByUser;

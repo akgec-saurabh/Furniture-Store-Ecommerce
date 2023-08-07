@@ -17,16 +17,32 @@ import { sideCartSliceActions } from "../store/sideCart-slice";
 import Ratings from "./Ratings";
 import { saveCart } from "../store/cart-actions";
 import Button from "./Button";
+import { useAddItemToCartMutation } from "../store/product-api";
 
 function ProductDisplay({ product }) {
   const [count, setCount] = useState(1);
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart.cart);
+  const token = useSelector((state) => state.auth.token);
+  const [addToCart, { isSuccess, isLoading, data }] =
+    useAddItemToCartMutation();
+
+  useEffect(() => {
+    if (isSuccess) {
+      dispatch(sideCartSliceActions.openSideCart());
+    }
+    
+  }, [isSuccess]);
 
   const onAddToCartHandler = () => {
-    dispatch(cartSliceActions.addToCart({ ...product, qty: count }));
-    dispatch(sideCartSliceActions.toggleSideCart());
-    dispatch(cartSliceActions.setCart());
+    addToCart({
+      productId: product.id,
+      qty: count,
+      token,
+    });
+    // dispatch(cartSliceActions.addToCart({ ...product, qty: count }));
+    // dispatch(sideCartSliceActions.toggleSideCart());
+    // dispatch(cartSliceActions.setCart());
   };
 
   return (
@@ -117,7 +133,11 @@ function ProductDisplay({ product }) {
                   </div>
                 </div>
 
-                <Button onClick={onAddToCartHandler} text="Add to cart" />
+                <Button
+                  isLoading={isLoading}
+                  onClick={onAddToCartHandler}
+                  text="Add to cart"
+                />
               </div>
             </div>
           </div>

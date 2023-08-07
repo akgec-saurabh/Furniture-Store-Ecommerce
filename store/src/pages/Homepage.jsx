@@ -9,6 +9,7 @@ import {
   useGetProductsByPageQuery,
 } from "../store/product-api";
 import { useLocation } from "react-router-dom";
+import MobileFilter from "../components/MobileFilter";
 
 function Homepage() {
   const location = useLocation();
@@ -20,6 +21,7 @@ function Homepage() {
     <>
       <Slider />
       <SecondaryNav />
+      <MobileFilter />
       {isSuccess && <div>No of Products :{data.total_count}</div>}
       <Products
         data={data}

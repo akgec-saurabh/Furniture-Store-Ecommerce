@@ -108,7 +108,7 @@ const SecondaryNav = () => {
     <div className="secondaryNav">
       <div className="secondaryNav-head-wrapper">
         <div className="categoryWrapper">
-          <div className="head">Category</div>
+          <div className="head">Categories</div>
           <div className="category-items">
             <div
               className={`categoryname ${

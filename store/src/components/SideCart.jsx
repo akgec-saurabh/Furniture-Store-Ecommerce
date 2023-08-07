@@ -5,6 +5,8 @@ import { CloseCircleOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import SideCartItem from "./SideCartItem";
 import { AnimatePresence, motion } from "framer-motion";
+import { useGetUserCartQuery } from "../store/product-api";
+import Loading from "./Loading";
 
 const sideVariants = {
   hide: {
@@ -25,16 +27,17 @@ const sideVariants = {
 };
 
 function SideCart() {
+  const token = useSelector((state) => state.auth.token);
+  const { data, isFetching, isSuccess, isLoading } = useGetUserCartQuery(
+    token,
+    {
+      skip: !token,
+    }
+  );
   const { cart, total, shipping } = useSelector((state) => state.cart);
   const sideCartOpen = useSelector((state) => state.sideCart.open);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (cart.length === 0) {
-      // dispatch(sideCartSliceActions.toggleSideCart());
-    }
-  }, [cart]);
 
   const onViewCartHandler = () => {
     navigate("/cart");
@@ -66,7 +69,7 @@ function SideCart() {
 
           {/* if cart is empty */}
 
-          {cart.length === 0 && (
+          {/* {cart.length === 0 && (
             <div className="sidecart_empty">
               <div className="se_empty">
                 <CloseCircleOutlined className="icon" />
@@ -79,19 +82,23 @@ function SideCart() {
                 Continue Shopping
               </button>
             </div>
-          )}
+          )} */}
 
-          {cart.length !== 0 && (
+          {data?.cart.products?.length !== 0 && (
             <div className="sidecart_full">
               <div className="sidecart_full_container">
-                {cart.map((product, i) => (
-                  <SideCartItem product={product} key={i} />
+                {data?.cart.products?.map((product, i) => (
+                  <SideCartItem
+                    product={product.productId}
+                    quantity={product.quantity}
+                    key={i}
+                  />
                 ))}
               </div>
 
               <div className="subTotal">
                 <span>SubTotal:</span>
-                <span>${total - shipping}.00</span>
+                <span>${data?.total}.00</span>
               </div>
 
               <div className="slidefull_btn">

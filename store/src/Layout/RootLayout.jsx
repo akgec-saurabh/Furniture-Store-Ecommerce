@@ -51,11 +51,12 @@ function RootLayout() {
         </Modal>
       )}
       {/* SIDE-CART-MODAL */}
+      <SideCart />
       {/* <AnimatePresence>
         {sideCartOpen && (
           <Modal onConfirm={onConfirmSideCartModalHandler}>
             <SideCart />
-          </Modal>
+            </Modal>
         )}
       </AnimatePresence> */}
       {/* AUTH-MODAL 
