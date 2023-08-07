@@ -8,6 +8,7 @@ import { useLoginUserMutation } from "../store/product-api";
 import { useDispatch, useSelector } from "react-redux";
 import { toastSliceActions } from "../store/toast-slice";
 import { authSliceActions } from "../store/auth-slice";
+import { CodeSandboxOutlined } from "@ant-design/icons";
 
 function LoginForm({ loginUser, isLoading, isError, error }) {
   // const [loginUser, { data, isLoading, isSuccess, isError, error }] =
@@ -24,11 +25,26 @@ function LoginForm({ loginUser, isLoading, isError, error }) {
   //   }
   // }, [isSuccess]);
 
+  const [initialLoginValues, setInitialLoginValues] = useState({
+    email: "",
+    password: "",
+  });
+
+  const onGuestAccountHandler = () => {
+    console.log("setting inital value");
+    setInitialLoginValues({
+      email: "guest@guest.com",
+      password: "Password123",
+    });
+    console.log(initialLoginValues);
+  };
+
   return (
     <div className="loginForm">
       <h2>Login Form</h2>
       <Formik
-        initialValues={{ email: "", password: "" }}
+        enableReinitialize
+        initialValues={initialLoginValues}
         validationSchema={Yup.object({
           email: Yup.string()
             .email("Invalid Email Address")
@@ -59,6 +75,7 @@ function LoginForm({ loginUser, isLoading, isError, error }) {
           )}
         </Form>
       </Formik>
+      <Button border onClick={onGuestAccountHandler} text={"Guest Account"} />
     </div>
   );
 }

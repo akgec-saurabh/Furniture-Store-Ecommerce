@@ -9,7 +9,6 @@
   font-family: inherit;
   font-weight: inherit;
   cursor: pointer;
-  margin: $s 0px;
 
   &:focus {
     background-color: $light-black;
@@ -61,4 +60,8 @@
 }
 .l {
   width: 400px;
+}
+
+.margin {
+  margin: $s 0px;
 }

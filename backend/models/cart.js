@@ -10,6 +10,7 @@ const cartSchema = new mongoose.Schema({
       quantity: { type: Number },
     },
   ],
+  shipping: { type: Number },
 });
 
 const Cart = mongoose.model("Cart", cartSchema);

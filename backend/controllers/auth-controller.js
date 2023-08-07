@@ -4,7 +4,9 @@ const httpError = require("../models/http-error");
 const User = require("../models/user");
 const Guest = require("../models/guest");
 const random = require("randomstring");
+const Cart = require("../models/cart");
 
+//REGISTER
 const register = async (req, res, next) => {
   const { firstname, lastname, email, password } = req.body;
   console.log(req.body);
@@ -27,6 +29,7 @@ const register = async (req, res, next) => {
     return next("Some error occured", 500);
   }
 
+  // CREATING NEW USER IF USER NOT-EXIST
   const newUser = User({
     name: {
       firstname,
@@ -37,7 +40,20 @@ const register = async (req, res, next) => {
   });
 
   try {
-    newUser.save();
+    await newUser.save();
+  } catch (error) {
+    return next("Unable to save User", 500);
+  }
+
+  // CREATING USER EMPTY CART ALSO AFTER SAVING USER
+  const cart = Cart({
+    userId: newUser._id,
+    products: [],
+    shipping: 10,
+  });
+
+  try {
+    await cart.save();
   } catch (error) {
     return next("Unable to save User", 500);
   }
@@ -112,52 +128,52 @@ const login = async (req, res, next) => {
   });
 };
 
-//GUEST LOGIN
+//GUEST LOGIN INSTEAD CREATED GUEST EMAIL PASSWORD
 
-const guestLogin = (req, res, next) => {
-  //Creating random firstname lastname and email password
+// const guestLogin = (req, res, next) => {
+//   //Creating random firstname lastname and email password
 
-  const firstname = random.generate(7);
-  const lastname = random.generate(7);
-  const email = `${random.generate(7)}@guest.com`;
+//   const firstname = random.generate(7);
+//   const lastname = random.generate(7);
+//   const email = `${random.generate(7)}@guest.com`;
 
-  const newUser = Guest({
-    name: {
-      firstname,
-      lastname,
-    },
-    email,
-    password: "guestpassword",
-  });
+//   const newUser = Guest({
+//     name: {
+//       firstname,
+//       lastname,
+//     },
+//     email,
+//     password: "guestpassword",
+//   });
 
-  try {
-    newUser.save();
-  } catch (error) {
-    return next("Unable to save User", 500);
-  }
+//   try {
+//     newUser.save();
+//   } catch (error) {
+//     return next("Unable to save User", 500);
+//   }
 
-  let token;
-  try {
-    token = jwt.sign(
-      { name: { firstname, lastname }, email, userId: newUser.userId },
-      process.env.JWT_KEY,
-      {
-        expiresIn: "4h",
-      }
-    );
-  } catch (error) {
-    console.log(error);
-    return next(httpError("Some error occured on server", 500));
-  }
+//   let token;
+//   try {
+//     token = jwt.sign(
+//       { name: { firstname, lastname }, email, userId: newUser.userId },
+//       process.env.JWT_KEY,
+//       {
+//         expiresIn: "4h",
+//       }
+//     );
+//   } catch (error) {
+//     console.log(error);
+//     return next(httpError("Some error occured on server", 500));
+//   }
 
-  res.status(201).json({
-    message: "User registerd",
-    firstname,
-    email,
-    token,
-  });
-};
+//   res.status(201).json({
+//     message: "User registerd",
+//     firstname,
+//     email,
+//     token,
+//   });
+// };
 
 exports.login = login;
 exports.register = register;
-exports.guestLogin = guestLogin;
+// exports.guestLogin = guestLogin;

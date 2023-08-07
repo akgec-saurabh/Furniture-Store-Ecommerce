@@ -6,22 +6,24 @@ import Detail from "../components/Detail";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductById } from "../store/products-actions";
 import { useGetProductByIdQuery } from "../store/product-api";
+import Loading from "../components/Loading";
 function ProductPage() {
   // const dispatch = useDispatch();
   // const product = useSelector((state) => state.products.activeProduct);
 
   const params = useParams();
   const pid = params.productId;
-  const { data: product } = useGetProductByIdQuery(pid);
+  const { data, isFetching, isError, isSuccess } = useGetProductByIdQuery(pid);
 
   return (
     <div className="productpage_container">
-      {product && product && (
+      {!isFetching && isSuccess && (
         <div className="productpage_container_wrapper">
-          <ProductDisplay product={product} />
-          <Detail product={product} />
+          <ProductDisplay product={data} />
+          <Detail product={data} />
         </div>
       )}
+      {isFetching && <Loading />}
     </div>
   );
 }

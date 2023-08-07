@@ -16,6 +16,7 @@ import { cartSliceActions } from "../store/cart-slice";
 import { sideCartSliceActions } from "../store/sideCart-slice";
 import Ratings from "./Ratings";
 import { saveCart } from "../store/cart-actions";
+import Button from "./Button";
 
 function ProductDisplay({ product }) {
   const [count, setCount] = useState(1);
@@ -116,9 +117,7 @@ function ProductDisplay({ product }) {
                   </div>
                 </div>
 
-                <button className="btn" onClick={onAddToCartHandler}>
-                  Add to cart
-                </button>
+                <Button onClick={onAddToCartHandler} text="Add to cart" />
               </div>
             </div>
           </div>

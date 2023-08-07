@@ -7,24 +7,17 @@ const productApi = createApi({
     getProductsByPage: builder.query({
       query: (search) => `products${search}`,
     }),
-    getProductByCategory: builder.query({
-      query: ({ categoryname, page }) =>
-        `products/category/${categoryname}?page=${page}`,
-    }),
+
     getProductTags: builder.query({
       query: () => `products/tags`,
     }),
-    getProductByTags: builder.query({
-      query: (tagname) => `products/tag/${tagname}`,
-    }),
+
     getProductById: builder.query({
       query: (id) => `product/${id}`,
       transformResponse: (res) => res.product,
     }),
-    // addToCart:builder.query({
-    //   query:()
-    // })
 
+    //AUTH QUERY
     loginGuest: builder.query({
       query: () => "api/auth/guest",
     }),
@@ -50,6 +43,8 @@ const productApi = createApi({
         },
       }),
     }),
+
+    //ADD TO CART QUERY
   }),
 });
 

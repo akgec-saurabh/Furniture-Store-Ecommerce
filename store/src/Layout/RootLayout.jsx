@@ -45,21 +45,19 @@ function RootLayout() {
         <Outlet />
         <Footer />
       </div>
-
       {authModalIsOpen && (
         <Modal onConfirm={closeAuthModalHandler}>
           <AuthForm />
         </Modal>
       )}
-
-      {/* SIDE-CART-MODAL 
-      <AnimatePresence>
+      {/* SIDE-CART-MODAL */}
+      {/* <AnimatePresence>
         {sideCartOpen && (
-          <Modal onConfirm={onConfirmSideCartModalHandler}></Modal>
+          <Modal onConfirm={onConfirmSideCartModalHandler}>
+            <SideCart />
+          </Modal>
         )}
-      </AnimatePresence>
-      {ReactDOM.createPortal(<SideCart />, document.getElementById("overlay"))} */}
-
+      </AnimatePresence> */}
       {/* AUTH-MODAL 
       <AnimatePresence>
         {authModalOpen && <Modal onConfirm={onConfirmAuthModalHandler}></Modal>}

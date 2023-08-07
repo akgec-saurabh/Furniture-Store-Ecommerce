@@ -28,7 +28,7 @@ app.use("/", productRoute);
 
 app.use("/api", authRoute);
 
-app.use("/", cartRoute);
+app.use("/api", cartRoute);
 
 //STRIPE ROUTE
 app.use("/payment", stripeRoute);

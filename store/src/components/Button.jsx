@@ -8,6 +8,7 @@ function Button({
   s = false,
   m = false,
   l = false,
+  margin = false,
   text,
   onClick,
   isLoading,
@@ -22,6 +23,7 @@ function Button({
       className={`button  ${border ? "border-button" : ""} ${s ? "s" : ""}
         ${m ? "m" : ""}
         ${l ? "l" : ""}
+        ${margin ? "margin" : ""}
       }`}
       {...props}
     >

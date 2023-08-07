@@ -89,10 +89,17 @@ function AuthForm() {
       )}
 
       {isLogin && (
-        <Button onClick={onAuthToggleHandler} border text="Create account" />
+        <Button
+          margin
+          onClick={onAuthToggleHandler}
+          border
+          text="Create account"
+        />
       )}
 
-      {!isLogin && <Button onClick={onAuthToggleHandler} border text="Login" />}
+      {!isLogin && (
+        <Button margin onClick={onAuthToggleHandler} border text="Login" />
+      )}
     </div>
   );
 }
