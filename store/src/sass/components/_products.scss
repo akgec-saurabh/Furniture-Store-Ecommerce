@@ -11,6 +11,9 @@
     text-decoration: solid;
     font-style: italic;
     font-size: 14px;
+    @include lg {
+      padding: 0px $s;
+    }
   }
   > .products_wrapper {
     max-width: 1250px;
@@ -26,6 +29,7 @@
     padding: $s 0px;
 
     @include lg {
+      padding: 0px $s;
       grid-template-columns: 1fr 1fr 1fr;
     }
     @include md {

@@ -11,8 +11,12 @@ import { Link, redirect, useNavigate } from "react-router-dom";
 
 import { ErrorMessage, Field, Form, Formik, useFormikContext } from "formik";
 import * as Yup from "yup";
+import Input from "../components/Input";
+import Button from "../components/Button";
+import Select from "../components/Select";
+import { useGetUserCartQuery } from "../store/product-api";
 
-const Select = ({ onCountrySelect, onStateSelect }) => {
+const Selected = ({ onCountrySelect, onStateSelect }) => {
   const { values, handleSubmit, isSubmitting, handleReset, setSubmitting } =
     useFormikContext();
 
@@ -46,6 +50,13 @@ const Select = ({ onCountrySelect, onStateSelect }) => {
 
 function Checkout() {
   const userId = useSelector((state) => state.auth.userId);
+  const token = useSelector((state) => state.auth.token);
+  const { data, isFetching, isSuccess, isLoading } = useGetUserCartQuery(
+    token,
+    {
+      skip: !token,
+    }
+  );
   const { cart, total, shipping } = useSelector((state) => state.cart);
   const navigate = useNavigate();
 
@@ -127,7 +138,6 @@ function Checkout() {
             state: "",
             city: "",
             housenumber: "",
-            apartment: "",
             zipcode: "",
           }}
           validationSchema={Yup.object({
@@ -150,9 +160,6 @@ function Checkout() {
             housenumber: Yup.string()
               .max(20, "Must be 20 character or less")
               .required("Required"),
-            apartment: Yup.string()
-              .max(20, "Must be 20 character or less")
-              .required("Required"),
 
             zipcode: Yup.string()
               .min(5, "Must be 5 character or more")
@@ -167,108 +174,67 @@ function Checkout() {
         >
           <Form>
             <div className="nameInputBox box">
-              <div className="firstnameInputBox box">
-                <label htmlFor="firstname">First Name</label>
-                <Field name="firstname" type="text" />
-                <ErrorMessage name="firstname" />
-              </div>
-
-              <div className="lastnameInputBox box">
-                <label htmlFor="lastname">Last Name</label>
-                <Field name="lastname" type="text" />
-                <ErrorMessage name="lastname" />
-              </div>
+              <Input label="First Name" name="firstname" />
+              <Input label="Last Name" name="lastname" />
             </div>
-
-            <div className="emailInputBox box">
-              <label htmlFor="email">Email</label>
-              <Field type="text" name="email" />
-              <ErrorMessage name="email" />
-            </div>
-
-            <div className="phoneInputBox box">
-              <label htmlFor="phone">Phone</label>
-              <Field type="text" name="phone" />
-              <ErrorMessage name="phone" />
-            </div>
-
-            <div className="countryInputBox box">
-              <label htmlFor="country">Country</label>
-              <Field name="country" as="select">
-                {countryName &&
-                  countryName.map((country) => (
-                    <option key={country.code} value={country.code}>
-                      {country.name}
-                    </option>
-                  ))}
-              </Field>
-              <ErrorMessage name="country" />
-            </div>
-
-            <div className="stateInputBox box">
-              <label htmlFor="state">State</label>
-              <Field as="select" name="state">
-                <option disabled value="">
-                  Select State
-                </option>
-                {stateName &&
-                  stateName.map((state) => (
-                    <option key={state.code} value={state.code}>
-                      {state.name}
-                    </option>
-                  ))}
-              </Field>
-              <ErrorMessage name="state" />
-            </div>
-
-            <div className="cityInputBox box">
-              <label htmlFor="city">City</label>
-              <Field as="select" name="city">
-                <option disabled value="">
-                  Select City
-                </option>
-                {cityName &&
-                  cityName.map((city, i) => (
-                    <option key={city + i} value={city}>
-                      {city}
-                    </option>
-                  ))}
-              </Field>
-              <ErrorMessage name="city" />
-            </div>
+            <Input label="Email" name="email" />
+            <Input label="Phone" name="phone" />
+            <Select label="Country" name="country">
+              {countryName &&
+                countryName.map((country) => (
+                  <option key={country.code} value={country.code}>
+                    {country.name}
+                  </option>
+                ))}
+            </Select>
+            <Select label="State" name="state">
+              {stateName &&
+                stateName.map((state) => (
+                  <option key={state.code} value={state.code}>
+                    {state.name}
+                  </option>
+                ))}
+            </Select>
+            <Select label="City" name="city">
+              {cityName &&
+                cityName.map((city, i) => (
+                  <option key={city + i} value={city}>
+                    {city}
+                  </option>
+                ))}
+            </Select>
 
             <div className="addressInputBox box">
-              <label htmlFor="address">Street Address</label>
-              <Field name="housenumber" type="text" />
-              <ErrorMessage name="housenumber" />
-              <Field name="apartment" type="text" />
-              <ErrorMessage name="apartment" />
+              <Input label="Street Address" name="housenumber" />
             </div>
 
-            <div className="zipcodeInputBox box">
-              <label htmlFor="zipcode">Zip Code</label>
-              <Field name="zipcode" type="text" />
-              <ErrorMessage name="zipcode" />
-            </div>
+            <Input label="Zip Code" name="zipcode" />
 
-            <Select
+            {/* <Select
               onCountrySelect={onCountryChangeHandler}
               onStateSelect={onStateChangeHandler}
-            />
+            /> */}
           </Form>
         </Formik>
       </div>
 
       <div className="order">
         <h2>Your Order</h2>
-        {cart.map((p) => (
-          <SideCartItem key={p.id} edit={false} product={p} />
+        {data?.cart.products.map((p, i) => (
+          <SideCartItem
+            key={i}
+            edit={false}
+            product={p.productId}
+            quantity={p.quantity}
+          />
         ))}
-        <CartTotal btnText="Place Order" total={total} />
+        <CartTotal
+          btnText="Place Order"
+          shipping={data?.cart.shipping}
+          total={data?.total}
+        />
 
-        <button onClick={onPlaceOrderHandler} className="btn">
-          Place Order
-        </button>
+        <Button onClick={onPlaceOrderHandler} text="Place Order" />
       </div>
     </div>
   );

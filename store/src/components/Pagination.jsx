@@ -7,7 +7,7 @@ function Pagination({ maxPageRange = 5 }) {
   const [pageRange, setPageRange] = useState(maxPageRange);
   //Setting the active page from searchParms if it is avaliable else setting it to 1
   const page = parseInt(searchParams.get("page") || 1);
-  const [pageActive, setPageActive] = useState(page);
+  // const [pageActive, setPageActive] = useState(page);
 
   const location = useLocation();
   const urlquery = new URLSearchParams(location.search);
@@ -15,42 +15,40 @@ function Pagination({ maxPageRange = 5 }) {
 
   useEffect(() => {
     if (urlquery) {
-      console.log("setting query", urlquery);
       // Convert searchParams to an object
       const paramsObj = {};
       for (let [key, value] of urlquery) {
         paramsObj[key] = value;
       }
-      console.log("This is the query object", paramsObj);
       setQuery(paramsObj);
     }
   }, [location]);
 
   const onPageClickedHandler = (pageNum) => {
-    setPageActive(pageNum);
+    // setPageActive(pageNum);
     setSearchParms({ ...query, page: pageNum });
   };
 
-  const onIncreasePageRange = () => {
-    if (pageRange === maxPageRange) {
-      return;
-    }
-    setPageRange((prv) => {
-      setPageActive(1 + prv);
+  // const onIncreasePageRange = () => {
+  //   if (pageRange === maxPageRange) {
+  //     return;
+  //   }
+  //   setPageRange((prv) => {
+  //     setPageActive(1 + prv);
 
-      return prv + 1;
-    });
-    setSearchParms({ ...query, page: pageActive });
-  };
-  const onDecreasePageRange = () => {
-    if (pageRange === 1) {
-      return;
-    }
-    setPageRange((prv) => {
-      setPageActive((prv - 1) * 5 - 4);
-      return prv - 1;
-    });
-  };
+  //     return prv + 1;
+  //   });
+  //   setSearchParms({ ...query, page: pageActive });
+  // };
+  // const onDecreasePageRange = () => {
+  //   if (pageRange === 1) {
+  //     return;
+  //   }
+  //   setPageRange((prv) => {
+  //     setPageActive((prv - 1) * 5 - 4);
+  //     return prv - 1;
+  //   });
+  // };
 
   // useEffect(() => {
   //   if (searchParams.get("page")) {
@@ -63,36 +61,39 @@ function Pagination({ maxPageRange = 5 }) {
   //   }
   // }, [pageActive]);
 
-  console.log(pageActive, 'pageActive === i ? "active" : ""');
-
-  const renderPage = () => {
-    const pages = [];
-    for (let i = 1; i <= pageRange; i++) {
-      pages.push(
-        <span
-          onClick={() => onPageClickedHandler(i)}
-          className={`pageNum ${pageActive === i ? "active" : ""}`}
-        >
-          {i}
-        </span>
-      );
-    }
-
-    return pages;
-  };
+  // const renderPage = () => {
+  //   const pages = [];
+  //   for (let i = 1; i <= pageRange; i++) {
+  //     pages.push(
+  //       <span
+  //         onClick={() => onPageClickedHandler(i)}
+  //         className={`pageNum ${pageActive === i ? "active" : ""}`}
+  //       >
+  //         {i}
+  //       </span>
+  //     );
+  //   }
 
   return (
     <div className="pagination">
       <div className="paginationWrapper">
         <CaretLeftOutlined
-          onClick={onDecreasePageRange}
-          className={`icon ${pageRange === 1 ? "disable" : ""}`}
+          // onClick={onDecreasePageRange}
+          className={`icon ${page === 1 ? "disable" : ""}`}
         />
 
-        {renderPage()}
+        {/* {renderPage()} */}
+        {[...Array(maxPageRange)].map((o, i) => (
+          <span
+            onClick={() => onPageClickedHandler(i + 1)}
+            className={`pageNum ${page === i + 1 ? "active" : ""}`}
+          >
+            {i + 1}
+          </span>
+        ))}
 
         <CaretRightOutlined
-          onClick={onIncreasePageRange}
+          // onClick={onIncreasePageRange}
           className={`icon ${pageRange === maxPageRange ? "disable" : ""}`}
         />
       </div>

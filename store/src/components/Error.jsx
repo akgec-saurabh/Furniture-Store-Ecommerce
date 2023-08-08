@@ -7,7 +7,7 @@ import {
 } from "../helpers/framer-variants";
 import { useNavigate } from "react-router-dom";
 
-function Error({ status, message }) {
+function Error({ status = 404, message = "Some Error Occured" }) {
   const navigate = useNavigate();
   const onGoToHomePage = () => {
     navigate("/");

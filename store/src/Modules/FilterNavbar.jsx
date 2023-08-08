@@ -66,6 +66,7 @@ function FilterNavbar() {
 
   //ON SORT FILTER HANDLER
   const onSortFilterHandler = (sortname) => {
+    console.log(sortname);
     if (query.orderby === sortname) {
       delete query.orderby;
       delete query.page;
@@ -128,7 +129,7 @@ function FilterNavbar() {
     setSearchParms(query);
   };
   return (
-    <div>
+    <div className="filterNavbar">
       {!isMobile && (
         <SecondaryNav
           onCategoryHandler={onCategoryHandler}
@@ -154,6 +155,9 @@ function FilterNavbar() {
           onPriceClearHandler={onPriceClearHandler}
           onTagHandler={onTagHandler}
           onClearTagHandler={onClearTagHandler}
+          onClearHandler={onClearHandler}
+          onColorFilterHandler={onColorFilterHandler}
+          query={query}
         />
       )}
     </div>

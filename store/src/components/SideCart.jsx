@@ -54,6 +54,10 @@ function SideCart() {
     dispatch(sideCartSliceActions.toggleSideCart());
   };
 
+  const onGoToCheckoutHandler = () => {
+    navigate("/checkout");
+    dispatch(sideCartSliceActions.toggleSideCart());
+  };
   return (
     <AnimatePresence>
       {sideCartOpen && (
@@ -103,7 +107,12 @@ function SideCart() {
                   <span>${data?.total}.00</span>
                 </div>
                 <Button onClick={onViewCartHandler} text="View Cart" />
-                <Button margin border text="Checkout" />
+                <Button
+                  onClick={onGoToCheckoutHandler}
+                  margin
+                  border
+                  text="Checkout"
+                />
               </div>
             </div>
           )}

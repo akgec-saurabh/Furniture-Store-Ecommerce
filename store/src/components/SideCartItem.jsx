@@ -5,7 +5,6 @@ import {
   CloseOutlined,
 } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
-import { cartSliceActions } from "../store/cart-slice";
 import {
   useRemoveCartItemMutation,
   useUpdateCartItemMutation,
@@ -45,7 +44,7 @@ function SideCartItem({ product, quantity, edit = true }) {
           <div className="item_data">
             <div className="name">
               {product.name}
-              {!edit && <span>X{product.qty}</span>}
+              {!edit && <span>X{quantity}</span>}
             </div>
             {edit && (
               <div className="quantity">

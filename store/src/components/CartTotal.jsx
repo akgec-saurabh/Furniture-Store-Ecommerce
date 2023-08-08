@@ -3,8 +3,8 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { cartSliceActions } from "../store/cart-slice";
 
-function CartTotal({ total }) {
-  const { shipping } = useSelector((state) => state.cart);
+function CartTotal({ total, shipping }) {
+  // const { shipping } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
   const onShippingChangeHandler = (shippingPrice) => {
@@ -22,7 +22,7 @@ function CartTotal({ total }) {
       <div className="cartTotal">
         <div className="ct-subtotal">
           <div className="ct-subtotal-label">Subtotal</div>
-          <div className="ct-subtotal-value">${total - shipping}.00</div>
+          <div className="ct-subtotal-value">${total}.00</div>
         </div>
         <div className="ct-shipping">
           <div className="ct-head">Shipping</div>

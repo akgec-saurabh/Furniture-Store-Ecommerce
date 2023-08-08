@@ -32,9 +32,9 @@ function Homepage() {
         error={error}
       />
 
-      {/* {isSuccess && (
+      {isSuccess && (
         <Pagination maxPageRange={Math.ceil(data?.total_count / 5)} />
-      )} */}
+      )}
       {/*  How to give Dynamically this page range  */}
     </div>
   );

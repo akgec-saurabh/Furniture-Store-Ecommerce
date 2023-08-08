@@ -26,7 +26,9 @@ const Products = ({ data, isError, isLoading, isSuccess, error }) => {
         </>
       )}
       {/* {isSuccess && <Pagination />} */}
-      {isError && <Error status={error.status} message={error.data.message} />}
+      {isError && (
+        <Error status={error?.status} message={error.data?.message} />
+      )}
       {isLoading && <Loading />}
     </div>
   );

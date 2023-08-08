@@ -7,6 +7,7 @@ import {
   tagsData,
 } from "../filterData";
 import MobileDropDown from "./MobileDropDown";
+import ActiveFilter from "./ActiveFilter";
 
 function MobileFilter({
   onCategoryHandler,
@@ -16,6 +17,10 @@ function MobileFilter({
   onPriceFilterHandler,
   onPriceClearHandler,
   onTagHandler,
+  onClearTagHandler,
+  onClearHandler,
+  onColorFilterHandler,
+  query,
 }) {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
@@ -63,8 +68,10 @@ function MobileFilter({
             {categoryData.map((item) => (
               <div
                 onClick={() => {
-                  onCategoryOpenHandler();
+                  // onCategoryOpenHandler();
                   onCategoryHandler(item.url);
+                  setIsCategoryOpen(false);
+                  setIsFilterOpen(false);
                 }}
                 className="category-item"
               >
@@ -78,29 +85,62 @@ function MobileFilter({
             <MobileDropDown
               name="Sory by"
               items={sortOptions}
-              onClick={(e) => {
-                onSortFilterHandler(e);
-                onFilterOpenHandler();
+              onClick={(obj) => {
+                onSortFilterHandler(obj.value);
+
+                setIsCategoryOpen(false);
+                setIsFilterOpen(false);
               }}
             />
             <MobileDropDown
               name="Price"
               items={priceRanges}
-              onClick={(e) => {
-                onPriceFilterHandler(e.min_price, e.max_price);
-                onFilterOpenHandler();
+              //obj contains value and (name of head)
+              onClick={(obj) => {
+                onPriceFilterHandler(obj.value.min_price, obj.value.max_price);
+                setIsCategoryOpen(false);
+                setIsFilterOpen(false);
               }}
             />
-            <MobileDropDown name="Colors" items={colors} />
             <MobileDropDown
-              onClick={(e) => {
-                onTagHandler(e);
-                onCategoryOpenHandler();
+              name="Colors"
+              items={colors}
+              onClick={(obj) => {
+                onColorFilterHandler(obj.value);
+                setIsCategoryOpen(false);
+                setIsFilterOpen(false);
+              }}
+            />
+            <MobileDropDown
+              onClick={(obj) => {
+                onTagHandler(obj.value);
+                setIsCategoryOpen(false);
+                setIsFilterOpen(false);
               }}
               name="Tags"
               items={tagsData}
             />
           </div>
+        )}
+      </div>
+
+      <div className="activeFilterWrapper">
+        {(query.category ||
+          query.orderby ||
+          query.color ||
+          query.min_price) && (
+          <ActiveFilter
+            onClear={onClearHandler}
+            text={Object.keys(query).length}
+            label="Filter active"
+          />
+        )}
+        {query.tag && (
+          <ActiveFilter
+            onClear={onClearTagHandler}
+            text={`"${query.tag}"`}
+            label="Product Tagged"
+          />
         )}
       </div>
     </div>
