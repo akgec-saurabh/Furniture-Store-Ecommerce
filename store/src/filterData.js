@@ -59,72 +59,117 @@ export const colors = [
 ];
 
 export const priceRanges = [
-  { label: "$0 - $50", min_price: 0, max_price: 50, text: "$0 - $50" },
-  { label: "$50 - $100", min_price: 50, max_price: 100, text: "$50 - $100" },
-  { label: "$100 - $150", min_price: 100, max_price: 150, text: "$100 - $150" },
-  { label: "$150 - $200", min_price: 150, max_price: 200, text: "$150 - $200" },
-  { label: "$200+", min_price: 200, max_price: Infinity, text: "$200+" },
+  {
+    label: "$0 - $50",
+    min_price: 0,
+    max_price: 50,
+    text: "$0 - $50",
+    paramValue: { min_price: 0, max_price: 50 },
+  },
+  {
+    label: "$50 - $100",
+    min_price: 50,
+    max_price: 100,
+    text: "$50 - $100",
+    paramValue: { min_price: 50, max_price: 100 },
+  },
+  {
+    label: "$100 - $150",
+    min_price: 100,
+    max_price: 150,
+    text: "$100 - $150",
+    paramValue: { min_price: 100, max_price: 150 },
+  },
+  {
+    label: "$150 - $200",
+    min_price: 150,
+    max_price: 200,
+    text: "$150 - $200",
+    paramValue: { min_price: 150, max_price: 200 },
+  },
+  {
+    label: "$200+",
+    min_price: 200,
+    max_price: Infinity,
+    text: "$200+",
+    paramValue: { min_price: 200, max_price: Infinity },
+  },
 ];
 
 export const tagsData = [
   {
     text: "Bags & Backpacks",
     url: "bags-backpacks",
+    paramValue: "bags-backpacks",
   },
   {
     text: "Decoration",
     url: "decoration",
+    paramValue: "decoration",
   },
   {
     text: "Essentials",
     url: "essentials",
+    paramValue: "essentials",
   },
   {
     text: "Interior",
     url: "interior",
+    paramValue: "interior",
   },
   {
     text: "Leather",
     url: "leather",
+    paramValue: "leather",
   },
   {
     text: "Lighting",
     url: "lighting",
+    paramValue: "lighting",
   },
   {
     text: "Minimal",
     url: "minimal",
+    paramValue: "minimal",
   },
   {
     text: "Decor",
     url: "decor",
+    paramValue: "decor",
   },
   {
     text: "Practical",
     url: "practical",
+    paramValue: "practical",
   },
   {
     text: "Contemporary",
     url: "contemporary",
+    paramValue: "contemporary",
   },
   {
     text: "Travel",
     url: "travel",
+    paramValue: "travel",
   },
   {
     text: "Kitchen",
     url: "kitchen",
+    paramValue: "kitchen",
   },
   {
     text: "Tableware",
     url: "tableware",
+    paramValue: "tableware",
   },
   {
     text: "Bathroom",
     url: "bathroom",
+    paramValue: "bathroom",
   },
   {
     text: "Grooming",
     url: "grooming",
+    paramValue: "grooming",
   },
 ];

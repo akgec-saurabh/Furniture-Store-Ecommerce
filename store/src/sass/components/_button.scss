@@ -1,5 +1,7 @@
 .button {
-  background-color: $black;
+  // background-color: $black;
+  background-color: $light-black;
+
   padding: 8px 0px;
   width: 100%;
   color: $white;
@@ -11,11 +13,15 @@
   cursor: pointer;
 
   &:focus {
-    background-color: $light-black;
+    background-color: $black;
+
+    // background-color: $light-black;
   }
 
   &:hover {
-    background-color: $light-black;
+    background-color: $black;
+
+    // background-color: $light-black;
   }
 
   > .button-text-wrapper {

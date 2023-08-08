@@ -30,8 +30,13 @@ function RootLayout() {
     dispatch(sideCartSliceActions.toggleSideCart());
   };
 
-  const closeAuthModalHandler = () => {
+  const onCloseAuthModalHandler = () => {
     dispatch(authSliceActions.closeAuthModal());
+  };
+
+  //CLOSE SIDE CART
+  const onCloseSideCartHandler = () => {
+    dispatch(sideCartSliceActions.closeSideCart());
   };
 
   useEffect(() => {
@@ -46,12 +51,17 @@ function RootLayout() {
         <Footer />
       </div>
       {authModalIsOpen && (
-        <Modal onConfirm={closeAuthModalHandler}>
+        <Modal center={true} onConfirm={onCloseAuthModalHandler}>
           <AuthForm />
         </Modal>
       )}
       {/* SIDE-CART-MODAL */}
-      <SideCart />
+
+      {sideCartOpen && (
+        <Modal center={false} onConfirm={onCloseSideCartHandler}>
+          <SideCart />
+        </Modal>
+      )}
       {/* <AnimatePresence>
         {sideCartOpen && (
           <Modal onConfirm={onConfirmSideCartModalHandler}>

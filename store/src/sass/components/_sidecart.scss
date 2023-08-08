@@ -46,14 +46,13 @@
   }
 
   .sidecart_full {
-    height: 100%;
+    // height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     color: $text-color-gray;
 
     .sidecart_full_container {
-      height: 100%;
       overflow-y: scroll;
       overflow-x: hidden;
       position: relative;
@@ -76,22 +75,6 @@
       }
     }
 
-    .slidefull_btn {
-      margin-bottom: 50px;
-
-      .viewCartBtn {
-        background-color: $black-light;
-        color: #fff;
-        border: 1px solid $text-color-black;
-        margin-bottom: 15px;
-      }
-
-      .checkOutBtn {
-        background-color: #000;
-        color: #fff;
-        border: 1px solid #000;
-      }
-    }
     .subTotal {
       display: flex;
       justify-content: space-between;
@@ -100,5 +83,13 @@
       border-bottom: 1px solid $text-color-black;
       padding: 15px 0px;
     }
+  }
+
+  .btnTotalWrapper {
+    position: absolute;
+    bottom: 35px;
+    left: 0;
+    width: 100%;
+    padding: 35px 35px 0px 35px;
   }
 }

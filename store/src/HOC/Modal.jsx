@@ -5,15 +5,24 @@ const Backdrop = ({ onConfirm }) => {
   return <div onClick={onConfirm} className="backdrop"></div>;
 };
 
-const Overlay = ({ children, mobileNavOverlay = false }) => {
+const Overlay = ({ children, mobileNavOverlay, center }) => {
   return (
-    <div className={`overlay ${mobileNavOverlay ? "mobileNavOverlay" : ""}`}>
+    <div
+      className={`overlay ${center ? "authOverlay" : ""} ${
+        mobileNavOverlay ? "mobileNavOverlay" : ""
+      }`}
+    >
       {children}
     </div>
   );
 };
 
-function Modal({ onConfirm, children, mobileNavOverlay = false }) {
+function Modal({
+  center = true,
+  onConfirm,
+  children,
+  mobileNavOverlay = false,
+}) {
   return (
     <>
       {ReactDOM.createPortal(
@@ -22,7 +31,11 @@ function Modal({ onConfirm, children, mobileNavOverlay = false }) {
       )}
 
       {ReactDOM.createPortal(
-        <Overlay mobileNavOverlay={mobileNavOverlay} children={children} />,
+        <Overlay
+          center={center}
+          mobileNavOverlay={mobileNavOverlay}
+          children={children}
+        />,
         document.getElementById("overlay")
       )}
     </>

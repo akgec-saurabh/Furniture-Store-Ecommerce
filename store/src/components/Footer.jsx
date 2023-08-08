@@ -12,22 +12,22 @@ const Footer = () => {
       <div className="footer_container_wrapper">
         <ul className="footerList links">
           <li>
-            <a href="#">About Us</a>
+            <a href="/about-us">About Us</a>
+          </li>
+
+          <li>
+            <a href="/faq">FAQs</a>
           </li>
           <li>
-            <a href="#">Blog</a>
+            <a href="/order-tracking">Order Tracking</a>
           </li>
           <li>
-            <a href="#">FAQs</a>
+            <a href="/contact">Contact</a>
           </li>
           <li>
-            <a href="#">Order Tracking</a>
-          </li>
-          <li>
-            <a href="#">Contact</a>
-          </li>
-          <li>
-            <a href="#">&#169; by Saurabh</a>
+            <a target="_blank" href="https://ssaurabh.com/">
+              &#169; by Saurabh
+            </a>
           </li>
         </ul>
         <ul className="footerList icons">

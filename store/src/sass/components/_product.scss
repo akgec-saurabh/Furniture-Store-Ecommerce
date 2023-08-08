@@ -3,6 +3,8 @@
   text-decoration: none;
   position: relative;
   margin-bottom: 15px;
+  height: max-content;
+  max-height: 450px;
   // max-width: 300px;
 
   > .availabe_color_container {
@@ -45,7 +47,6 @@
         > .more {
           color: $primary-color;
           text-decoration: underline;
-          line-height: 1.5;
         }
       }
     }
@@ -53,6 +54,13 @@
     > .heart {
       cursor: pointer;
       color: $text-color-black;
+      transition: all 0.2s;
+
+      > .popularity {
+        margin: 5px;
+        font-size: 14px;
+        font-style: italic;
+      }
 
       &:hover {
         color: var(--black);

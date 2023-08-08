@@ -13,7 +13,17 @@ const DropDownDesktop = ({ name, items }) => {
       {isHover && (
         <div className="subMenu">
           {items.map((subMenu) => (
-            <Link to={subMenu.url} key={subMenu.url} className="item">
+            <Link
+              to={
+                name === "Category"
+                  ? subMenu.value === ""
+                    ? "/"
+                    : `/?category=${subMenu.value}`
+                  : `/${subMenu.value}`
+              }
+              key={subMenu.value}
+              className="item"
+            >
               {subMenu.text}
             </Link>
           ))}

@@ -4,23 +4,23 @@ const menu = [
     subMenu: [
       {
         text: "Cart",
-        url: "/cart",
+        value: "cart",
       },
       {
         text: "Checkout",
-        url: "/checkout",
+        value: "checkout",
       },
       {
         text: "Order Tracking",
-        url: "/order-tracking",
+        value: "order-tracking",
       },
       {
         text: "My Account",
-        url: "/my-account",
+        value: "my-account",
       },
       {
         text: "Wishlist",
-        url: "/wishlist",
+        value: "wishlist",
       },
     ],
   },
@@ -29,23 +29,23 @@ const menu = [
     subMenu: [
       {
         text: "All",
-        url: "",
+        value: "",
       },
       {
         text: "Bags & Backpacks",
-        url: "bags-backpacks",
+        value: "bags-backpacks",
       },
       {
         text: "Decoration",
-        url: "decoration",
+        value: "decoration",
       },
       {
         text: "Essentials",
-        url: "essentials",
+        value: "essentials",
       },
       {
         text: "Interior",
-        url: "interior",
+        value: "interior",
       },
     ],
   },
@@ -54,71 +54,69 @@ const menu = [
     subMenu: [
       {
         text: "Portfolio",
-        url: "/portfolio",
+        value: "portfolio",
       },
       {
         text: "About Us",
-        url: "/about-us",
+        value: "about-us",
       },
       {
         text: "Contact",
-        url: "/contact",
+        value: "contact",
       },
-      {
-        text: "Contact – Form",
-        url: "/contact-form",
-      },
+
       {
         text: "FAQ",
-        url: "/faq",
+        value: "faq",
       },
       {
         text: "404",
-        url: "/404",
+        value: "404",
       },
     ],
   },
-  {
-    text: "Elements",
-    subMenu: [
-      {
-        text: "Accordions",
-        url: "/elements/accordions",
-      },
-      {
-        text: "Banners",
-        url: "/elements/banners",
-      },
-      {
-        text: "Banner Slider",
-        url: "/elements/banner-slider",
-      },
-      {
-        text: "Buttons",
-        url: "/elements/buttons",
-      },
-      {
-        text: "Charts & Progress Bars",
-        url: "/elements/charts-progress-bars",
-      },
-      {
-        text: "Feature Boxes",
-        url: "/elements/feature-boxes",
-      },
-      {
-        text: "Google Maps",
-        url: "/elements/google-maps",
-      },
-      {
-        text: "Lightboxes",
-        url: "/elements/lightboxes",
-      },
-      {
-        text: "Posts",
-        url: "/elements/posts",
-      },
-    ],
-  },
+
+  // {
+  //   text: "Elements",
+  //   subMenu: [
+  //     {
+  //       text: "Accordions",
+  //       url: "/elements/accordions",
+  //     },
+  //     {
+  //       text: "Banners",
+  //       url: "/elements/banners",
+  //     },
+  //     {
+  //       text: "Banner Slider",
+  //       url: "/elements/banner-slider",
+  //     },
+  //     {
+  //       text: "Buttons",
+  //       url: "/elements/buttons",
+  //     },
+  //     {
+  //       text: "Charts & Progress Bars",
+  //       url: "/elements/charts-progress-bars",
+  //     },
+  //     {
+  //       text: "Feature Boxes",
+  //       url: "/elements/feature-boxes",
+  //     },
+  //     {
+  //       text: "Google Maps",
+  //       url: "/elements/google-maps",
+  //     },
+  //     {
+  //       text: "Lightboxes",
+  //       url: "/elements/lightboxes",
+  //     },
+  //     {
+  //       text: "Posts",
+  //       url: "/elements/posts",
+  //     },
+  //   ],
+  // },
 ];
 
 export default menu;

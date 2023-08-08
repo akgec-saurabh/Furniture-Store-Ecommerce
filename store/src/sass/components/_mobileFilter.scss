@@ -1,22 +1,53 @@
 .mobileFilter {
-  display: flex;
-  > .category {
-    > .head {
-      margin: 5px 15px 5px 0px;
-      cursor: pointer;
+  @include max-width;
+  width: 100%;
+  font-size: 14px;
+  color: $text-color-black;
+  > .mobileFilterWrapper {
+    display: flex;
+    > .category {
+      > .head {
+        margin: 5px 15px 5px 0px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+      > .active {
+        color: $light-black;
+      }
+      > .items {
+        > .item {
+        }
+      }
     }
-    > .items {
-      > .item {
+    > .filter {
+      > .head {
+        margin: 5px 15px 5px 5px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+      > .active {
+        color: $light-black;
       }
     }
   }
-  > .filter {
-    > .head {
-      margin: 5px 15px 5px 5px;
-      cursor: pointer;
-    }
+  > .mobileFilterList {
     > .items {
-      width: 100%;
+      > .category-item {
+        width: 100%;
+        padding: $xs $s;
+        text-transform: capitalize;
+        color: $text-color-black;
+        font-size: 14px;
+        cursor: pointer;
+
+        &:hover {
+          background-color: $black-light;
+          color: white;
+        }
+      }
+    }
+    > .filter-items {
+      // padding: $s;
     }
   }
 }

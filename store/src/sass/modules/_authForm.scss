@@ -1,10 +1,17 @@
 .authForm {
   padding: 50px;
   position: relative;
+  @include lg {
+    padding: 30px;
+  }
+  @include md {
+    padding: $s;
+  }
+  // @include
   .close-icon {
     position: absolute;
     top: 0;
     right: 0;
-    margin: $xl;
+    margin: $s;
   }
 }

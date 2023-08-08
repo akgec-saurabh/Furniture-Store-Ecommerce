@@ -6,7 +6,8 @@ const express = require("express");
 const router = express.Router();
 
 router.post("/checkout-session", async (req, res) => {
-  const { userId, cart, shipping } = req.body;
+  const { userId } = req.userData;
+  const { cart, shipping } = req.body;
   console.log(userId, cart);
   // TODO send email also
   const email = "test.test@gmail.com";

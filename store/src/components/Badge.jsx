@@ -1,6 +1,6 @@
 import React from "react";
 
-const Badge = ({ children, value }) => {
+const Badge = ({ children, value = 0 }) => {
   return (
     <div className="badge_container">
       {value !== 0 && <div className="badge">{value}</div>}

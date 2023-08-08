@@ -18,6 +18,7 @@ import Ratings from "./Ratings";
 import { saveCart } from "../store/cart-actions";
 import Button from "./Button";
 import { useAddItemToCartMutation } from "../store/product-api";
+import { authSliceActions } from "../store/auth-slice";
 
 function ProductDisplay({ product }) {
   const [count, setCount] = useState(1);
@@ -31,15 +32,19 @@ function ProductDisplay({ product }) {
     if (isSuccess) {
       dispatch(sideCartSliceActions.openSideCart());
     }
-    
   }, [isSuccess]);
 
   const onAddToCartHandler = () => {
-    addToCart({
-      productId: product.id,
-      qty: count,
-      token,
-    });
+    //ADD ONLY IF AUTHENTICATED
+    if (token) {
+      addToCart({
+        productId: product.id,
+        qty: count,
+        token,
+      });
+    } else {
+      dispatch(authSliceActions.openAuthModal());
+    }
     // dispatch(cartSliceActions.addToCart({ ...product, qty: count }));
     // dispatch(sideCartSliceActions.toggleSideCart());
     // dispatch(cartSliceActions.setCart());

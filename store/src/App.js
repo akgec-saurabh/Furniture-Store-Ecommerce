@@ -14,6 +14,9 @@ import ErrorPage from "./pages/ErrorPage";
 import About from "./pages/About";
 import MyAccount from "./pages/MyAccount";
 import WishList from "./pages/WishList";
+import Portfolio from "./pages/Portfolio";
+import Faq from "./pages/Faq";
+import Contact from "./pages/Contact";
 
 function App() {
   const dispatch = useDispatch();
@@ -33,14 +36,6 @@ function App() {
         {
           path: "product/:productId",
           element: <ProductPage />,
-        },
-        {
-          path: "category/:categoryname",
-          element: <Homepage />,
-        },
-        {
-          path: "tag/:tagname",
-          element: <Homepage />,
         },
         {
           path: "cart",
@@ -71,6 +66,22 @@ function App() {
         {
           path: "/wishlist",
           element: <WishList />,
+        },
+        {
+          path: "/portfolio",
+          element: <Portfolio />,
+        },
+        {
+          path: "/contact",
+          element: <Contact />,
+        },
+        {
+          path: "/faq",
+          element: <Faq />,
+        },
+        {
+          path: "/404",
+          element: <ErrorPage />,
         },
       ],
 

@@ -12,8 +12,10 @@
 @import "./components/product";
 @import "./components/productDisplay";
 @import "./components/products";
+
 @import "./components/secondaryNav";
 @import "./components/mobileFilter";
+
 @import "./components/slider";
 @import "./components/sidecart";
 @import "./components/sidecartitem";
@@ -47,13 +49,14 @@
 
 //MODULES
 @import "./modules/authForm";
+@import "./modules/filterNavbar";
 
 //HOC
 @import "./hoc/modal";
 
 //PAGES
 @import "./pages/cart";
+@import "./pages/homepage";
 
 //Layout
-
 @import "./layout/rootLayout";

@@ -10,28 +10,33 @@ import {
 } from "../store/product-api";
 import { useLocation } from "react-router-dom";
 import MobileFilter from "../components/MobileFilter";
+import FilterNavbar from "../Modules/FilterNavbar";
 
 function Homepage() {
   const location = useLocation();
   // const category = searchParams.get("category");
-  const { data, isLoading, isError, isSuccess, isFetching } =
+  const { data, isLoading, isError, isSuccess, isFetching, error } =
     useGetProductsByPageQuery(location.search);
 
+  useEffect(() => {}, []);
   return (
-    <>
+    <div className="homepage">
       <Slider />
-      <SecondaryNav />
-      <MobileFilter />
-      {isSuccess && <div>No of Products :{data.total_count}</div>}
+      <FilterNavbar />
+
       <Products
         data={data}
         isSuccess={isSuccess}
         isLoading={isFetching}
         isError={isError}
+        error={error}
       />
 
+      {/* {isSuccess && (
+        <Pagination maxPageRange={Math.ceil(data?.total_count / 5)} />
+      )} */}
       {/*  How to give Dynamically this page range  */}
-    </>
+    </div>
   );
 }
 

@@ -3,28 +3,8 @@ import Input from "./Input";
 import * as Yup from "yup";
 import { Formik, Form } from "formik";
 import Button from "./Button";
-import { easeInOut, motion } from "framer-motion";
-import { useLoginUserMutation } from "../store/product-api";
-import { useDispatch, useSelector } from "react-redux";
-import { toastSliceActions } from "../store/toast-slice";
-import { authSliceActions } from "../store/auth-slice";
-import { CodeSandboxOutlined } from "@ant-design/icons";
 
 function LoginForm({ loginUser, isLoading, isError, error }) {
-  // const [loginUser, { data, isLoading, isSuccess, isError, error }] =
-  // useLoginUserMutation();
-  // const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   console.log(data, isSuccess, isError, error);
-
-  //   if (isSuccess) {
-  //     dispatch(
-  //       authSliceActions.updateUserData(data.message, data.head, data.token)
-  //     );
-  //   }
-  // }, [isSuccess]);
-
   const [initialLoginValues, setInitialLoginValues] = useState({
     email: "",
     password: "",

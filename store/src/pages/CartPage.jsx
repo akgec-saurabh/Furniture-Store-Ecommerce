@@ -7,6 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { CloseCircleOutlined } from "@ant-design/icons";
 import { saveCart } from "../store/cart-actions";
 import { useGetUserCartQuery } from "../store/product-api";
+import Button from "../components/Button";
 function CartPage() {
   const { cart, total: localTotal } = useSelector((state) => state.cart);
   const userId = useSelector((state) => state.auth.userId);
@@ -110,10 +111,8 @@ function CartPage() {
 
                   <div>
                     <CartTotal total={data?.total} />
-                    <Link to="/checkout">
-                      <button className="btn ct-btn">
-                        Proceed to checkout
-                      </button>
+                    <Link className="btn ct-btn" to="/checkout">
+                      Proceed to checkout
                     </Link>
                   </div>
                 </div>

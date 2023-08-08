@@ -7,6 +7,7 @@ import SideCartItem from "./SideCartItem";
 import { AnimatePresence, motion } from "framer-motion";
 import { useGetUserCartQuery } from "../store/product-api";
 import Loading from "./Loading";
+import Button from "./Button";
 
 const sideVariants = {
   hide: {
@@ -34,7 +35,7 @@ function SideCart() {
       skip: !token,
     }
   );
-  const { cart, total, shipping } = useSelector((state) => state.cart);
+
   const sideCartOpen = useSelector((state) => state.sideCart.open);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -69,7 +70,7 @@ function SideCart() {
 
           {/* if cart is empty */}
 
-          {/* {cart.length === 0 && (
+          {(data?.cart.products?.length === 0 || !token) && (
             <div className="sidecart_empty">
               <div className="se_empty">
                 <CloseCircleOutlined className="icon" />
@@ -82,7 +83,7 @@ function SideCart() {
                 Continue Shopping
               </button>
             </div>
-          )} */}
+          )}
 
           {data?.cart.products?.length !== 0 && (
             <div className="sidecart_full">
@@ -96,16 +97,13 @@ function SideCart() {
                 ))}
               </div>
 
-              <div className="subTotal">
-                <span>SubTotal:</span>
-                <span>${data?.total}.00</span>
-              </div>
-
-              <div className="slidefull_btn">
-                <button onClick={onViewCartHandler} className="btn viewCartBtn">
-                  View Cart
-                </button>
-                <button className="btn checkOutBtn">CheckOut</button>
+              <div className="btnTotalWrapper">
+                <div className="subTotal">
+                  <span>SubTotal:</span>
+                  <span>${data?.total}.00</span>
+                </div>
+                <Button onClick={onViewCartHandler} text="View Cart" />
+                <Button margin border text="Checkout" />
               </div>
             </div>
           )}

@@ -1,8 +1,7 @@
 import { DownOutlined, UpOutlined } from "@ant-design/icons";
 import React, { useEffect, useRef, useState } from "react";
-import { AnimatePresence, LayoutGroup, motion } from "framer-motion";
 
-function DropDown({ name, items }) {
+function DropDown({ name, items, onClick }) {
   const dropDownRef = useRef();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -31,8 +30,11 @@ function DropDown({ name, items }) {
 
       {isOpen &&
         items.map((item) => (
-          <div key={item.text} className="item">
-            <div className="background"></div>
+          <div
+            onClick={() => onClick({ name: name, value: item.value })}
+            key={item.text}
+            className="item"
+          >
             <div>{item.text}</div>
           </div>
         ))}

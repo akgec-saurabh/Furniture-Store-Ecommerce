@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Comment from "./Comment";
 import AddComment from "./AddComment";
+import { Link } from "react-router-dom";
 
 function Detail({ product }) {
   console.log(product.reviews);
@@ -83,11 +84,17 @@ function Detail({ product }) {
           </div>
           <div className="md_category">
             <div>Category :&nbsp;</div>
-            <div> {product.category}</div>
+            <Link className="category" to={`/?category=${product.category}`}>
+              {product.category}
+            </Link>
           </div>
           <div className="md_tags">
             <div>Tags :&nbsp;</div>
-            <div>{product.tag}</div>
+            {product.tag.map((tag) => (
+              <Link className="tag" to={`/?tag=${tag}`}>
+                {tag}
+              </Link>
+            ))}
           </div>
         </div>
       </div>

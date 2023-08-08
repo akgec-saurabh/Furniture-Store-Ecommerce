@@ -1,30 +1,23 @@
-import React, { useEffect, useState } from "react";
-import {
-  CloseOutlined,
-  HeartOutlined,
-  MenuOutlined,
-  ShoppingOutlined,
-  UserOutlined,
-} from "@ant-design/icons";
-import Badge from "../components/Badge";
-import { useDispatch, useSelector } from "react-redux";
-import { sideCartSliceActions } from "../store/sideCart-slice";
-import { Link } from "react-router-dom";
-import { authSliceActions } from "../store/auth-slice";
+import React from "react";
 import DesktopNavbar from "./DesktopNavbar";
 import MobileNavbar from "./MobileNavbar";
+import { useGetUserCartQuery } from "../store/product-api";
+import { useSelector } from "react-redux";
 
 const NavBar = () => {
   const isMobile = window.matchMedia("(max-width: 960px)").matches;
+  const token = useSelector((state) => state.auth.token);
+  const { data } = useGetUserCartQuery(token, {
+    skip: !token,
+  });
+
   return (
-    <>
-      <div className="nav_container">
-        <div className="nav_container_wrapper">
-          {!isMobile && <DesktopNavbar />}
-          {isMobile && <MobileNavbar />}
-        </div>
+    <div className="nav_container">
+      <div className="nav_container_wrapper">
+        {!isMobile && <DesktopNavbar cartValue={data?.cart.products.length} />}
+        {isMobile && <MobileNavbar cartValue={data?.cart.products.length} />}
       </div>
-    </>
+    </div>
   );
 };
 

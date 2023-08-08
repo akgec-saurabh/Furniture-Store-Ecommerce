@@ -63,21 +63,22 @@ const Product = ({ product, isLoading }) => {
             </Link>
 
             {/* //TODO CHANGE STYLING OR REMOVE THIS DATE  */}
-            <div>Rating : {product.rating}</div>
+            {/* <div>Rating : {product.rating}</div>
             <div>
               {new Date(product.date).toLocaleDateString(undefined, {
                 year: "numeric",
                 month: "long",
                 day: "numeric",
               })}
-            </div>
+            </div> */}
           </div>
           <div
             onMouseEnter={() => setHeartHoverd(true)}
             onMouseLeave={() => setHeartHoverd(false)}
             className="heart"
           >
-            {product.popularity}
+            <span className="popularity"> {product.popularity}</span>
+
             {!heartHovered && <HeartOutlined />}
             {heartHovered && <HeartFilled />}
           </div>

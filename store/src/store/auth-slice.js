@@ -1,8 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initalAuthState = {
-  email: null,
-  firstname: null,
   token: null,
   authModalIsOpen: false,
 };
@@ -62,9 +60,7 @@ const authSlice = createSlice({
         console.log(error);
       }
 
-      state.firstname = "";
-      state.email = "";
-      state.token = "";
+      state.token = null;
     },
   },
 });

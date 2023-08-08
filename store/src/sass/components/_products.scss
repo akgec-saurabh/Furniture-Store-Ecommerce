@@ -1,10 +1,18 @@
 .products_container {
-  min-height: 100vh;
+  // min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  .products_wrapper {
+  > .total_count_product {
+    width: 100%;
+    @include max-width;
+    color: $text-color-black;
+    text-decoration: solid;
+    font-style: italic;
+    font-size: 14px;
+  }
+  > .products_wrapper {
     max-width: 1250px;
     margin: 30px auto;
     // display: flex;
@@ -15,7 +23,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 15px;
-    padding: 15px;
+    padding: $s 0px;
 
     @include lg {
       grid-template-columns: 1fr 1fr 1fr;

@@ -62,6 +62,10 @@ const getAllProducts = async (req, res, next) => {
   } catch (error) {
     return next(httpError("Unable to find the Products", 404));
   }
+
+  if (products.length === 0) {
+    return next(httpError("Unable to find Product", 404));
+  }
   res.status(200).json({
     message: "Fetched Products Successfully",
     total_count,

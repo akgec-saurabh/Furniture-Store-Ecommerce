@@ -76,5 +76,29 @@
         }
       }
     }
+
+    .md_category {
+      .category {
+        margin-right: 5px;
+        text-transform: capitalize;
+        color: $text-color-black;
+
+        &:hover {
+          color: $primary-color;
+        }
+      }
+    }
+
+    .md_tags {
+      .tag {
+        margin-right: 5px;
+        text-transform: capitalize;
+        color: $text-color-black;
+
+        &:hover {
+          color: $primary-color;
+        }
+      }
+    }
   }
 }

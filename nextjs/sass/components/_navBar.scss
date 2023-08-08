@@ -6,26 +6,4 @@
   @include max-width;
   border-bottom: 1px solid $light-gray;
   color: $text-color-black;
-  .leftMenu {
-    display: flex;
-  }
-
-  .logo {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    color: $black;
-    font-weight: 700;
-  }
-  .rightMenu {
-    display: flex;
-    > li {
-      padding-left: 15px;
-      cursor: pointer;
-
-      &:hover {
-        color: $black;
-      }
-    }
-  }
 }

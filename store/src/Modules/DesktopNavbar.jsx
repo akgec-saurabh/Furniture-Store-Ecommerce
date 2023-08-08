@@ -7,11 +7,9 @@ import Badge from "../components/Badge";
 import DropDown from "../components/DropDownDesktop";
 import Logo from "../components/Logo";
 import menu from "../menuData";
-import { useEffect } from "react";
 
-function DesktopNavbar() {
+function DesktopNavbar({ cartValue }) {
   const dispatch = useDispatch();
-  const cart = useSelector((state) => state.cart.cart);
   const token = useSelector((state) => state.auth.token);
 
   const onSideCartHandler = () => {
@@ -20,6 +18,7 @@ function DesktopNavbar() {
   };
 
   const onSignInHandler = () => {
+    console.log("opening authModal");
     dispatch(authSliceActions.openAuthModal());
   };
 
@@ -42,7 +41,7 @@ function DesktopNavbar() {
           {token && <Link to="my-account">My account</Link>}
         </li>
         <li onClick={onSideCartHandler} className="nav_cart">
-          <Badge className="nav_badge" value={cart.length}>
+          <Badge className="nav_badge" value={cartValue}>
             <ShoppingOutlined />
           </Badge>
         </li>

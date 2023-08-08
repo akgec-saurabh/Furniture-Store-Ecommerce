@@ -5,17 +5,25 @@ import {
   loadingContainerVariants,
   loadingErrorVariants,
 } from "../helpers/framer-variants";
+import { useNavigate } from "react-router-dom";
 
-function Error() {
+function Error({ status, message }) {
+  const navigate = useNavigate();
+  const onGoToHomePage = () => {
+    navigate("/");
+  };
+  const code = status.toString().split("");
   return (
     <div className="errorComponent">
       <motion.h1 variants={loadingContainerVariants} animate="show">
-        <motion.span variants={loadingErrorVariants}>4</motion.span>
-        <motion.span variants={loadingErrorVariants}>0</motion.span>
-        <motion.span variants={loadingErrorVariants}>4</motion.span>
+        {code.map((char, i) => (
+          <motion.span key={char + i} variants={loadingErrorVariants}>
+            {char}
+          </motion.span>
+        ))}
       </motion.h1>
-      <p>Some Error Occured</p>
-      <Button s text="Go to Homepage" />
+      <p>{message}</p>
+      <Button margin onClick={onGoToHomePage} m text="Go to Homepage" />
     </div>
   );
 }

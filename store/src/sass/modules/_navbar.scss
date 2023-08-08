@@ -10,7 +10,7 @@
   @include lg {
     padding: $s;
     height: 50px;
-    position: relative;
+    position: sticky;
     z-index: 100;
   }
 

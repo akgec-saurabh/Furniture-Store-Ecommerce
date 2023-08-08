@@ -40,6 +40,7 @@
       align-items: center;
       > .filterWrapper {
         > .head {
+          cursor: pointer;
         }
         > .filter-items {
         }
@@ -74,7 +75,15 @@
         font-size: 14px;
         color: $text-color-black;
         cursor: pointer;
-
+        .active {
+          color: $primary-color;
+          border: 1px solid $primary-color;
+          padding: 0px 10px;
+          border-radius: 15px;
+          &:hover {
+            text-decoration: line-through;
+          }
+        }
         //FOR SORT
         .sort {
           margin-bottom: 5px;
@@ -82,10 +91,6 @@
             &:hover {
               color: $primary-color;
             }
-          }
-
-          .active {
-            color: $primary-color;
           }
         }
 
@@ -97,10 +102,6 @@
             &:hover {
               color: $primary-color;
             }
-          }
-
-          .active {
-            color: $primary-color;
           }
         }
       }
@@ -155,10 +156,6 @@
 
   .activeFilterWrapper {
     margin-top: 15px;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
   }
-}
-
-.active {
-  color: $primary-color;
 }

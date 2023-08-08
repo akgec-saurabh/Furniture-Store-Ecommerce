@@ -1,3 +1,11 @@
 .desktop-menu {
   display: flex;
 }
+
+.nav_icons {
+  > li {
+    &:hover {
+      color: $black;
+    }
+  }
+}
